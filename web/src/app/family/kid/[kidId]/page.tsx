@@ -13,7 +13,9 @@ import {
   unpublishShop,
   type ActionResult,
 } from "@/app/actions";
+import { BadgeStrip } from "@/components/BadgeGrid";
 import { CopyButton } from "@/components/CopyButton";
+import { earnedBadges } from "@/lib/badge-rules";
 import { ActionForm, Submit } from "@/components/forms";
 import { ParentGate } from "@/components/ParentGate";
 import { ParentHeader } from "@/components/ParentHeader";
@@ -173,7 +175,7 @@ export default async function KidAdminPage({ params }: { params: Promise<{ kidId
   return (
     <>
       <ParentHeader />
-      <main id="main" className="mx-auto max-w-5xl px-4 py-6 sm:py-8">
+      <main id="main" className="parent-zone mx-auto max-w-5xl px-4 py-6 sm:py-8">
         <Link href="/family" className="inline-flex min-h-11 items-center text-sm font-bold text-ink-soft hover:text-ink">
           ← Family
         </Link>
@@ -281,6 +283,7 @@ export default async function KidAdminPage({ params }: { params: Promise<{ kidId
                 </a>
               )}
             </section>
+            <BadgeStrip earned={earnedBadges(kid)} name={kid.nickname} />
           </div>
 
           <div className="space-y-6">

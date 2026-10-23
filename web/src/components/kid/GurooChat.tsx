@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { findPersonalInfo } from "@/lib/safety";
-import { Mascot } from "../Mascot";
+import { Guroo3D } from "../Guroo3D";
 
 type Turn = { role: "user" | "assistant"; text: string };
 
@@ -67,12 +67,12 @@ export function GurooChat({
   }
 
   return (
-    <div className={`card flex flex-col ${compact ? "max-h-[28rem]" : "min-h-[60vh]"}`}>
+    <div className={`flex flex-col ${compact ? "card max-h-[28rem]" : "card-soft min-h-[60vh]"}`}>
       <div className="flex-1 space-y-3 overflow-y-auto p-4" aria-live="polite" aria-label="Chat with Guroo">
         {turns.length === 0 && (
           <div className="flex items-start gap-3">
-            <Mascot size={48} className="shrink-0" />
-            <p className="rounded-2xl rounded-tl-sm bg-cream px-4 py-3">
+            <Guroo3D pose="avatar" size={52} decorative className="shrink-0 shadow-soft ring-2 ring-white" />
+            <p className="rounded-3xl rounded-tl-md bg-cream px-4 py-3 font-semibold">
               G&apos;day! I&apos;m Guroo, your business helper. 🦘 Ask me for ideas, names, words, or help with any step.
               You&apos;re the boss, I just help you think!
             </p>
@@ -80,13 +80,13 @@ export function GurooChat({
         )}
         {turns.map((t, i) =>
           t.role === "user" ? (
-            <p key={i} className="ml-auto max-w-[85%] whitespace-pre-line rounded-2xl rounded-tr-sm bg-sky/25 px-4 py-3 font-semibold">
+            <p key={i} className="ml-auto max-w-[85%] whitespace-pre-line rounded-3xl rounded-tr-md bg-sky-100 px-4 py-3 font-semibold ring-2 ring-sky/40">
               {t.text}
             </p>
           ) : (
             <div key={i} className="flex items-start gap-3">
-              <Mascot size={36} className="shrink-0" />
-              <p className="max-w-[85%] whitespace-pre-line rounded-2xl rounded-tl-sm bg-cream px-4 py-3">
+              <Guroo3D pose="avatar" size={40} decorative className="shrink-0 shadow-soft ring-2 ring-white" />
+              <p className="max-w-[85%] whitespace-pre-line rounded-3xl rounded-tl-md bg-cream px-4 py-3">
                 {t.text || (
                   <span className="inline-flex items-center gap-1 text-ink-soft" role="status">
                     <span className="sr-only">Guroo is thinking…</span>
@@ -104,7 +104,7 @@ export function GurooChat({
       {turns.length === 0 && !starter && (
         <div className="flex flex-wrap gap-2 px-4 pb-2">
           {IDEAS.map((idea) => (
-            <button key={idea} type="button" onClick={() => send(idea)} className="min-h-11 rounded-full border-2 border-line bg-white px-3 py-2 text-left text-sm font-bold hover:border-sky-dark">
+            <button key={idea} type="button" onClick={() => send(idea)} className="squish min-h-12 rounded-full border-2 border-line bg-white px-4 py-2 text-left text-sm font-bold shadow-[0_3px_0_var(--color-line)] hover:border-sky-dark">
               {idea}
             </button>
           ))}
@@ -132,9 +132,9 @@ export function GurooChat({
             rows={input.length > 60 ? 3 : 1}
             maxLength={600}
             placeholder="Ask Guroo anything about your business…"
-            className="input resize-none"
+            className="input resize-none !rounded-3xl"
           />
-          <button className="btn btn-sun shrink-0 self-end" disabled={busy || !input.trim() || Boolean(warn)}>
+          <button className="btn btn-sun btn-pill-sm shrink-0 self-end" disabled={busy || !input.trim() || Boolean(warn)}>
             {busy ? "…" : "Send"}
           </button>
         </div>

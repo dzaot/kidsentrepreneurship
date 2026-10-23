@@ -9,6 +9,8 @@ import { kidMode, requireFamily } from "@/lib/auth";
 import { AVATARS, formatMoney } from "@/lib/brand";
 import { totalEarned, type Kid } from "@/lib/model";
 import { LESSONS } from "@/content";
+import { BADGES, practiceDays } from "@/lib/badges";
+import { earnedBadges } from "@/lib/badge-rules";
 
 export const metadata = { title: "Family" };
 
@@ -78,7 +80,7 @@ export default async function FamilyPage() {
   return (
     <>
       <ParentHeader />
-      <main id="main" className="mx-auto max-w-5xl px-4 py-8">
+      <main id="main" className="parent-zone mx-auto max-w-5xl px-4 py-8">
         {first ? (
           <>
             <div className="flex items-center gap-4">
@@ -140,7 +142,7 @@ export default async function FamilyPage() {
                       <div className="min-w-0 flex-1">
                         <h2 className="truncate font-display text-2xl font-bold">{kid.nickname}</h2>
                         <p className="text-sm font-semibold text-ink-soft">
-                          🔥 {kid.streak.count}-day streak · ⭐ {kid.xp} XP
+                          📅 {practiceDays(kid.completed).length} practice days · ⭐ {kid.xp} XP · 🏅 {Object.keys(earnedBadges(kid)).length}/{BADGES.length} patches
                         </p>
                       </div>
                     </div>

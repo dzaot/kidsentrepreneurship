@@ -32,7 +32,7 @@ export function KidHeader({ kid, onSky = false }: { kid: Kid; onSky?: boolean })
           </span>
           <Link
             href="/family"
-            className={`ml-1 inline-flex h-12 min-w-12 items-center justify-center gap-1.5 rounded-full px-3 text-sm font-bold ${onSky ? "bg-white/25 text-white hover:bg-white/35" : "text-ink-soft hover:bg-white"}`}
+            className={`ml-1 inline-flex h-12 min-w-12 items-center justify-center gap-1.5 rounded-full px-3 text-sm font-bold ${onSky ? "bg-white/90 text-ink-soft shadow-soft hover:bg-white" : "text-ink-soft hover:bg-white"}`}
             aria-label="Grown-ups only"
             title="Grown-ups"
           >

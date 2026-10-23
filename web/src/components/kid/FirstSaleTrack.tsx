@@ -14,7 +14,7 @@ export function FirstSaleTrack({ kid }: { kid: Kid }) {
   const reached = stops.filter((s) => s.done).length;
   const currentIdx = stops.findIndex((s) => !s.done);
   return (
-    <section className="card p-4 sm:p-5" aria-labelledby="first-sale-title">
+    <section className="card-soft p-4 sm:p-5" aria-labelledby="first-sale-title">
       <div className="flex items-baseline justify-between gap-2">
         <h2 id="first-sale-title" className="font-display text-lg font-bold">
           Road to my first sale

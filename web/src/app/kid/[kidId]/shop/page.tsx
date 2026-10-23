@@ -19,10 +19,10 @@ export default async function ShopPage({ params }: { params: Promise<{ kidId: st
   return (
     <>
       <KidHeader kid={kid} />
-      <main id="main" className="mx-auto grid max-w-5xl gap-6 px-4 py-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
-        <div className="space-y-4 md:sticky md:top-24 md:self-start">
-          <h1 className="text-3xl font-bold">🏪 My shop</h1>
-          <p className={`card p-4 font-bold ${STATUS[kid.shop.status].cls}`} role="status">{STATUS[kid.shop.status].text}</p>
+      <main id="main" className="animate-page mx-auto grid max-w-5xl gap-6 px-4 pt-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]" style={{ paddingBottom: "var(--kid-nav-space)" }}>
+        <div className="space-y-4 md:sticky md:top-20 md:self-start">
+          <h1 className="flex items-center gap-3 font-display text-[28px] font-bold leading-tight sm:text-4xl"><span className="glossy h-14 w-14 bg-leaf text-3xl" aria-hidden><span className="relative z-10">🏪</span></span> My shop</h1>
+          <p className={`card-soft p-4 font-bold ${STATUS[kid.shop.status].cls}`} role="status">{STATUS[kid.shop.status].text}</p>
           {kid.shop.status === "draft" && (
             <div className="px-1">
               <div className="flex justify-between text-sm font-bold text-ink-soft">
@@ -31,8 +31,8 @@ export default async function ShopPage({ params }: { params: Promise<{ kidId: st
                   {checks.filter((c) => c.done).length} of {checks.length} done
                 </span>
               </div>
-              <div className="mt-1 h-3 overflow-hidden rounded-full bg-white ring-2 ring-line" aria-hidden>
-                <div className="progress-shine h-full rounded-full bg-leaf" style={{ width: `${Math.max(4, (checks.filter((c) => c.done).length / checks.length) * 100)}%` }} />
+              <div className="track mt-1 h-4 overflow-hidden" aria-hidden>
+                <div className="progress-shine fill-progress h-full rounded-full" style={{ width: `${Math.max(4, (checks.filter((c) => c.done).length / checks.length) * 100)}%` }} />
               </div>
               {checks.every((c) => !c.done) && (
                 <p className="mt-2 text-sm text-ink-soft">You&apos;ll build your shop step by step in your lessons. You can come back here to change things anytime.</p>

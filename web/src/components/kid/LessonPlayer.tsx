@@ -1,13 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState, useTransition } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { completeLesson } from "@/app/actions";
 import type { Shop } from "@/lib/model";
 import { findPersonalInfo } from "@/lib/safety";
+import { computeBadges, newlyEarned, practiceDays, type BadgeRules } from "@/lib/badges";
 import type { Lesson, Step } from "@/content/types";
+import { Guroo3D } from "../Guroo3D";
 import { Mascot } from "../Mascot";
 import { WatchAndLearn } from "../Videos";
+import { BadgeReveal } from "./BadgeReveal";
 import { BUILDERS, builderDone } from "./Builders";
 import { Confetti } from "./Confetti";
 import { GurooChat } from "./GurooChat";
@@ -68,6 +71,8 @@ export function LessonPlayer({
   aiOn,
   backHref,
   nextHref,
+  completed,
+  badgeRules,
 }: {
   kidId: string;
   lesson: Lesson;
@@ -76,6 +81,8 @@ export function LessonPlayer({
   aiOn: boolean;
   backHref: string;
   nextHref?: string;
+  completed: Record<string, string>;
+  badgeRules: BadgeRules;
 }) {
   const [i, setI] = useState(0);
   const [picked, setPicked] = useState<number | null>(null);
@@ -83,10 +90,24 @@ export function LessonPlayer({
   const [notes, setNotes] = useState<Record<number, string>>({});
   const [builtHere, setBuiltHere] = useState(false);
   const [result, setResult] = useState<{ xp: number; streak: number } | null>(null);
+  const [finishedDay, setFinishedDay] = useState<string | null>(null);
   const [error, setError] = useState(false);
   const [leaving, setLeaving] = useState(false);
   const [pending, start] = useTransition();
   const continueRef = useRef<HTMLButtonElement>(null);
+
+  // Badges this lesson unlocks: same rules as the badge board, before vs. after finishing.
+  const fresh = useMemo(() => {
+    if (!finishedDay) return [];
+    const before = computeBadges({ completed, shop }, badgeRules);
+    const namesShop = lesson.steps.some((st) => st.kind === "build" && st.action === "brand-name");
+    const after = computeBadges(
+      { completed: { ...completed, [lesson.id]: completed[lesson.id] ?? finishedDay }, shop: { ...shop, name: shop.name || (namesShop ? "named" : undefined) } },
+      badgeRules,
+    );
+    return newlyEarned(before, after);
+  }, [finishedDay, completed, shop, badgeRules, lesson]);
+  const practiceAfter = practiceDays(finishedDay ? { ...completed, [`${lesson.id}:now`]: finishedDay } : completed).length;
 
   const step: Step | undefined = lesson.steps[i];
   const total = lesson.steps.length;
@@ -105,7 +126,9 @@ export function LessonPlayer({
     setError(false);
     start(async () => {
       try {
-        setResult(await completeLesson(kidId, lesson.id, localDay(), journal));
+        const day = localDay();
+        setResult(await completeLesson(kidId, lesson.id, day, journal));
+        setFinishedDay(day);
         buzz([20, 60, 20, 60, 40]);
       } catch {
         setError(true);
@@ -138,23 +161,30 @@ export function LessonPlayer({
   if (result) {
     const cheer = CHEERS[lesson.id.length % CHEERS.length];
     return (
-      <div className="flex flex-1 flex-col items-center pb-10 pt-6 text-center">
-        <Confetti />
-        <Mascot size={120} mood="wow" className="animate-pop" />
-        <p className="mt-4 font-display text-lg font-bold text-sun-ink">{cheer}</p>
-        <h1 className="text-4xl font-bold sm:text-5xl">Lesson complete!</h1>
+      <div className="relative flex flex-1 flex-col items-center pb-10 pt-6 text-center">
+        <div className="sunrise fixed inset-0 -z-10" aria-hidden />
+        <Confetti count={fresh.length ? 60 : 36} />
+        <Guroo3D pose="celebrate" size={200} eager className="animate-guroo-hop w-40 sm:w-[200px]" />
+        <p className="mt-2 font-display text-lg font-bold text-sun-ink">{cheer}</p>
+        <h1 className="animate-pop font-display text-[34px] font-extrabold leading-tight sm:text-5xl [animation-delay:250ms]">Lesson complete!</h1>
         <p className="mt-1 font-bold text-ink-soft">
           {lesson.emoji} {lesson.title}
         </p>
         <div className="mt-6 grid w-full max-w-md grid-cols-3 gap-2 sm:gap-3" role="list">
-          <div className="card animate-pop px-2 py-4" role="listitem">
+          <div className="card-soft animate-pop px-2 py-4 [animation-delay:400ms]" role="listitem">
             <p className="text-xs font-extrabold uppercase tracking-wide text-ink-soft">XP</p>
             <p className="font-display text-3xl font-bold text-sun-ink">
               +<CountUp to={lesson.xp} />
             </p>
           </div>
-          <div className="card animate-pop px-2 py-4 [animation-delay:120ms]" role="listitem">
-            <p className="text-xs font-extrabold uppercase tracking-wide text-ink-soft">Streak</p>
+          <div className="card-soft animate-pop px-2 py-4 [animation-delay:500ms]" role="listitem">
+            <p className="text-xs font-extrabold uppercase tracking-wide text-ink-soft">Practice days</p>
+            <p className="font-display text-3xl font-bold text-leaf-dark">
+              <span aria-hidden>📅</span> {practiceAfter}
+            </p>
+          </div>
+          <div className="card-soft animate-pop px-2 py-4 [animation-delay:600ms]" role="listitem">
+            <p className="text-xs font-extrabold uppercase tracking-wide text-ink-soft">In a row</p>
             <p className="font-display text-3xl font-bold text-coral-dark">
               <span className="animate-flame" aria-hidden>
                 🔥
@@ -162,29 +192,19 @@ export function LessonPlayer({
               {result.streak}
             </p>
           </div>
-          <div className="card animate-pop px-2 py-4 [animation-delay:240ms]" role="listitem">
-            <p className="text-xs font-extrabold uppercase tracking-wide text-ink-soft">Today</p>
-            <p className="font-display text-3xl font-bold text-leaf-dark">✓</p>
-            <p className="sr-only">Daily goal done</p>
-          </div>
         </div>
-        <p className="mt-4 max-w-md rounded-2xl bg-white/70 px-4 py-3 font-semibold">
-          🦘 Daily goal done! Come back tomorrow to keep your streak hopping.
-        </p>
+
+        {fresh.length > 0 && <BadgeReveal ids={fresh} href={`/kid/${kidId}/badges`} />}
+
+        <p className="mt-5 max-w-md rounded-2xl bg-white/80 px-4 py-3 font-semibold">🦘 Daily goal done! That&apos;s today&apos;s hop. See you tomorrow!</p>
 
         <div className="mt-6 flex w-full max-w-md flex-col gap-3">
-          {nextHref ? (
-            <>
-              <Link href={backHref} className="btn btn-leaf w-full text-lg">
-                Continue
-              </Link>
-              <Link href={nextHref} className="btn btn-ghost w-full">
-                One more lesson ▶
-              </Link>
-            </>
-          ) : (
-            <Link href={backHref} className="btn btn-leaf w-full text-lg">
-              Continue
+          <Link href={backHref} className="btn btn-leaf btn-pill w-full">
+            Continue
+          </Link>
+          {nextHref && (
+            <Link href={nextHref} className="btn btn-white btn-pill-sm w-full ring-2 ring-line">
+              One more lesson ▶
             </Link>
           )}
         </div>
@@ -214,7 +234,7 @@ export function LessonPlayer({
               {step.emoji}
             </span>
           ) : (
-            <Mascot size={110} className="animate-pop" />
+            <Mascot size={110} idle className="animate-pop" />
           )}
           <h2 className="mt-5 text-3xl font-bold sm:text-4xl">{step.title}</h2>
           <p className="mt-4 max-w-xl whitespace-pre-line text-xl leading-relaxed sm:text-2xl sm:leading-relaxed">{step.body}</p>
@@ -236,7 +256,7 @@ export function LessonPlayer({
       body = (
         <div>
           <div className="flex items-start gap-3">
-            <Mascot size={56} className="shrink-0" />
+            <Mascot size={64} className="shrink-0" />
             <h2 id={`q-${i}`} className="text-2xl font-bold sm:text-3xl">
               {step.question}
             </h2>
@@ -261,7 +281,7 @@ export function LessonPlayer({
                   aria-pressed={isPicked}
                   disabled={picked !== null}
                   onClick={() => pick(k)}
-                  className={`card flex min-h-14 w-full items-center gap-3 px-4 py-3 text-left text-lg font-bold transition disabled:cursor-default ${state}`}
+                  className={`card squish flex min-h-16 w-full items-center gap-3 !rounded-[20px] px-4 py-3 text-left text-lg font-bold shadow-[0_4px_0_var(--color-line)] transition disabled:cursor-default ${state}`}
                 >
                   <span
                     aria-hidden
@@ -443,7 +463,7 @@ export function LessonPlayer({
         <button
           ref={continueRef}
           type="button"
-          className={`btn w-full text-lg ${feedbackTone === "try" ? "btn-sun" : "btn-leaf"}`}
+          className={`btn btn-pill w-full ${feedbackTone === "try" ? "btn-sun" : "btn-leaf"}`}
           disabled={!canContinue || pending}
           onClick={next}
         >

@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { LessonPlayer } from "@/components/kid/LessonPlayer";
 import { requireKid } from "@/lib/auth";
+import { BADGE_RULES } from "@/lib/badge-rules";
 import { findLesson, isUnlocked, LESSONS, trackOf, unitOf } from "@/content";
 
 export const metadata = { title: "Lesson" };
@@ -26,6 +27,8 @@ export default async function LessonPage({ params }: { params: Promise<{ kidId: 
         aiOn={Boolean(kid.ai?.enabled)}
         backHref={back}
         nextHref={nextHref}
+        completed={kid.completed}
+        badgeRules={BADGE_RULES}
       />
     </main>
   );

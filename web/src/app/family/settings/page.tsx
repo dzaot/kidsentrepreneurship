@@ -10,7 +10,7 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
   return (
     <>
       <ParentHeader />
-      <main id="main" className="mx-auto max-w-2xl px-4 py-8">
+      <main id="main" className="parent-zone mx-auto max-w-2xl px-4 py-8">
         <h1 className="text-3xl font-bold">Settings</h1>
         <div className="card mt-6 p-5">
           <p><b>Email:</b> {family.email}</p>

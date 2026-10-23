@@ -1,9 +1,12 @@
 import Link from "next/link";
 import { joinWaitlist } from "@/app/waitlist";
 import { ActionForm, Submit } from "@/components/forms";
+import { Guroo3D } from "@/components/Guroo3D";
+import { Cloud, SkyScene } from "@/components/kid/Sky";
 import { Logo, Mascot } from "@/components/Mascot";
 import { BRAND } from "@/lib/brand";
 import { currentFamily } from "@/lib/auth";
+import { BADGES } from "@/lib/badges";
 
 // Landing copy lives in docs/copy/landing.md. Hero variants are picked with ?v=b or ?v=c for A/B tests.
 const HEROES = {
@@ -146,78 +149,88 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ d
 
   return (
     <main className="overflow-x-clip">
-      <header className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-4">
-        <Link href="/" aria-label={`${BRAND.name} home`}><Logo /></Link>
-        <nav className="flex items-center gap-2 text-sm font-bold">
-          <a href="#how" className="hidden rounded-xl px-3 py-2 hover:bg-white lg:inline">How it works</a>
-          <a href="#safety" className="hidden rounded-xl px-3 py-2 hover:bg-white lg:inline">Safety</a>
-          <a href="#pricing" className="hidden rounded-xl px-3 py-2 hover:bg-white lg:inline">Pricing</a>
-          <a href="#faq" className="hidden rounded-xl px-3 py-2 hover:bg-white lg:inline">FAQ</a>
-          {family ? (
-            <Link href="/family" className="btn btn-sun !py-2.5">Open app</Link>
-          ) : (
-            <>
-              <Link href="/login" className="btn btn-ghost !py-2.5">Log in</Link>
-              <Link href="/signup" className="btn btn-sun !py-2.5 hidden sm:inline-flex">Join the pilot</Link>
-            </>
-          )}
-        </nav>
-      </header>
+      {/* Hero: the "Soft 3D World" sky (spec 3.6 G). Below it the page goes back to calm cream. */}
+      <SkyScene as="div" className="pb-24 sm:pb-28" bottom="#ffffff">
+        <header className="mx-auto max-w-6xl px-3 pt-3 sm:px-4 sm:pt-4">
+          <div className="flex items-center justify-between gap-3 rounded-full bg-white/95 py-1.5 pl-3 pr-1.5 shadow-soft sm:pl-4">
+            <Link href="/" aria-label={`${BRAND.name} home`} className="rounded-full"><Logo /></Link>
+            <nav className="flex items-center gap-1 text-sm font-bold sm:gap-2" aria-label="Main">
+              <a href="#how" className="hidden rounded-full px-3 py-2 hover:bg-cream lg:inline">How it works</a>
+              <a href="#safety" className="hidden rounded-full px-3 py-2 hover:bg-cream lg:inline">Safety</a>
+              <a href="#pricing" className="hidden rounded-full px-3 py-2 hover:bg-cream lg:inline">Pricing</a>
+              <a href="#faq" className="hidden rounded-full px-3 py-2 hover:bg-cream lg:inline">FAQ</a>
+              {family ? (
+                <Link href="/family" className="btn btn-sun btn-pill-sm">Open app</Link>
+              ) : (
+                <>
+                  <Link href="/login" className="btn btn-white btn-pill-sm ring-2 ring-line">Log in</Link>
+                  <Link href="/signup" className="btn btn-sun btn-pill-sm hidden sm:inline-flex">Join the pilot</Link>
+                </>
+              )}
+            </nav>
+          </div>
+        </header>
 
-      {deleted && (
-        <p className="mx-auto max-w-6xl px-4 text-sm font-bold text-ink" role="status">
-          ✓ Done. Your account and all its data were permanently deleted.
-        </p>
-      )}
-
-      {/* Hero */}
-      <section className="mx-auto grid max-w-6xl items-center gap-12 px-4 pb-16 pt-8 md:grid-cols-2 md:pt-16">
-        <div>
-          <p className="mb-4 inline-block rounded-full bg-white px-4 py-1.5 text-sm font-bold text-ink-soft ring-2 ring-line">
-            {hero.eyebrow}
+        {deleted && (
+          <p className="mx-auto mt-4 w-fit max-w-[calc(100%-2rem)] rounded-full bg-white px-4 py-2 text-sm font-bold text-ink shadow-soft" role="status">
+            ✓ Done. Your account and all its data were permanently deleted.
           </p>
-          <h1 className="text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
-            {hero.lead}
-            <span className="text-coral-dark">{hero.highlight}</span>
-            {hero.tail}
-          </h1>
-          <p className="mt-5 max-w-xl text-lg text-ink-soft">{hero.sub}</p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link href={primary.href} className="btn btn-sun text-lg">{primary.label}</Link>
-            <a href="#how" className="btn btn-ghost text-lg">See how it works</a>
+        )}
+
+        <section className="mx-auto grid max-w-6xl items-center gap-10 px-4 pt-10 md:grid-cols-[1.1fr_0.9fr] md:pt-16">
+          <div>
+            <p className="mb-5 inline-block rounded-full bg-white/95 px-4 py-1.5 text-sm font-extrabold text-ink shadow-soft">
+              {hero.eyebrow}
+            </p>
+            <h1 className="display-white font-display text-[44px] font-extrabold leading-[1.0] tracking-tight sm:text-6xl lg:text-[72px]">
+              {hero.lead}
+              <span className="relative inline-block whitespace-nowrap">
+                {hero.highlight}
+                <svg className="absolute -bottom-2 left-0 h-3 w-full sm:-bottom-3 sm:h-4" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden>
+                  <path d="M3 9 C 50 2, 120 2, 197 8" fill="none" stroke="#FF8A3D" strokeWidth="6" strokeLinecap="round" />
+                </svg>
+              </span>
+              {hero.tail}
+            </h1>
+            <p className="mt-6 max-w-xl text-[1.2rem] font-bold leading-relaxed text-white [text-shadow:0_1px_2px_rgb(27_35_64/0.25)]">{hero.sub}</p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href={primary.href} className="btn btn-sun btn-pill">{primary.label}</Link>
+              <a href="#how" className="btn btn-coral btn-pill">See how it works</a>
+            </div>
+            <ul className="mt-7 flex flex-wrap gap-2 text-sm font-bold text-ink">
+              {TRUST.map((t) => (
+                <li key={t} className="flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1.5 shadow-soft">
+                  <span className="text-leaf-dark" aria-hidden>✓</span> {t}
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-sm font-bold text-ink-soft">
-            {TRUST.map((t) => (
-              <li key={t} className="flex items-center gap-1.5">
-                <span className="text-leaf-dark" aria-hidden>✓</span> {t}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="relative mx-auto w-full max-w-sm" aria-hidden>
-          <div className="card rotate-2 p-5 shadow-xl">
-            <div className="flex items-center gap-3">
-              <span className="grid h-14 w-14 place-items-center rounded-2xl bg-sky text-3xl">🐙</span>
-              <div>
-                <p className="font-display text-xl font-bold">Ocean Doodle Co.</p>
-                <p className="text-sm text-ink-soft">Coloring pages that make a splash</p>
+          <div className="relative mx-auto h-[380px] w-full max-w-[400px] sm:h-[420px]" aria-hidden>
+            <div className="card-soft absolute right-0 top-2 w-[78%] rotate-3 p-4 sm:p-5">
+              <div className="flex items-center gap-3">
+                <span className="glossy h-12 w-12 bg-sky text-2xl"><span className="relative z-10">🐙</span></span>
+                <div className="min-w-0">
+                  <p className="truncate font-display text-lg font-bold leading-tight">Ocean Doodle Co.</p>
+                  <p className="truncate text-xs text-ink-soft">Coloring pages that make a splash</p>
+                </div>
               </div>
+              <div className="mt-3 grid aspect-[4/3] place-items-center rounded-2xl bg-gradient-to-br from-[#5BC0EB] to-[#2FA58C] text-6xl">🐠</div>
+              <p className="mt-3 text-sm font-bold">10 Ocean Coloring Pages</p>
+              <div className="mt-1 flex items-center justify-between">
+                <span className="font-display text-2xl font-bold">$3</span>
+                <span className="btn btn-sun !min-h-0 rounded-full !px-3 !py-1.5 text-sm">Buy &amp; download</span>
+              </div>
+              <p className="mt-2 text-[11px] text-ink-soft">Example shop · made-up brand, no names</p>
             </div>
-            <div className="mt-4 grid aspect-[4/3] place-items-center rounded-2xl bg-gradient-to-br from-[#5BC0EB] to-[#2FA58C] text-7xl">🐠</div>
-            <p className="mt-4 font-bold">10 Ocean Coloring Pages</p>
-            <div className="mt-2 flex items-center justify-between">
-              <span className="font-display text-2xl font-bold">$3</span>
-              <span className="btn btn-sun !py-2">Buy &amp; download</span>
+            <div className="card-soft animate-float absolute right-2 top-[64%] z-20 flex items-center gap-2 rounded-full px-4 py-2.5 sm:right-0">
+              <span className="text-2xl">🎉</span>
+              <span className="font-bold">First sale: $3!</span>
             </div>
-            <p className="mt-3 text-xs text-ink-soft">Example shop · made-up brand, no names</p>
+            <Guroo3D pose="wave" size={220} eager decorative className="animate-bob absolute -left-2 bottom-0 z-10 w-[200px] sm:w-[220px]" />
+            <Cloud className="absolute -bottom-6 -left-10 z-0 w-56 drop-shadow-[0_10px_12px_rgba(27,35,64,0.15)]" />
           </div>
-          <div className="card absolute -bottom-6 -left-2 flex items-center gap-2 px-4 py-3 shadow-lg animate-float sm:-left-4">
-            <span className="text-2xl">🎉</span>
-            <span className="font-bold">First sale: $3!</span>
-          </div>
-          <Mascot size={88} className="absolute -right-2 -top-10 animate-float sm:-right-6" />
-        </div>
-      </section>
+        </section>
+      </SkyScene>
 
       {/* Problem */}
       <section className="bg-white py-16">
@@ -263,6 +276,52 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ d
         </div>
       </section>
 
+      {/* Badges */}
+      <section id="patches" className="scroll-mt-4 pb-16" aria-labelledby="patches-title">
+        <div className="mx-auto max-w-6xl px-4">
+          <div className="badge-board relative overflow-hidden rounded-[36px] px-5 py-10 sm:px-10">
+            <div className="stitched pointer-events-none absolute inset-0 rounded-[36px]" aria-hidden />
+            <div className="relative grid items-center gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+              <div>
+                <h2 id="patches-title" className="text-3xl font-bold sm:text-4xl">Earn real adventure patches</h2>
+                <p className="mt-3 max-w-lg text-lg text-ink-soft">
+                  Every real step earns a patch: the first lesson, a business idea, the grand opening, the first sale. Practice patches count total days, never days in a row, and once earned they are kept for good.
+                </p>
+                <p className="mt-3 text-sm font-bold text-ink-soft">{BADGES.length} patches. Never sold, never locked behind a plan, never compared with other kids.</p>
+              </div>
+              <ul className="grid grid-cols-3 gap-3 sm:grid-cols-6 lg:grid-cols-3 xl:grid-cols-6">
+                {(
+                  [
+                    ["explorer", "First lesson"],
+                    ["pathfinder", "First idea"],
+                    ["maker", "First product"],
+                    ["grand-opening", "Shop opens"],
+                    ["trailblazer", "First sale"],
+                    ["summit", "30 practice days"],
+                  ] as const
+                ).map(([id, caption], i) => {
+                  const b = BADGES.find((x) => x.id === id)!;
+                  return (
+                    <li key={id} className="flex flex-col items-center text-center">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={`/brand/badges/${id}.svg`}
+                        alt={`${b.title} patch`}
+                        width={104}
+                        height={121}
+                        loading="lazy"
+                        className={`h-auto w-full max-w-[104px] drop-shadow-[0_8px_10px_rgba(27,35,64,0.2)] ${i % 2 ? "rotate-3" : "-rotate-3"}`}
+                      />
+                      <span className="mt-1 text-xs font-bold text-ink-soft">{caption}</span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Safety */}
       <section id="safety" className="scroll-mt-4 bg-white py-16">
         <div className="mx-auto max-w-6xl px-4">
@@ -292,7 +351,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ d
       <section id="guroo" className="scroll-mt-4 py-16">
         <div className="mx-auto max-w-6xl px-4">
           <div className="grid items-center gap-8 md:grid-cols-[auto_1fr]">
-            <Mascot size={140} className="mx-auto" />
+            <Guroo3D pose="think" size={180} className="mx-auto w-36 sm:w-44" />
             <div>
               <h2 className="text-3xl font-bold sm:text-4xl">Meet Guroo, a kid-safe AI coach</h2>
               <p className="mt-3 max-w-2xl text-lg text-ink-soft">
@@ -406,12 +465,12 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ d
       {/* Final CTA */}
       <section className="py-16">
         <div className="mx-auto max-w-3xl px-4 text-center">
-          <Mascot size={96} mood="wow" className="mx-auto animate-float" />
+          <Guroo3D pose="celebrate" size={170} className="animate-bob mx-auto w-36 sm:w-[170px]" />
           <h2 className="mt-4 text-3xl font-bold sm:text-4xl">Ready for the first hop?</h2>
           <p className="mt-3 text-lg text-ink-soft">
             Create your family account in 2 minutes, add your kid with a nickname, and do the first lesson together.
           </p>
-          <Link href={primary.href} className="btn btn-sun mt-8 text-lg">{primary.label}</Link>
+          <Link href={primary.href} className="btn btn-sun btn-pill mt-8">{primary.label}</Link>
           {!family && needsCode && (
             <>
               <p className="mt-4 text-sm text-ink-soft">The pilot is invite-only for now. You&apos;ll need the invite code you were sent.</p>
