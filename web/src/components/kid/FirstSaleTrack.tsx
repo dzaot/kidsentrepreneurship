@@ -34,7 +34,7 @@ export function FirstSaleTrack({ kid }: { kid: Kid }) {
           <li key={s.label} className="relative flex flex-col items-center text-center">
             <span
               className={`grid h-[3.25rem] w-[3.25rem] place-items-center rounded-full border-4 text-2xl ${
-                s.done ? "border-leaf-dark bg-leaf/20" : k === currentIdx ? "border-sun bg-white pulse-ring" : "border-line bg-white grayscale"
+                s.done ? "border-leaf-dark bg-leaf/20" : k === currentIdx ? "border-sun bg-white pulse-ring-sun" : "border-line bg-white grayscale"
               }`}
             >
               {s.done ? "✅" : s.emoji}

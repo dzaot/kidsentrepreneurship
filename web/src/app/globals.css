@@ -223,6 +223,11 @@ h3,
   100% { box-shadow: 0 0 0 16px rgba(255, 255, 255, 0), 0 6px 0 rgba(0, 0, 0, 0.22); }
 }
 .pulse-ring { animation: pulse-ring 1.6s ease-out infinite; }
+@keyframes pulse-ring-sun {
+  0% { box-shadow: 0 0 0 0 rgba(255, 138, 61, 0.55); }
+  100% { box-shadow: 0 0 0 12px rgba(255, 138, 61, 0); }
+}
+.pulse-ring-sun { animation: pulse-ring-sun 1.6s ease-out infinite; }
 
 /* Game-style progress bar with a shine on top. */
 .progress-shine {
