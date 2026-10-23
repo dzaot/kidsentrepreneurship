@@ -9,7 +9,7 @@ export default async function WordsPage({ params }: { params: Promise<{ kidId: s
   return (
     <>
       <KidHeader kid={kid} />
-      <main className="mx-auto max-w-3xl px-4 py-8">
+      <main id="main" className="mx-auto max-w-3xl px-4 py-8">
         <h1 className="text-3xl font-bold">📖 Business words</h1>
         <p className="mt-1 text-ink-soft">Real words real founders use. Now they&apos;re yours too.</p>
         <div className="mt-6 grid gap-3 sm:grid-cols-2">

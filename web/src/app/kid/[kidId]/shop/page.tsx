@@ -17,7 +17,7 @@ export default async function ShopPage({ params }: { params: Promise<{ kidId: st
   return (
     <>
       <KidHeader kid={kid} />
-      <main className="mx-auto grid max-w-5xl gap-6 px-4 py-8 lg:grid-cols-[1fr_1.2fr]">
+      <main id="main" className="mx-auto grid max-w-5xl gap-6 px-4 py-8 lg:grid-cols-[1fr_1.2fr]">
         <div className="space-y-4 lg:sticky lg:top-24 lg:self-start">
           <h1 className="text-3xl font-bold">🏪 My shop</h1>
           <p className="card p-4 font-bold">{STATUS[kid.shop.status]}</p>

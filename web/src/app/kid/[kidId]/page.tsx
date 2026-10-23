@@ -76,7 +76,7 @@ export default async function KidHome({ params }: { params: Promise<{ kidId: str
             <FirstSaleTrack kid={kid} />
           </aside>
 
-          <div className="lg:order-1">
+          <div className="mt-8 lg:order-1 lg:mt-0">
             <PathMap kidId={kidId} units={UNITS} completed={kid.completed} nextId={nextId} />
 
             {TRACKS.length > 0 && (

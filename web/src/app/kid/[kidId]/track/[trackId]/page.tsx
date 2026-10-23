@@ -16,24 +16,26 @@ export default async function TrackPage({ params }: { params: Promise<{ kidId: s
   return (
     <>
       <KidHeader kid={kid} />
-      <main className="mx-auto max-w-3xl px-4 pb-24 pt-6">
-        <Link href={`/kid/${kidId}`} className="text-sm font-bold text-ink-soft">← My path</Link>
+      <main id="main" className="mx-auto max-w-3xl px-4 pb-24 pt-6">
+        <Link href={`/kid/${kidId}`} className="inline-flex min-h-11 items-center text-sm font-bold text-ink-soft hover:text-ink">← My path</Link>
         <div className="card mt-3 overflow-hidden">
           <div className="flex items-center gap-4 p-5" style={{ background: track.color }}>
             <span className="text-5xl">{track.emoji}</span>
             <div>
               <h1 className="text-3xl font-bold">{track.title}</h1>
-              <p className="font-semibold opacity-80">{track.subtitle}</p>
+              <p className="font-semibold opacity-85">{track.subtitle}</p>
             </div>
           </div>
-          <p className="p-4 text-sm"><b>For grown-ups:</b> {track.grownUpNote}</p>
+          <p className="p-4 text-sm">🔒 <b>For grown-ups:</b> {track.grownUpNote}</p>
         </div>
         {nextId ? (
           <Link href={`/kid/${kidId}/lesson/${nextId}`} className="btn btn-sun mt-4 w-full text-lg">▶ Start next lesson</Link>
         ) : (
           <p className="card mt-4 p-4 text-center font-bold">🏆 Track complete! Amazing work.</p>
         )}
-        <PathMap kidId={kidId} units={track.units} completed={kid.completed} nextId={nextId} label="Part" />
+        <div className="mt-10">
+          <PathMap kidId={kidId} units={track.units} completed={kid.completed} nextId={nextId} label="Part" />
+        </div>
       </main>
     </>
   );
