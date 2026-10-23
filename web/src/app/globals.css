@@ -4,14 +4,16 @@
 @theme {
   --color-sun: #ff8a3d;
   --color-sun-dark: #e06e22;
+  --color-sun-ink: #b4520f; /* sun for text on light backgrounds (AA contrast) */
   --color-ink: #1b2340;
   --color-ink-soft: #5a6580;
   --color-leaf: #2fa58c;
-  --color-leaf-dark: #23826e;
+  --color-leaf-dark: #1f7a67;
   --color-sky: #5bc0eb;
   --color-sky-dark: #3a9fcb;
+  --color-sky-ink: #1d6f94; /* sky for text on light backgrounds (AA contrast) */
   --color-coral: #ff5d73;
-  --color-coral-dark: #d63d55;
+  --color-coral-dark: #c7344c;
   --color-cream: #fff1de;
   --color-line: #f0dfc6;
   --font-sans: "Nunito", ui-rounded, system-ui, sans-serif;
@@ -27,6 +29,33 @@ body {
 body {
   font-family: var(--font-sans);
   -webkit-tap-highlight-color: transparent;
+}
+
+/* One clear, high-contrast focus ring for keyboard users everywhere. */
+:focus-visible {
+  outline: 3px solid var(--color-ink);
+  outline-offset: 3px;
+  border-radius: 0.75rem;
+}
+.btn:focus-visible,
+.input:focus-visible {
+  outline: 3px solid var(--color-ink);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  background: var(--color-ink);
+  color: white;
+  padding: 0.6rem 1rem;
+  border-radius: 0.75rem;
+  font-weight: 800;
+}
+.skip-link:focus {
+  top: 1rem;
 }
 
 h1,
@@ -51,6 +80,7 @@ h3,
   box-shadow: 0 4px 0 var(--edge, rgba(0, 0, 0, 0.18));
   cursor: pointer;
   user-select: none;
+  min-height: 2.75rem; /* 44px tap target */
 }
 .btn:active:not(:disabled) {
   transform: translateY(3px);
@@ -66,9 +96,12 @@ h3,
   --edge: var(--color-sun-dark);
 }
 .btn-leaf {
-  background: var(--color-leaf);
+  background: var(--color-leaf-dark);
   color: white;
-  --edge: var(--color-leaf-dark);
+  --edge: #15594b;
+}
+.btn-leaf:hover:not(:disabled) {
+  filter: brightness(1.06);
 }
 .btn-sky {
   background: var(--color-sky);
@@ -76,15 +109,22 @@ h3,
   --edge: var(--color-sky-dark);
 }
 .btn-coral {
-  background: var(--color-coral);
+  background: var(--color-coral-dark);
   color: white;
-  --edge: var(--color-coral-dark);
+  --edge: #8f2236;
 }
 .btn-ghost {
   background: white;
   color: var(--color-ink);
   border: 2px solid var(--color-line);
   --edge: var(--color-line);
+}
+.btn-ghost:hover:not(:disabled) {
+  border-color: var(--color-sky);
+}
+.btn-sun:hover:not(:disabled),
+.btn-sky:hover:not(:disabled) {
+  filter: brightness(1.04);
 }
 
 .card {
@@ -103,7 +143,11 @@ h3,
   outline: none;
 }
 .input:focus {
-  border-color: var(--color-sky);
+  border-color: var(--color-sky-dark);
+  box-shadow: 0 0 0 4px rgba(91, 192, 235, 0.25);
+}
+.input::placeholder {
+  color: #8a93a8;
 }
 
 .label {
@@ -140,6 +184,68 @@ h3,
   z-index: 60;
 }
 
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(7px); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(3px); }
+}
+.animate-shake { animation: shake 0.42s ease-in-out both; }
+
+@keyframes slide-up {
+  0% { transform: translateY(24px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+.animate-slide-up { animation: slide-up 0.28s cubic-bezier(0.2, 0.9, 0.3, 1.2) both; }
+
+@keyframes fade-in {
+  0% { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 1; transform: none; }
+}
+.animate-fade-in { animation: fade-in 0.3s ease-out both; }
+
+@keyframes flame {
+  0%, 100% { transform: scale(1) rotate(-3deg); }
+  50% { transform: scale(1.12) rotate(3deg); }
+}
+.animate-flame { display: inline-block; animation: flame 1.4s ease-in-out infinite; transform-origin: 50% 90%; }
+
+@keyframes hop {
+  0%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-14px); }
+}
+.animate-hop { animation: hop 0.9s ease-in-out infinite; }
+
+/* A soft pulse ring around the lesson bubble you should tap next. */
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.95), 0 6px 0 rgba(0, 0, 0, 0.22); }
+  100% { box-shadow: 0 0 0 16px rgba(255, 255, 255, 0), 0 6px 0 rgba(0, 0, 0, 0.22); }
+}
+.pulse-ring { animation: pulse-ring 1.6s ease-out infinite; }
+
+/* Game-style progress bar with a shine on top. */
+.progress-shine {
+  position: relative;
+  transition: width 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+.progress-shine::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  top: 3px;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.45);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-pop, .animate-float, .confetti-piece { animation: none; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .confetti-piece { display: none; }
 }
