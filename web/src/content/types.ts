@@ -46,6 +46,15 @@ export type ParentCorner = {
   talkAbout: string; // one question to discuss together (car, dinner...)
 };
 
+// A public video that teaches the same idea, shown as optional "watch and learn" extra content.
+export type VideoResource = {
+  youtubeId: string; // the 11-character id from a real, verified YouTube URL
+  title: string; // the video's real title
+  channel: string; // e.g. "Khan Academy"
+  why: string; // one kid-friendly line on why it's worth watching
+  minutes?: number;
+};
+
 export type Lesson = {
   id: string; // stable, kebab-case, unique across all units
   title: string;
@@ -54,6 +63,7 @@ export type Lesson = {
   xp: number; // 10 to 30
   steps: Step[];
   parentCorner: ParentCorner;
+  videos?: VideoResource[]; // optional, 0 to 2 per lesson
 };
 
 export type Unit = {
