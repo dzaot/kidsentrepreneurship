@@ -143,4 +143,19 @@ export const GLOSSARY: GlossaryTerm[] = [
     meaning: "A rule that says the person who made something gets to decide how it is used and sold.",
     example: "You own the copyright to your own drawings. You cannot sell drawings of famous cartoon characters.",
   },
+  {
+    term: "AI (artificial intelligence)",
+    meaning: "A computer helper that can suggest words, ideas, or pictures when you ask it. AI is your helper, but YOU are the boss who picks and changes things.",
+    example: "Roo, the coach in Venturoo, is an AI that can give you 10 shop name ideas to choose from.",
+  },
+  {
+    term: "Prompt",
+    meaning: "The instructions you type to tell an AI what you want. Clear prompts get better results. Never put personal info in a prompt.",
+    example: "\"Give me 20 ocean words for a word search for kids\" is a prompt.",
+  },
+  {
+    term: "AI disclosure",
+    meaning: "A short, honest note that tells customers AI helped make your product.",
+    example: "Your sticker pack description says \"Designed by me with AI help.\"",
+  },
 ];

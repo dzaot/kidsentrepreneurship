@@ -193,13 +193,13 @@ export function ProductPrice({ kidId, shop, onDone }: Props) {
   return (
     <div className="space-y-4">
       <p className="text-center font-display text-6xl font-bold">{formatMoney(cents, cur)}</p>
-      <input type="range" min={100} max={1000} step={50} value={cents} onChange={(e) => setCents(Number(e.target.value))} className="w-full accent-[#2BB673]" aria-label="Price" />
+      <input type="range" min={100} max={1000} step={50} value={cents} onChange={(e) => setCents(Number(e.target.value))} className="w-full accent-[#2FA58C]" aria-label="Price" />
       <div className="grid grid-cols-3 gap-2 text-center text-sm">
         <div className="card p-3"><p className="text-ink-soft">Cost to make</p><p className="text-lg font-bold">{formatMoney(0, cur)}</p></div>
         <div className="card p-3"><p className="text-ink-soft">Payment fee</p><p className="text-lg font-bold">≈{formatMoney(fee, cur)}</p></div>
         <div className="card border-leaf p-3"><p className="text-ink-soft">You keep</p><p className="text-lg font-bold text-leaf-dark">≈{formatMoney(profit, cur)}</p></div>
       </div>
-      <p className="text-center text-sm text-ink-soft">Sell 10 and you keep about <b>{formatMoney(profit * 10, cur)}</b>! 🐝</p>
+      <p className="text-center text-sm text-ink-soft">Sell 10 and you keep about <b>{formatMoney(profit * 10, cur)}</b>! 🦘</p>
       <button type="button" className="btn btn-leaf w-full" disabled={s.pending} onClick={() => s.save({ priceCents: cents })}>Lock in my price</button>
       <Status {...s} />
     </div>
@@ -274,9 +274,9 @@ export function RequestPublish({ kidId, shop, onDone }: Props) {
     return <p className="rounded-xl bg-leaf/10 p-4 font-bold text-leaf-dark">🎉 Your shop is LIVE! {onDone && <button type="button" className="underline" onClick={onDone}>Continue</button>}</p>;
   return (
     <div className="space-y-3">
-      {shop.status === "pending" && <p className="rounded-xl bg-honey/20 p-4 font-bold">⏳ Sent! Your grown-up will review it.</p>}
+      {shop.status === "pending" && <p className="rounded-xl bg-sun/20 p-4 font-bold">⏳ Sent! Your grown-up will review it.</p>}
       {shop.parentNote && <p className="rounded-xl bg-sky/10 p-4"><b>Note from your grown-up:</b> {shop.parentNote}</p>}
-      <button type="button" className="btn btn-honey w-full text-lg" disabled={s.pending} onClick={() => s.run(() => requestPublish(kidId))}>
+      <button type="button" className="btn btn-sun w-full text-lg" disabled={s.pending} onClick={() => s.run(() => requestPublish(kidId))}>
         📨 Send my shop to my grown-up
       </button>
       <Status {...s} />
@@ -289,7 +289,7 @@ export function SharePlan({ kidId, shop, onDone }: Props) {
   const price = shop.product.priceCents ? formatMoney(shop.product.priceCents, shop.product.currency) : "";
   const [text, setText] = useState(
     shop.sharePlan ??
-      `Hi! I started my very own business called ${shop.name ?? "my shop"} ${shop.mascot ?? "🐝"}. ${shop.tagline ?? ""} My first product is ${shop.product.title ?? "ready"}${price ? ` for ${price}` : ""}. Would you check it out? Here's my shop:`,
+      `Hi! I started my very own business called ${shop.name ?? "my shop"} ${shop.mascot ?? "🦘"}. ${shop.tagline ?? ""} My first product is ${shop.product.title ?? "ready"}${price ? ` for ${price}` : ""}. Would you check it out? Here's my shop:`,
   );
   return (
     <div className="space-y-3">

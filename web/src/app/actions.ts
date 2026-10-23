@@ -27,6 +27,7 @@ import {
 import { safeText } from "@/lib/safety";
 import { deleteFile, putFile } from "@/lib/storage";
 import { stripMetadata } from "@/lib/strip-metadata";
+import { clearTranscript } from "@/lib/coach";
 import { BUSINESS_TYPES } from "@/content/businesses";
 import { findLesson } from "@/content";
 import { shopChecklist } from "@/lib/shop";
@@ -97,7 +98,7 @@ export async function removeKid(kidId: string) {
   const family = await requireFamily();
   const kid = family.kids.find((k) => k.id === kidId);
   if (!kid) return;
-  await deleteKidData(kid);
+  await deleteKidData(family.id, kid);
   family.kids = family.kids.filter((k) => k.id !== kidId);
   await saveFamily(family);
   revalidatePath("/family");
@@ -359,4 +360,19 @@ export async function deleteSale(kidId: string, saleId: string) {
   kid.shop.sales = kid.shop.sales.filter((s) => s.id !== saleId);
   await saveFamily(family);
   revalidatePath("/family");
+}
+
+// ---------- Roo, the AI coach (parent controls) ----------
+
+export async function setRooEnabled(kidId: string, enabled: boolean) {
+  const { family, kid } = await requireKid(kidId);
+  kid.ai = { ...(kid.ai ?? { count: 0 }), enabled };
+  await saveFamily(family);
+  revalidatePath(`/family/kid/${kidId}`);
+}
+
+export async function clearRooChats(kidId: string) {
+  const { family } = await requireKid(kidId);
+  await clearTranscript(family.id, kidId);
+  revalidatePath(`/family/kid/${kidId}`);
 }

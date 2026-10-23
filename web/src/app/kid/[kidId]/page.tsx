@@ -34,7 +34,7 @@ export default async function KidHome({ params }: { params: Promise<{ kidId: str
                 : "5 minutes a day keeps your streak buzzing."}
             </p>
           </div>
-          {nextId && <Link href={`/kid/${kidId}/lesson/${nextId}`} className="btn btn-honey hidden sm:inline-flex">Start</Link>}
+          {nextId && <Link href={`/kid/${kidId}/lesson/${nextId}`} className="btn btn-sun hidden sm:inline-flex">Start</Link>}
         </div>
 
         {UNITS.map((unit) => (
@@ -74,7 +74,7 @@ export default async function KidHome({ params }: { params: Promise<{ kidId: str
       </main>
       {nextId && (
         <div className="fixed inset-x-0 bottom-0 z-20 border-t-2 border-line bg-cream/95 p-4 backdrop-blur sm:hidden">
-          <Link href={`/kid/${kidId}/lesson/${nextId}`} className="btn btn-honey w-full text-lg">▶ Start today&apos;s lesson</Link>
+          <Link href={`/kid/${kidId}/lesson/${nextId}`} className="btn btn-sun w-full text-lg">▶ Start today&apos;s lesson</Link>
         </div>
       )}
     </>

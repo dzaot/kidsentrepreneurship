@@ -12,7 +12,7 @@ export const metadata = { title: "Family" };
 
 const STATUS = {
   draft: { label: "Building", cls: "bg-cream text-ink-soft" },
-  pending: { label: "Waiting for your review", cls: "bg-honey text-ink" },
+  pending: { label: "Waiting for your review", cls: "bg-sun text-ink" },
   published: { label: "Live", cls: "bg-leaf text-white" },
 };
 
@@ -65,7 +65,7 @@ export default async function FamilyPage() {
                 </div>
                 <div className="mt-5 grid grid-cols-2 gap-2">
                   <form action={enterKidMode.bind(null, kid.id)}>
-                    <button className="btn btn-honey w-full">▶ Start as {kid.nickname}</button>
+                    <button className="btn btn-sun w-full">▶ Start as {kid.nickname}</button>
                   </form>
                   <Link href={`/family/kid/${kid.id}`} className="btn btn-ghost w-full">
                     {kid.shop.status === "pending" ? "Review shop" : "Shop & sales"}

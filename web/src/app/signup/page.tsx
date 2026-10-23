@@ -36,11 +36,11 @@ export default async function SignupPage() {
           </select>
         </div>
         <label className="flex gap-3 text-sm">
-          <input type="checkbox" name="adult" className="mt-1 h-5 w-5 accent-[#2BB673]" required />
+          <input type="checkbox" name="adult" className="mt-1 h-5 w-5 accent-[#2FA58C]" required />
           <span>I&apos;m 18 or older and the parent or legal guardian of the kids I&apos;ll add.</span>
         </label>
         <label className="flex gap-3 text-sm">
-          <input type="checkbox" name="consent" className="mt-1 h-5 w-5 accent-[#2BB673]" required />
+          <input type="checkbox" name="consent" className="mt-1 h-5 w-5 accent-[#2FA58C]" required />
           <span>
             I give consent for my kids to use this app under my supervision. I&apos;ve read the{" "}
             <Link href="/privacy" className="font-bold underline" target="_blank">privacy notice</Link>{" "}

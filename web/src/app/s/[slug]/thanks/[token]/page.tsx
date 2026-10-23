@@ -13,7 +13,7 @@ export default async function ThanksPage({ params }: { params: Promise<{ slug: s
   if (!shop || shop.status !== "published" || shop.product.downloadToken !== token) notFound();
   return (
     <main className="mx-auto flex min-h-dvh max-w-md flex-col items-center justify-center px-4 text-center">
-      <span className="grid h-20 w-20 place-items-center rounded-3xl text-5xl" style={{ background: shop.color ?? "#FFC531" }}>
+      <span className="grid h-20 w-20 place-items-center rounded-3xl text-5xl" style={{ background: shop.color ?? "#FF8A3D" }}>
         {shop.mascot}
       </span>
       <h1 className="mt-5 text-4xl font-bold">Thank you! 🎉</h1>

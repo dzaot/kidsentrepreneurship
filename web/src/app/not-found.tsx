@@ -7,7 +7,7 @@ export default function NotFound() {
       <Mascot size={90} mood="wow" />
       <h1 className="mt-4 text-3xl font-bold">Buzz… nothing here</h1>
       <p className="mt-2 text-ink-soft">This page flew away.</p>
-      <Link href="/" className="btn btn-honey mt-6">Go home</Link>
+      <Link href="/" className="btn btn-sun mt-6">Go home</Link>
     </main>
   );
 }

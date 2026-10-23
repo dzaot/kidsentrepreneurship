@@ -1,5 +1,5 @@
 {
-  "name": "honeystand-web",
+  "name": "venturoo-web",
   "version": "1.0.0",
   "scripts": {
     "dev": "next dev",
@@ -8,6 +8,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^1.1.0",
     "@netlify/blobs": "^11.1.6",
     "next": "^15.5.28",
     "react": "^19.3.1",

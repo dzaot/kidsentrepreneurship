@@ -3,7 +3,7 @@ import type { Shop } from "@/lib/model";
 import { BUSINESS_TYPES } from "@/content/businesses";
 
 export function Cover({ shop, coverUrl, className = "" }: { shop: Shop; coverUrl?: string; className?: string }) {
-  const color = shop.color ?? "#FFC531";
+  const color = shop.color ?? "#FF8A3D";
   const biz = BUSINESS_TYPES.find((b) => b.id === shop.businessType);
   if (coverUrl)
     // eslint-disable-next-line @next/next/no-img-element
@@ -36,9 +36,9 @@ export function ShopCard({
       <div className="flex items-center gap-3">
         <span
           className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl text-3xl"
-          style={{ background: shop.color ?? "#FFC531" }}
+          style={{ background: shop.color ?? "#FF8A3D" }}
         >
-          {shop.mascot ?? "🐝"}
+          {shop.mascot ?? "🦘"}
         </span>
         <div className="min-w-0">
           <p className="truncate font-display text-xl font-bold">{shop.name ?? "Your shop name"}</p>

@@ -12,7 +12,7 @@ export default async function LessonPage({ params }: { params: Promise<{ kidId: 
   if (!lesson || !isUnlocked(lessonId, kid.completed)) redirect(`/kid/${kidId}`);
   return (
     <main className="mx-auto flex min-h-dvh max-w-2xl flex-col px-4 pt-5">
-      <LessonPlayer kidId={kidId} lesson={lesson} shop={kid.shop} color={unitOf(lessonId)?.color ?? "#2BB673"} />
+      <LessonPlayer kidId={kidId} lesson={lesson} shop={kid.shop} color={unitOf(lessonId)?.color ?? "#2FA58C"} aiOn={Boolean(kid.ai?.enabled)} />
     </main>
   );
 }

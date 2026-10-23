@@ -33,6 +33,12 @@ export type Step =
       kind: "reflect"; // short private journal answer (never shown publicly)
       prompt: string;
       placeholder?: string;
+    }
+  | {
+      kind: "ask-roo"; // opens the AI coach inline with a starter message the kid can edit
+      title: string;
+      body: string; // what to ask Roo for and what to do with the answer
+      starter: string; // pre-filled message, written in the kid's voice
     };
 
 export type ParentCorner = {

@@ -38,7 +38,7 @@ export function ParentGate({ backHref }: { backHref: string }) {
           autoFocus
         />
         {wrong && <p className="font-bold text-coral-dark">Not quite. Try again.</p>}
-        <button className="btn btn-honey w-full">Open parent zone</button>
+        <button className="btn btn-sun w-full">Open parent zone</button>
         <a href={backHref} className="btn btn-ghost w-full">Back to lessons</a>
       </form>
     </main>

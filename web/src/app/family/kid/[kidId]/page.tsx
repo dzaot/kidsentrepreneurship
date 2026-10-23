@@ -1,6 +1,8 @@
 import Link from "next/link";
 import {
   approveShop,
+  clearRooChats,
+  setRooEnabled,
   deleteSale,
   logSale,
   newDownloadLink,
@@ -20,6 +22,7 @@ import { totalEarned } from "@/lib/model";
 import { shopChecklist } from "@/lib/shop";
 import { downloadPath, shopPath, siteUrl } from "@/lib/url";
 import { LESSONS } from "@/content";
+import { DAILY_LIMIT, getTranscript } from "@/lib/coach";
 
 export const metadata = { title: "Shop & sales" };
 
@@ -32,7 +35,7 @@ const asForm = (fn: () => Promise<unknown>) => async () => {
 
 export default async function KidAdminPage({ params }: { params: Promise<{ kidId: string }> }) {
   const { kidId } = await params;
-  const { kid } = await requireKid(kidId);
+  const { family, kid } = await requireKid(kidId);
   if ((await kidMode()) === kidId) return <ParentGate backHref={`/kid/${kidId}`} />;
 
   const shop = kid.shop;
@@ -42,6 +45,9 @@ export default async function KidAdminPage({ params }: { params: Promise<{ kidId
   const dlUrl = shop.slug ? base + downloadPath(shop.slug, p.downloadToken) : null;
   const checklist = shopChecklist(kid);
   const corners = LESSONS.filter((l) => kid.completed[l.id]);
+  const chats = await getTranscript(family.id, kidId);
+  const rooOn = Boolean(kid.ai?.enabled);
+  const usedToday = kid.ai?.day === new Date().toISOString().slice(0, 10) ? kid.ai.count : 0;
 
   return (
     <>
@@ -53,7 +59,7 @@ export default async function KidAdminPage({ params }: { params: Promise<{ kidId
         </h1>
 
         {shop.status === "pending" && (
-          <div className="card mt-6 border-honey bg-honey/15 p-5">
+          <div className="card mt-6 border-sun bg-sun/15 p-5">
             <h2 className="text-xl font-bold">🔎 {kid.nickname} asked you to publish the shop</h2>
             <p className="mt-1 text-ink-soft">
               Check the preview: no real names, faces, school, location or copied characters. Open the product file too.
@@ -189,12 +195,47 @@ export default async function KidAdminPage({ params }: { params: Promise<{ kidId
                 <p className="mt-1 text-sm text-ink-soft">Send it from your phone to family and friends you trust.</p>
                 <p className="mt-3 whitespace-pre-line rounded-2xl bg-cream p-4">{shop.sharePlan}{"\n"}{shopUrl}</p>
                 <div className="mt-3">
-                  <CopyButton text={`${shop.sharePlan}\n${shopUrl}`} label="Copy message" className="btn btn-honey !py-2" />
+                  <CopyButton text={`${shop.sharePlan}\n${shopUrl}`} label="Copy message" className="btn btn-sun !py-2" />
                 </div>
               </section>
             )}
           </div>
         </div>
+
+        <section className="card mt-8 p-5">
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div className="max-w-2xl">
+              <h2 className="text-2xl font-bold">🦘 Roo, the AI helper</h2>
+              <p className="mt-1 text-sm text-ink-soft">
+                Roo helps {kid.nickname} brainstorm ideas, names, word lists, story outlines and descriptions, and coaches
+                them through each step. Roo runs on Claude by Anthropic: messages {kid.nickname} types are sent to Anthropic
+                to write a reply, and API data is not used to train models. Personal info (emails, phone numbers, addresses,
+                links) is blocked before sending. Limit: {DAILY_LIMIT} messages a day. You can read every chat below.
+              </p>
+            </div>
+            <form action={setRooEnabled.bind(null, kidId, !rooOn)}>
+              <button className={`btn ${rooOn ? "btn-ghost" : "btn-leaf"}`}>{rooOn ? "Turn Roo off" : "Turn Roo on"}</button>
+            </form>
+          </div>
+          <p className="mt-3 text-sm font-bold">
+            {rooOn ? `✅ On · ${usedToday}/${DAILY_LIMIT} messages today` : "⏸ Off. Lessons still work without Roo."}
+          </p>
+          {chats.length > 0 && (
+            <details className="mt-4 rounded-2xl bg-cream p-4">
+              <summary className="cursor-pointer font-bold">Read {kid.nickname}&apos;s chats with Roo ({chats.length} messages)</summary>
+              <div className="mt-3 max-h-96 space-y-2 overflow-y-auto text-sm">
+                {chats.map((c, i) => (
+                  <p key={i} className={`whitespace-pre-line rounded-xl px-3 py-2 ${c.role === "user" ? "bg-sky/20" : "bg-white"}`}>
+                    <b>{c.role === "user" ? kid.nickname : "Roo"}:</b> {c.text}
+                  </p>
+                ))}
+              </div>
+              <form action={clearRooChats.bind(null, kidId)} className="mt-3">
+                <button className="text-xs font-bold text-coral-dark underline">Delete chat history</button>
+              </form>
+            </details>
+          )}
+        </section>
 
         <section className="mt-8">
           <h2 className="text-2xl font-bold">🧑‍🏫 Parent Corner</h2>

@@ -49,6 +49,7 @@ export type Kid = {
   completed: Record<string, string>; // lessonId -> local day finished
   journal: Record<string, string>; // lessonId -> private answer
   shop: Shop;
+  ai?: { enabled: boolean; day?: string; count: number }; // Roo coach, off until the parent turns it on
 };
 
 export type Family = {
@@ -94,16 +95,17 @@ export async function saveFamily(family: Family) {
 }
 
 export async function deleteFamily(family: Family) {
-  for (const kid of family.kids) await deleteKidData(kid);
+  for (const kid of family.kids) await deleteKidData(family.id, kid);
   await deleteKey(emailKey(family.email));
   await deleteKey(`families/${family.id}`);
 }
 
-export async function deleteKidData(kid: Kid) {
+export async function deleteKidData(familyId: string, kid: Kid) {
   const p = kid.shop.product;
   if (p.fileKey) await deleteFile(p.fileKey);
   if (p.coverImageKey) await deleteFile(p.coverImageKey);
   if (kid.shop.slug) await deleteKey(`slugs/${kid.shop.slug}`);
+  await deleteKey(`chats/${familyId}/${kid.id}`);
 }
 
 export function newKid(nickname: string, avatar: string, ageBand: Kid["ageBand"], currency: Currency): Kid {

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const COLORS = ["#FFC531", "#2BB673", "#5B8DEF", "#FF6B5B", "#9B6BFF"];
+const COLORS = ["#FF8A3D", "#2FA58C", "#5BC0EB", "#FF5D73", "#9B6BFF"];
 
 export function Confetti({ count = 70 }: { count?: number }) {
   const [pieces, setPieces] = useState<{ left: number; delay: number; color: string; rotate: number }[]>([]);

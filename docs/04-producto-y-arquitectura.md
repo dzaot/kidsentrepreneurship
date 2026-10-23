@@ -1,6 +1,6 @@
 # Producto, arquitectura y decisiones del MVP
 
-Fecha: octubre 2026. Nombre de trabajo: **Honeystand** (mascota: Bizzy la abeja). El nombre final se cambia en una sola constante (`web/src/lib/brand.ts`).
+Fecha: octubre 2026. Marca elegida: **Venturoo** (mascota: Roo, la canguro con una tienda en la bolsa). El nombre final se cambia en una sola constante (`web/src/lib/brand.ts`).
 
 ## 1. Decisiones tomadas (y por qué)
 
@@ -18,7 +18,7 @@ Fecha: octubre 2026. Nombre de trabajo: **Honeystand** (mascota: Bizzy la abeja)
 
 ## 2. El producto en una frase
 
-> El niño aprende 5 minutos al día con Bizzy, y cada lección construye una pieza de su tienda. En 30 días tiene una tienda real, aprobada por su papá o mamá, y hace su primera venta online.
+> El niño aprende 5 minutos al día con Roo, y cada lección construye una pieza de su tienda. En 30 días tiene una tienda real, aprobada por su papá o mamá, y hace su primera venta online.
 
 ## 3. Flujo completo (ya funciona en el MVP)
 
@@ -43,10 +43,10 @@ Next.js 15 (App Router, Server Actions) en Netlify
   ├─ Zona de padres: /family (sesión con cookie firmada HMAC)
   ├─ Zona de niños: /kid/[id] (dentro de la cuenta del padre)
   └─ Acciones de servidor: cuentas, lecciones, tienda, publicación, ventas
-        │
+        │                                   └─ /api/coach: Roo (streaming) ──► Claude API (Anthropic)
         ▼
 Netlify Blobs
-  ├─ "data": un documento JSON por familia + índices (email → familia, slug → tienda)
+  ├─ "data": un documento JSON por familia + índices (email → familia, slug → tienda) + chats con Roo
   └─ "files": archivos del producto y portadas (sin metadatos EXIF/GPS)
 ```
 
@@ -66,28 +66,45 @@ Netlify Blobs
 | `web/src/components/kid/` | Reproductor de lecciones y constructores de la tienda |
 | `web/src/app/` | Páginas (landing, padres, niños, tienda pública) |
 
-## 5. Lo que NO está en el MVP (a propósito)
+## 5. IA: Roo, el coach, y la IA como herramienta creativa
+
+**Decisión:** la IA es parte central del producto, con una regla pedagógica clara: *"la IA es tu ayudante, tú eres el jefe"*. El niño tiene la idea, escribe el prompt, elige, edita y añade su toque. Si usa imágenes hechas con IA, lo dice en la descripción.
+
+**Roo (dentro de la app):** chat de IA con Claude (Anthropic). Hace lluvia de ideas, nombres, eslóganes, listas de palabras para sopas de letras, adivinanzas, estructura de cuentos, descripciones y prompts para herramientas de imágenes. También acompaña al niño dentro de las lecciones con pasos "Ask Roo" que traen una pregunta inicial ya escrita.
+
+**Capas de seguridad (en orden):**
+1. Apagado por defecto. El padre lo enciende por cada hijo (consentimiento explícito, requerido por COPPA porque el texto va a un tercero).
+2. Filtro de datos personales en el navegador y otra vez en el servidor, antes de enviar nada al modelo.
+3. Prompt de sistema con reglas para niños: solo temas de negocio y creatividad, nunca pedir datos personales, nada de links ni personajes famosos, derivar al adulto ante cualquier riesgo, recordar declarar el uso de IA.
+4. Límite de 40 mensajes por día por niño (controla el costo y el uso excesivo).
+5. Transparencia total: el padre lee y borra todas las conversaciones desde su panel.
+6. Respaldo automático del servidor si el modelo rechaza una respuesta (`fallbacks: "default"`), y mensaje amable si aun así no hay respuesta.
+
+**Imágenes con IA:** las herramientas como ChatGPT, Gemini, Canva AI o Adobe Firefly tienen límites de edad, así que el currículo las usa solo en la cuenta del padre y con él al lado: Roo ayuda al niño a escribir el prompt y el padre lo ejecuta. Generar imágenes dentro de Venturoo (con filtros para niños) queda para la fase 2.
+
+**Costo estimado:** el modelo por defecto es Claude Opus 5.5 (USD 4 y 20 por millón de tokens de entrada y salida), con caché del prompt de sistema y esfuerzo bajo. Una conversación típica cuesta del orden de 1 a 2 centavos por mensaje. Para bajar el costo a gran escala se puede cambiar `ANTHROPIC_MODEL` a Claude Haiku 5.5 (unas 40 veces más barato), probando antes la calidad.
+
+## 6. Lo que NO está en el MVP (a propósito)
 
 - Pagos integrados (Stripe Connect a nombre del padre): fase 2. Hoy el padre pega su propio link.
 - Suscripción y cobro: el piloto es gratis. Validamos disposición a pagar con la prueba de precios del doc 05.
-- Mentor con IA: fase 2, con contrato que prohíba entrenar con datos de niños.
 - Varios productos por tienda, ligas y ranking entre niños, chat: no. Nada social entre niños (protege privacidad y nos deja fuera de la ley australiana de redes sociales para menores de 16).
 - Consentimiento parental verificable "fuerte" (cobro de prueba con tarjeta): obligatorio antes del lanzamiento público. En el piloto con familias conocidas usamos casilla de consentimiento más relación directa.
 
-## 6. Roadmap
+## 7. Roadmap
 
 | Fase | Tiempo | Qué |
 |---|---|---|
 | **0. Piloto** | Noviembre 2026 (4 semanas) | 10 a 20 familias conocidas. Medir activación, retención D7, % de niños con primera venta, disposición a pagar (doc 05). |
 | **1. Producto pagado** | Dic 2026 a feb 2027 | Stripe Connect, suscripción (USD 7,99/mes o 59,99/año), consentimiento verificable, recordatorios por email al padre, rutas por temporada, segundo producto. |
-| **2. Crecimiento** | 2027 | Partners (Greenlight, Stripe, ferias infantiles, Lemonade Day), mentor IA, app empaquetada para App Store y Play Store (Capacitor), ruta para 11 a 14 con print-on-demand. |
+| **2. Crecimiento** | 2027 | Partners (Greenlight, Stripe, ferias infantiles, Lemonade Day), generación de imágenes con IA dentro de la app, app empaquetada para App Store y Play Store (Capacitor), ruta para 11 a 14 con print-on-demand. |
 | **3. Expansión** | 2027+ | Español y LatAm, plan para colegios. |
 
-## 7. Sobre LatAm
+## 8. Sobre LatAm
 
 No descartado. El análisis (doc 01) muestra menos competencia directa en LatAm, pero también menor disposición a pagar suscripciones y pagos digitales más fragmentados (Mercado Pago, Nequi, PIX). Recomendación: validar en inglés primero, y con el producto probado añadir español (el contenido ya está separado del código, así que traducir es barato).
 
-## 8. Cómo correr el piloto (operativo)
+## 9. Cómo correr el piloto (operativo)
 
 1. Comparte con cada familia el link del sitio y el código de invitación (`PILOT_CODE`).
 2. Pídeles que el padre cree la cuenta en un computador o tablet y añada al niño.

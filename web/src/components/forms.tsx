@@ -4,7 +4,7 @@ import { useActionState, useEffect, useRef } from "react";
 import { useFormStatus } from "react-dom";
 import type { ActionResult } from "@/app/actions";
 
-export function Submit({ children, className = "btn btn-honey w-full" }: { children: React.ReactNode; className?: string }) {
+export function Submit({ children, className = "btn btn-sun w-full" }: { children: React.ReactNode; className?: string }) {
   const { pending } = useFormStatus();
   return (
     <button type="submit" className={className} disabled={pending}>

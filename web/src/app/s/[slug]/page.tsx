@@ -32,7 +32,7 @@ export default async function PublicShop({ params }: { params: Promise<{ slug: s
     );
 
   return (
-    <main className="min-h-dvh" style={{ background: `linear-gradient(180deg, ${shop.color ?? "#FFC531"}33, #FFF8EC 320px)` }}>
+    <main className="min-h-dvh" style={{ background: `linear-gradient(180deg, ${shop.color ?? "#FF8A3D"}33, #FFF1DE 320px)` }}>
       <div className="mx-auto max-w-md px-4 py-8">
         <ShopCard
           shop={shop}

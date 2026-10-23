@@ -9,13 +9,14 @@ import type { Lesson, Step } from "@/content/types";
 import { Mascot } from "../Mascot";
 import { BUILDERS, builderDone } from "./Builders";
 import { Confetti } from "./Confetti";
+import { RooChat } from "./RooChat";
 
 function localDay() {
   const d = new Date();
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 }
 
-export function LessonPlayer({ kidId, lesson, shop, color }: { kidId: string; lesson: Lesson; shop: Shop; color: string }) {
+export function LessonPlayer({ kidId, lesson, shop, color, aiOn }: { kidId: string; lesson: Lesson; shop: Shop; color: string; aiOn: boolean }) {
   const [i, setI] = useState(0);
   const [picked, setPicked] = useState<number | null>(null);
   const [checks, setChecks] = useState<Record<number, boolean>>({});
@@ -48,7 +49,7 @@ export function LessonPlayer({ kidId, lesson, shop, color }: { kidId: string; le
         <div className="mt-6 flex gap-3">
           <div className="card animate-pop px-6 py-4">
             <p className="text-sm font-bold text-ink-soft">XP</p>
-            <p className="font-display text-3xl font-bold text-honey-dark">+{lesson.xp}</p>
+            <p className="font-display text-3xl font-bold text-sun-dark">+{lesson.xp}</p>
           </div>
           <div className="card animate-pop px-6 py-4">
             <p className="text-sm font-bold text-ink-soft">Streak</p>
@@ -95,7 +96,7 @@ export function LessonPlayer({ kidId, lesson, shop, color }: { kidId: string; le
             })}
           </div>
           {picked !== null && (
-            <p className={`mt-5 rounded-2xl p-4 text-lg font-bold animate-pop ${right ? "bg-leaf/15 text-leaf-dark" : "bg-honey/25 text-ink"}`}>
+            <p className={`mt-5 rounded-2xl p-4 text-lg font-bold animate-pop ${right ? "bg-leaf/15 text-leaf-dark" : "bg-sun/25 text-ink"}`}>
               {right ? "🎉 Yes! " : "💡 Almost! "}
               <span className="font-semibold">{step.explain}</span>
             </p>
@@ -115,7 +116,7 @@ export function LessonPlayer({ kidId, lesson, shop, color }: { kidId: string; le
           <div className="mt-5 space-y-3">
             {step.checklist.map((c, k) => (
               <label key={c} className={`card flex cursor-pointer items-center gap-3 px-5 py-4 text-lg ${checks[k] ? "border-leaf bg-leaf/10" : ""}`}>
-                <input type="checkbox" className="h-6 w-6 accent-[#2BB673]" checked={!!checks[k]} onChange={(e) => setChecks({ ...checks, [k]: e.target.checked })} />
+                <input type="checkbox" className="h-6 w-6 accent-[#2FA58C]" checked={!!checks[k]} onChange={(e) => setChecks({ ...checks, [k]: e.target.checked })} />
                 <span className="font-semibold">{c}</span>
               </label>
             ))}
@@ -135,6 +136,26 @@ export function LessonPlayer({ kidId, lesson, shop, color }: { kidId: string; le
           <p className="mt-3 text-lg">{step.body}</p>
           <div className="mt-5">
             <Builder kidId={kidId} shop={shop} onDone={() => setBuiltHere(true)} />
+          </div>
+        </div>
+      );
+      break;
+    }
+    case "ask-roo": {
+      // Optional by design: the lesson never blocks on the AI.
+      body = (
+        <div>
+          <p className="text-sm font-bold uppercase tracking-wide text-sun-dark">🦘 Ask Roo</p>
+          <h2 className="mt-1 text-3xl font-bold">{step.title}</h2>
+          <p className="mt-3 text-lg">{step.body}</p>
+          <div className="mt-5">
+            {aiOn ? (
+              <RooChat key={i} kidId={kidId} lessonId={lesson.id} starter={step.starter} compact />
+            ) : (
+              <p className="card p-4 font-semibold">
+                Roo is resting right now. Think of your own ideas, or ask your grown-up to turn Roo on in the parent zone. 🦘
+              </p>
+            )}
           </div>
         </div>
       );

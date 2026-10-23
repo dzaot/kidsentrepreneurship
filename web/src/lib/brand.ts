@@ -1,16 +1,16 @@
 // Working brand. Swap these values when the final brand is chosen.
 export const BRAND = {
-  name: "Honeystand",
-  mascot: "Bizzy the bee",
-  tagline: "Your kid's first online sale in 30 days.",
+  name: "Venturoo",
+  mascot: "Roo the kangaroo",
+  tagline: "Hop into your first business.",
   kidTagline: "Learn it. Make it. Sell it.",
 };
 
-export const COLORS = ["#FFC531", "#2BB673", "#5B8DEF", "#FF6B5B", "#9B6BFF", "#1F2A44"];
+export const COLORS = ["#FF8A3D", "#2FA58C", "#5BC0EB", "#FF5D73", "#9B6BFF", "#1B2340"];
 
-export const MASCOTS = ["🐝", "🦊", "🐙", "🐢", "🦄", "🐼", "🦖", "🐧", "🦉", "🐳", "🌵", "🚀", "🍩", "⭐", "🌈", "🎨"];
+export const MASCOTS = ["🦘", "🦊", "🐙", "🐢", "🦄", "🐼", "🦖", "🐧", "🦉", "🐳", "🌵", "🚀", "🍩", "⭐", "🌈", "🎨"];
 
-export const AVATARS = ["🐝", "🦊", "🐼", "🐯", "🐸", "🐨", "🦁", "🐵", "🐰", "🐶", "🐱", "🦄"];
+export const AVATARS = ["🦘", "🦊", "🐼", "🐯", "🐸", "🐨", "🦁", "🐵", "🐰", "🐶", "🐱", "🦄"];
 
 export const CURRENCIES = ["USD", "CAD", "AUD"] as const;
 export type Currency = (typeof CURRENCIES)[number];

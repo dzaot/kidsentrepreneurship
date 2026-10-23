@@ -1,8 +1,10 @@
 import type { Unit } from "./types";
 
-// The 30-day Launch Path: 4 units x 5 lessons, about 5 minutes a day.
+// The 30-day Venturoo Launch Path: 4 units x 5 lessons, about 5 minutes a day.
 // Goal: the kid's first online sale of a digital product, $0 invested,
 // with a parent learning alongside and owning every account.
+// AI stance: "AI is your helper, YOU are the boss." Roo (the in-app coach) is
+// text only. AI image tools are used only on the grown-up's account, together.
 
 export const UNITS: Unit[] = [
   // ---------------------------------------------------------------------------
@@ -13,7 +15,7 @@ export const UNITS: Unit[] = [
     title: "Idea Hunt",
     subtitle: "Find a business idea that fits you",
     emoji: "🔍",
-    color: "#FFC531",
+    color: "#FF8A3D",
     lessons: [
       {
         id: "what-is-a-business",
@@ -24,9 +26,9 @@ export const UNITS: Unit[] = [
         steps: [
           {
             kind: "learn",
-            title: "Hi, I'm Bizzy!",
-            emoji: "🐝",
-            body: "Bizzy says: In about 30 days, you will open your own online shop and make your first sale. Five minutes a day. Zero dollars spent. Your grown-up learns with you. Ready to get buzzing?",
+            title: "Hi, I'm Roo!",
+            emoji: "🦘",
+            body: "Roo says: I'm a kangaroo with a little shop in my pouch. In about 30 days, you will open your own online shop and make your first sale. Five minutes a day. Zero dollars. Ready to hop in?",
           },
           {
             kind: "learn",
@@ -47,9 +49,9 @@ export const UNITS: Unit[] = [
           },
           {
             kind: "learn",
-            title: "Bizzy's safety promise",
+            title: "Roo's safety promise",
             emoji: "🛡️",
-            body: "Real entrepreneurs protect their privacy. In this app you never show your face, real name, school, or city. Your shop gets a made-up name and a mascot. Your grown-up handles the money and the sharing.",
+            body: "Real entrepreneurs protect their privacy. You never share your face, real name, school, or city, not even with me or any AI. Your shop gets a made-up name and a mascot. Your grown-up handles the money and sharing.",
           },
           {
             kind: "quiz",
@@ -69,7 +71,7 @@ export const UNITS: Unit[] = [
           },
         ],
         parentCorner: {
-          tip: "A business is a repeatable way of creating value that someone pays for. Over the next 30 days your child will run a tiny real one, and you own the accounts, approve publishing, and share the link.",
+          tip: "A business is a repeatable way of creating value that someone pays for. Over the next 30 days your child runs a tiny real one, coached by Roo, a text-only AI helper inside the app. You own the accounts, approve publishing, and share the link.",
           talkAbout: "What is a local business we both like, and why do you think people keep coming back?",
         },
       },
@@ -131,7 +133,7 @@ export const UNITS: Unit[] = [
         id: "problems-are-treasure",
         title: "Problems Are Treasure",
         emoji: "💎",
-        minutes: 5,
+        minutes: 6,
         xp: 15,
         steps: [
           {
@@ -153,9 +155,32 @@ export const UNITS: Unit[] = [
           },
           {
             kind: "learn",
-            title: "Bizzy's problem formula",
-            emoji: "🐝",
-            body: "Bizzy says: Try this sentence. \"People who ___ get annoyed when ___. I could make ___.\" Example: \"People who go camping get bored when it rains. I could make a rainy day puzzle pack.\"",
+            title: "Roo's problem formula",
+            emoji: "🦘",
+            body: "Roo says: Try this sentence. \"People who ___ get annoyed when ___. I could make ___.\" Example: \"People who go camping get bored when it rains. I could make a rainy day puzzle pack.\"",
+          },
+          {
+            kind: "learn",
+            title: "AI is your helper, YOU are the boss",
+            emoji: "🤖",
+            body: "I'm an AI coach. AI is a computer helper that can suggest ideas fast. But you are the boss: you ask, you pick, you change things, you add your own touch. And never type personal info into any AI, including me.",
+          },
+          {
+            kind: "quiz",
+            question: "Which message is safe to send to Roo?",
+            options: [
+              "\"Hi, I'm Mia Lopez from Lincoln Elementary.\"",
+              "\"I love dinosaurs and puzzles. What could I make?\"",
+              "\"My street is Maple Road. What should I sell?\"",
+            ],
+            answer: 1,
+            explain: "That's it! Share what you like, never who or where you are. That rule is the same for Roo and every other AI.",
+          },
+          {
+            kind: "ask-roo",
+            title: "Brainstorm with Roo",
+            body: "Ask Roo for problem ideas. Change the starter to the things YOU love. Roo gives sparks, you choose. Circle the 1 or 2 ideas that feel most like you.",
+            starter: "I like drawing animals and doing puzzles. Can you give me 5 small problems kids or families have that a printable could fix?",
           },
           {
             kind: "mission",
@@ -169,12 +194,12 @@ export const UNITS: Unit[] = [
           },
           {
             kind: "reflect",
-            prompt: "Fill in Bizzy's formula with your best idea: People who ___ get annoyed when ___. I could make ___.",
+            prompt: "Fill in Roo's formula with your best idea: People who ___ get annoyed when ___. I could make ___.",
             placeholder: "People who take road trips get bored when... I could make...",
           },
         ],
         parentCorner: {
-          tip: "Startups often begin with 'pain points': a specific frustration for a specific group. Encourage your child to describe the person and the moment (who, when, why) rather than jumping straight to the product.",
+          tip: "Startups often begin with 'pain points': a specific frustration for a specific group. Roo, the in-app AI coach, can suggest ideas, but your child stays the decision maker. Ask 'Which of Roo's ideas did you pick, and why?' so the thinking stays theirs.",
           talkAbout: "What is something in our family's week that is always a little annoying, and could a simple product help?",
         },
       },
@@ -210,9 +235,15 @@ export const UNITS: Unit[] = [
             explain: "That's it! Your safe circle is the perfect place to start. They want to cheer you on, and your grown-up stays in charge.",
           },
           {
+            kind: "ask-roo",
+            title: "Ask Roo about customers",
+            body: "Ask Roo what kinds of people might love your idea. Use types of people, never real names. Then check: which ones are in your safe circle?",
+            starter: "I want to make a puzzle pack. What 5 kinds of people might love it, like \"parents on road trips\"?",
+          },
+          {
             kind: "mission",
             title: "Make a Safe Circle List",
-            body: "With your grown-up, think about who might like your product. Your grown-up keeps the list. Use first names or nicknames only.",
+            body: "With your grown-up, think about who might like your product. Your grown-up keeps the list. Use first names or nicknames only, and keep this list out of any AI chat.",
             checklist: [
               "Sit down with your grown-up for 3 minutes",
               "Together, name 5 people in your family circle",
@@ -226,7 +257,7 @@ export const UNITS: Unit[] = [
           },
         ],
         parentCorner: {
-          tip: "Marketers call this a 'target customer' or persona. Starting with a warm audience (people who already trust you) is how many real founders validate an idea before spending on ads, and it keeps your child safe.",
+          tip: "Marketers call this a 'target customer' or persona. Starting with a warm audience (people who already trust you) is how many real founders validate an idea before spending on ads. Note that the real names list stays on paper with you, never in an AI chat.",
           talkAbout: "Who in our family would be the most excited to be your first customer, and what would they want?",
         },
       },
@@ -254,7 +285,7 @@ export const UNITS: Unit[] = [
             kind: "learn",
             title: "Your 5 business choices",
             emoji: "🧭",
-            body: "You can make coloring pages, a digital sticker pack, a wallpaper pack, a puzzle pack, or a mini story book. All use free tools. All can be made in a few weeks. Pick what sounds most fun to make.",
+            body: "You can make coloring pages, a digital sticker pack, a wallpaper pack, a puzzle pack, or a mini story book. All use free tools, and AI can help with ideas. Pick what sounds most fun to make.",
           },
           {
             kind: "quiz",
@@ -275,9 +306,9 @@ export const UNITS: Unit[] = [
           },
           {
             kind: "learn",
-            title: "Bizzy is proud",
-            emoji: "🐝",
-            body: "Bizzy says: You just made your first big business decision. That is what entrepreneurs do. Next unit, we start making it. Bee-lieve in yourself!",
+            title: "Roo is proud",
+            emoji: "🦘",
+            body: "Roo says: You just made your first big business decision. That is what entrepreneurs do. Next unit, we start making it. Hop to it!",
           },
         ],
         parentCorner: {
@@ -296,7 +327,7 @@ export const UNITS: Unit[] = [
     title: "Make It",
     subtitle: "Build a product you are proud of",
     emoji: "🎨",
-    color: "#2BB673",
+    color: "#2FA58C",
     lessons: [
       {
         id: "quick-prototype",
@@ -329,9 +360,15 @@ export const UNITS: Unit[] = [
             body: "Great packs have one clear theme. \"Ocean animals\" beats \"random stuff.\" A theme helps customers know exactly what they are getting, and helps you decide what to make next.",
           },
           {
+            kind: "ask-roo",
+            title: "Get theme ideas from Roo",
+            body: "Ask Roo for themes. Change \"coloring pack\" to your product. Pick your favorite, or mix two together to make it yours, like \"ocean animals who run a bakery.\"",
+            starter: "I want to make a coloring pack. Can you give me 10 fun themes kids my age would love?",
+          },
+          {
             kind: "mission",
             title: "Make 2 or 3 Samples",
-            body: "Use paper and pencils or a free tool like Kleki.com. Make just a small sample of your product today.",
+            body: "Draw by hand, use a free tool like Kleki.com, or try AI pictures with your grown-up on their account. Make just a small sample today.",
             checklist: [
               "Choose your theme",
               "Make 2 or 3 sample pages, stickers, puzzles, or panels",
@@ -345,7 +382,7 @@ export const UNITS: Unit[] = [
           },
         ],
         parentCorner: {
-          tip: "This is the 'minimum viable product' idea: build the smallest version that tests the concept. Praise the attempt and the learning, not the polish.",
+          tip: "This is the 'minimum viable product' idea: build the smallest version that tests the concept. If your child wants AI images, you run the image tool on your own account, side by side. Praise the choices they make, not just the polish.",
           talkAbout: "What is something you got better at by doing a rough version first?",
         },
       },
@@ -364,9 +401,26 @@ export const UNITS: Unit[] = [
           },
           {
             kind: "learn",
-            title: "Bizzy's quality checklist",
+            title: "Roo's quality checklist",
             emoji: "📋",
-            body: "Bizzy says: Check 4 things. Clear: lines are dark and easy to see. Complete: no missing pieces. Correct: puzzles work, words are spelled right. Consistent: everything matches the theme.",
+            body: "Roo says: Check 4 things. Clear: lines are dark and easy to see. Complete: no missing pieces. Correct: puzzles work, words are spelled right. Consistent: everything matches the theme.",
+          },
+          {
+            kind: "learn",
+            title: "Check the AI, too",
+            emoji: "🔎",
+            body: "AI makes mistakes, and the boss catches them. Look closely for weird hands, extra fingers, messy letters in pictures, and wrong or repeated words in lists. Fix it, redo it, or leave it out.",
+          },
+          {
+            kind: "quiz",
+            question: "Roo gave you 20 ocean words, but one is \"desert\" and one is spelled wrong. What do you do?",
+            options: [
+              "Use them all, AI is always right",
+              "Fix the spelling and swap \"desert\" for a real ocean word",
+              "Give up on the word search",
+            ],
+            answer: 1,
+            explain: "Boss move! AI is a helper, not a perfect expert. You check its work and fix it, just like an editor.",
           },
           {
             kind: "quiz",
@@ -376,51 +430,63 @@ export const UNITS: Unit[] = [
             explain: "Correct is right! Testing every puzzle yourself catches these. Customers love products that just work.",
           },
           {
-            kind: "quiz",
-            question: "How many items should a first pack have?",
-            options: [
-              "1 item, so it is quick",
-              "Around 8 to 12 good ones",
-              "100, to look impressive",
-            ],
-            answer: 1,
-            explain: "Nice! Around 8 to 12 well-made items feels like real value without taking forever. Quality beats quantity.",
-          },
-          {
             kind: "mission",
             title: "Check Your Samples",
-            body: "Go back to your prototype samples and run Bizzy's 4 checks.",
+            body: "Go back to your prototype samples and run Roo's checks. Aim for about 8 to 12 great items in the final pack.",
             checklist: [
               "Clear: lines and colors are easy to see",
               "Complete and correct: nothing missing or broken",
               "Consistent: everything fits your theme",
-              "Fix one thing you found",
+              "Check any AI help for mistakes and fix one thing",
             ],
           },
         ],
         parentCorner: {
-          tip: "Businesses use quality checklists so standards do not depend on mood or memory. Help your child test the product as a customer would, for example by actually printing and coloring a page or solving a puzzle.",
+          tip: "Businesses use quality checklists so standards do not depend on mood or memory. AI output needs the same review: generated images often have odd hands or garbled text, and word lists can contain errors. Test the product as a customer would, for example by printing a page.",
           talkAbout: "Think of a product that disappointed you. What check did it fail?",
         },
       },
       {
         id: "make-it-yours",
-        title: "Make It Yours",
-        emoji: "🦄",
+        title: "AI Is Your Helper",
+        emoji: "🤖",
         minutes: 6,
         xp: 20,
         steps: [
           {
             kind: "learn",
+            title: "You are the boss",
+            emoji: "🦘",
+            body: "Roo says: AI can help you make things faster. You have the idea, you write the prompt (the instructions), you choose the best result, and you edit it and add your own touch. Love drawing? Draw it all yourself. Both are great.",
+          },
+          {
+            kind: "learn",
+            title: "Who does what",
+            emoji: "🤝",
+            body: "I'm text only: ideas, word lists, riddles, story outlines, and great image prompts. AI picture tools like ChatGPT, Gemini, Canva AI, or Adobe Firefly have age limits, so they are used only on your grown-up's account, together.",
+          },
+          {
+            kind: "quiz",
+            question: "You want an AI picture of your sleepy cloud character. What is the right way?",
+            options: [
+              "Sign up for an AI picture app by yourself",
+              "Borrow a friend's account",
+              "Write the prompt with Roo, then your grown-up runs it on their account with you",
+            ],
+            answer: 2,
+            explain: "Exactly! You write the prompt, your grown-up runs it. Teamwork keeps it safe and follows the tools' age rules.",
+          },
+          {
+            kind: "learn",
             title: "Copyright, simply",
             emoji: "©️",
-            body: "Copyright means the person who made something decides how it is used. Famous characters belong to big companies. You cannot sell drawings of cartoon heroes, game logos, or movie characters. It is not allowed, even if you drew them.",
+            body: "Copyright means the maker decides how their work is used. Famous characters and brands belong to big companies. Never draw them to sell, and never put them in a prompt. Invent your own instead.",
           },
           {
             kind: "quiz",
             question: "Which of these is okay to sell?",
             options: [
-              "Coloring pages of a famous movie princess",
+              "AI coloring pages of a famous movie princess",
               "Stickers with a popular video game logo",
               "Your own invented character, Captain Pickle",
               "Wallpapers of a famous cartoon mouse",
@@ -430,40 +496,30 @@ export const UNITS: Unit[] = [
           },
           {
             kind: "learn",
-            title: "Your art is the product",
-            emoji: "✍️",
-            body: "AI tools can make pictures fast, but then it is not really your product. Customers in your circle are buying something YOU made. Make the art yourself. Your style, even a little wobbly, is what makes it special.",
+            title: "Be honest about AI",
+            emoji: "🏷️",
+            body: "If AI helped make your pictures, say so in your description, like \"Designed by me with AI help.\" Never say \"hand-drawn\" if it isn't. Honest shops earn trust, and trust brings customers back.",
           },
           {
-            kind: "quiz",
-            question: "What makes your product stand out from all the others online?",
-            options: [
-              "Copying a popular shop exactly",
-              "Your own ideas, style, and characters",
-              "Letting a computer make all of it",
-            ],
-            answer: 1,
-            explain: "You got it! Nobody else can make what you make. Your style is your secret ingredient.",
+            kind: "ask-roo",
+            title: "Write an image prompt with Roo",
+            body: "Ask Roo to help you write a clear prompt for your own original character. Change the details to make it yours. Then show the prompt to your grown-up to try together. Drawing it yourself? Ask for drawing ideas instead.",
+            starter: "I invented a taco dragon. Can you help me write a prompt for a black and white coloring page with thick lines and no text?",
           },
           {
             kind: "mission",
             title: "Invent an Original",
-            body: "Create one brand new character or design that is 100% yours.",
+            body: "Create one brand new character or design that is 100% your idea.",
             checklist: [
               "Mix 2 things that do not usually go together (a taco plus a dragon?)",
               "Give it a name",
-              "Draw it at least once",
+              "Draw it yourself, or make it with your grown-up using your prompt",
             ],
-          },
-          {
-            kind: "reflect",
-            prompt: "Describe your original character or design. What makes it unique?",
-            placeholder: "My character is a sleepy cloud who...",
           },
         ],
         parentCorner: {
-          tip: "Intellectual property (copyright and trademarks) protects creators, and selling fan art of trademarked characters can get a shop taken down. Original work also builds a real brand asset your child owns.",
-          talkAbout: "Why do you think companies protect their characters so carefully?",
+          tip: "Most AI image tools require users to be 13 or older (some 18+), so run them on your own account and sit together. Let your child write and edit the prompt so they stay the creative boss. Avoid famous characters and brands, and add an AI disclosure to the listing.",
+          talkAbout: "If AI helps make a picture from your idea, which parts are still yours?",
         },
       },
       {
@@ -500,7 +556,7 @@ export const UNITS: Unit[] = [
           {
             kind: "mission",
             title: "Ask 3 Family Members",
-            body: "Show your samples to 3 people in your family circle, in person or through your grown-up. Ask Bizzy's questions.",
+            body: "Show your samples to 3 people in your family circle, in person or through your grown-up. Ask Roo's questions.",
             checklist: [
               "Get feedback from family member 1",
               "Get feedback from family member 2",
@@ -530,7 +586,13 @@ export const UNITS: Unit[] = [
             kind: "learn",
             title: "The finish line",
             emoji: "🏁",
-            body: "Now make the full pack: about 8 to 12 items using your theme, your feedback, and Bizzy's checklist. This may take a few sessions. That is normal. Come back here when it is done.",
+            body: "Now make the full pack: about 8 to 12 items using your theme, your feedback, and Roo's checklist. This may take a few sessions. That is normal. Come back here when it is done.",
+          },
+          {
+            kind: "ask-roo",
+            title: "Fill your pack with Roo",
+            body: "Stuck on content? Ask Roo. Change the starter to fit you: a word list, riddles, more page ideas, or a story outline. Then check every item, cut the weak ones, and add your own.",
+            starter: "I'm making a word search pack about the ocean. Can you give me 20 ocean words kids my age know?",
           },
           {
             kind: "learn",
@@ -555,7 +617,7 @@ export const UNITS: Unit[] = [
             body: "Before uploading, check your file with your grown-up.",
             checklist: [
               "No real names, photos of faces, or personal info anywhere in the file",
-              "Everything passes Bizzy's 4 quality checks",
+              "Everything passes Roo's quality checks, including AI-made parts",
               "The file is a PDF or ZIP under 4 MB",
             ],
           },
@@ -568,12 +630,12 @@ export const UNITS: Unit[] = [
           {
             kind: "learn",
             title: "You made a product!",
-            emoji: "🐝",
-            body: "Bizzy says: Most people only dream about making something to sell. You actually did it. That is honey-sweet. Next up: your brand and shop.",
+            emoji: "🦘",
+            body: "Roo says: Most people only dream about making something to sell. You actually did it. I'm hopping with joy! Next up: your brand and shop.",
           },
         ],
         parentCorner: {
-          tip: "Shipping a finished product is the hardest step for most first-time founders, adult or kid. Help with the technical part (scanning, exporting, zipping) but let your child make the creative decisions.",
+          tip: "Shipping a finished product is the hardest step for most first-time founders, adult or kid. Help with the technical part (scanning, exporting, zipping, running AI image tools on your account) but let your child make the creative decisions.",
           talkAbout: "What part of making the product are you proudest of?",
         },
       },
@@ -588,7 +650,7 @@ export const UNITS: Unit[] = [
     title: "Brand & Shop",
     subtitle: "Name it, style it, price it, publish it",
     emoji: "🏷️",
-    color: "#5B8DEF",
+    color: "#5BC0EB",
     lessons: [
       {
         id: "secret-shop-name",
@@ -627,14 +689,20 @@ export const UNITS: Unit[] = [
             body: "Try these: rhymes (Doodle Noodle), alliteration (Silly Sticker Shop), or a mascot plus a word (Sleepy Fox Puzzles). Say it out loud. Easy to say and spell? Great sign.",
           },
           {
+            kind: "ask-roo",
+            title: "Name ideas from Roo",
+            body: "Ask Roo for name ideas. Change the starter to your product. Mix and match words from Roo's list, or tweak one until it sounds like you. Never give Roo your real name.",
+            starter: "I make ocean animal coloring pages. Can you give me 10 fun shop name ideas using rhymes or a mascot, with no real names or places?",
+          },
+          {
             kind: "build",
             action: "brand-name",
             title: "Name your shop",
-            body: "Brainstorm a few names, pick your favorite, and check it has no personal info. Your grown-up can help you choose.",
+            body: "Pick your favorite name from your own ideas and Roo's, and check it has no personal info. Your grown-up can help you choose.",
           },
         ],
         parentCorner: {
-          tip: "A pseudonymous brand protects your child and is common practice; many authors and creators sell under pen names. Double-check the name contains no identifiers such as surname, school, location, or birth year.",
+          tip: "A pseudonymous brand protects your child and is common practice; many authors and creators sell under pen names. Roo can suggest names, but double-check the final pick contains no identifiers such as surname, school, location, or birth year.",
           talkAbout: "What brand names do you remember best, and why do they stick?",
         },
       },
@@ -649,7 +717,7 @@ export const UNITS: Unit[] = [
             kind: "learn",
             title: "Pick a mascot",
             emoji: "🦊",
-            body: "Your mascot is the face of your shop, so YOUR face never has to be. Bizzy is a bee. Yours could be a fox, a robot, a cactus. It shows up in your posts and previews.",
+            body: "Your mascot is the face of your shop, so YOUR face never has to be. I'm a kangaroo. Yours could be a fox, a robot, a cactus. It shows up in your posts and previews.",
           },
           {
             kind: "learn",
@@ -681,14 +749,20 @@ export const UNITS: Unit[] = [
             explain: "Ha, yes! It names a real problem parents know, and it is short and funny. That is tagline gold.",
           },
           {
+            kind: "ask-roo",
+            title: "Tagline ideas from Roo",
+            body: "Ask Roo for short taglines. Change the starter to your shop. Pick one, then make it yours: swap a word, add a joke, or make it shorter.",
+            starter: "My shop sells road trip puzzle packs and my mascot is a sleepy fox. Can you give me 8 taglines under 8 words?",
+          },
+          {
             kind: "build",
             action: "tagline",
             title: "Write your tagline",
-            body: "Write one short line that says what your shop gives people. Try 3 versions and keep the best.",
+            body: "Write one short line that says what your shop gives people. Try 3 versions in your own words and keep the best.",
           },
         ],
         parentCorner: {
-          tip: "Brand identity (mascot, color, tagline) creates recognition and trust. A mascot also solves the 'faceless marketing' problem: your child's shop gets a personality without ever showing your child.",
+          tip: "Brand identity (mascot, color, tagline) creates recognition and trust. A mascot also solves the 'faceless marketing' problem. When Roo offers taglines, ask your child to edit their favorite rather than copy it, so the final line is theirs.",
           talkAbout: "If our family were a brand, what would our mascot and color be?",
         },
       },
@@ -696,7 +770,7 @@ export const UNITS: Unit[] = [
         id: "words-that-sell",
         title: "Words That Sell",
         emoji: "✏️",
-        minutes: 5,
+        minutes: 6,
         xp: 20,
         steps: [
           {
@@ -735,14 +809,37 @@ export const UNITS: Unit[] = [
             explain: "Right. Your shop name and mascot speak for you. Personal details stay private, always.",
           },
           {
+            kind: "learn",
+            title: "Say how it was made",
+            emoji: "🏷️",
+            body: "Customers like knowing how things are made. Drew it all? Say \"Hand-drawn by me.\" Used AI pictures? Say \"Designed by me with AI help.\" This is called an AI disclosure.",
+          },
+          {
+            kind: "quiz",
+            question: "Your sticker pack uses pictures made with an AI tool. What goes in the description?",
+            options: [
+              "\"Designed by me with AI help\"",
+              "\"100% hand-drawn\"",
+              "Nothing, nobody needs to know",
+            ],
+            answer: 0,
+            explain: "Yes! Being honest about AI help builds trust. Saying \"hand-drawn\" when it isn't would trick your customers.",
+          },
+          {
+            kind: "ask-roo",
+            title: "Polish it with Roo",
+            body: "Ask Roo for a draft. Change the starter to match your product. Then rewrite it in your own words, check every fact is true, and add an AI disclosure if AI helped.",
+            starter: "I made 10 ocean animal coloring pages for kids ages 4 to 8. Can you help me write a short description that says what it is, who it's for, and why they'll love it?",
+          },
+          {
             kind: "build",
             action: "product-details",
             title: "Write your product details",
-            body: "Write your product title and description. Use the title formula and answer the 3 questions. Then read it out loud to check it sounds good.",
+            body: "Write your product title and description. Use the title formula, answer the 3 questions, and say how it was made. Then read it out loud to check it sounds good.",
           },
         ],
         parentCorner: {
-          tip: "Good copywriting focuses on benefits (what the customer gets) as well as features (what the product is). Ask your child, 'Why would someone want this?' and help them put that answer into the description.",
+          tip: "Good copywriting focuses on benefits as well as features. Check that any AI-drafted description is accurate (page count, file type) and includes an honest AI disclosure if AI images were used; many marketplaces expect this, and it models integrity.",
           talkAbout: "What made you click 'buy' the last time you bought something online?",
         },
       },
@@ -774,9 +871,9 @@ export const UNITS: Unit[] = [
           },
           {
             kind: "learn",
-            title: "Bizzy's price tips",
-            emoji: "🐝",
-            body: "Bizzy says: Most first packs sell well at $2 to $5. More items or more work can mean a higher price. A price ending in .99 or a round number both work. Ask your grown-up what feels fair.",
+            title: "Roo's price tips",
+            emoji: "🦘",
+            body: "Roo says: Most first packs sell well at $2 to $5. More items or more work can mean a higher price. A price ending in .99 or a round number both work. Ask your grown-up what feels fair.",
           },
           {
             kind: "quiz",
@@ -836,7 +933,7 @@ export const UNITS: Unit[] = [
             title: "Shop Check With Your Grown-Up",
             body: "Look over your whole shop together before you ask to publish.",
             checklist: [
-              "Shop name and description have no personal info",
+              "Shop name and description have no personal info, and say if AI helped",
               "The price feels fair to both of you",
               "The product file opens and looks right",
               "The cover shows your art, not a face",
@@ -851,12 +948,12 @@ export const UNITS: Unit[] = [
           {
             kind: "learn",
             title: "Almost live!",
-            emoji: "🐝",
-            body: "Bizzy says: Your shop is ready for the world, or at least your family circle. Next unit, we launch and go for that first sale. Buzz buzz!",
+            emoji: "🦘",
+            body: "Roo says: Your shop is ready for the world, or at least your family circle. Next unit, we launch and go for that first sale. Let's hop!",
           },
         ],
         parentCorner: {
-          tip: "You are the publisher and account owner. Review the listing as a customer would, and check privacy one last time: shop name, description, cover, and file metadata should contain nothing identifying.",
+          tip: "You are the publisher and account owner. Review the listing as a customer would, confirm the AI disclosure is accurate, and check privacy one last time: shop name, description, cover, and file metadata should contain nothing identifying.",
           talkAbout: "If you saw this shop and did not know who made it, would you want to buy? Why?",
         },
       },
@@ -871,7 +968,7 @@ export const UNITS: Unit[] = [
     title: "Launch & Sell",
     subtitle: "Share safely and make your first sale",
     emoji: "🚀",
-    color: "#FF6B5B",
+    color: "#FF5D73",
     lessons: [
       {
         id: "the-safe-circle",
@@ -1009,6 +1106,12 @@ export const UNITS: Unit[] = [
             explain: "Right! Shop name, product, price, and link are all you need. Personal details always stay out.",
           },
           {
+            kind: "ask-roo",
+            title: "Message ideas from Roo",
+            body: "Ask Roo for a few short versions. Change the starter to your shop and product. Pick the one that sounds most like you, then tweak it. Shop name only, no real names.",
+            starter: "My shop is Pixel Pals Studio and I made 15 digital stickers for $3. Can you write 3 short, friendly messages for my family under 50 words?",
+          },
+          {
             kind: "build",
             action: "share-plan",
             title: "Build your share message",
@@ -1021,7 +1124,7 @@ export const UNITS: Unit[] = [
           },
         ],
         parentCorner: {
-          tip: "A clear call to action ('here's the link') dramatically improves response compared to vague announcements. Send it personally (text or family group chat) rather than public social media for this first launch.",
+          tip: "A clear call to action ('here's the link') dramatically improves response compared to vague announcements. Read the final message before sending: it should sound like your child, not a robot. Send it personally (text or family group chat) rather than public social media.",
           talkAbout: "How would you feel if a friend sent you a message like this? Would you click?",
         },
       },
@@ -1036,13 +1139,19 @@ export const UNITS: Unit[] = [
             kind: "learn",
             title: "Ka-ching!",
             emoji: "🎉",
-            body: "Bizzy says: When your first sale comes in, celebrate! Someone paid for something YOU made. That is a huge deal. Most adults have never done it.",
+            body: "Roo says: When your first sale comes in, celebrate! Someone paid for something YOU made. That is a huge deal. Most adults have never done it.",
           },
           {
             kind: "learn",
             title: "Say thank you",
             emoji: "🙏",
             body: "Great businesses thank their customers. Make a thank-you note or drawing from your mascot. Your grown-up sends it. Happy customers come back and tell others.",
+          },
+          {
+            kind: "ask-roo",
+            title: "Thank-you ideas from Roo",
+            body: "Ask Roo for ideas, then write the note in your own words. A drawing from your mascot makes it extra special. Keep the customer's name out of the chat. Add it later, on paper.",
+            starter: "Someone bought my ocean coloring pack! Can you give me 5 short, fun thank-you note ideas from my mascot, a sleepy fox?",
           },
           {
             kind: "learn",
@@ -1074,7 +1183,7 @@ export const UNITS: Unit[] = [
           },
         ],
         parentCorner: {
-          tip: "Bookkeeping starts with a simple sales log: date, item, gross price, fees, net. Show your child the real receipt and payout in your account so they connect the app to actual money.",
+          tip: "Bookkeeping starts with a simple sales log: date, item, gross price, fees, net. Show your child the real receipt and payout in your account so they connect the app to actual money. Customer names stay in your account, never in Roo.",
           talkAbout: "Who should we thank first, and how can we make them smile?",
         },
       },
@@ -1111,7 +1220,7 @@ export const UNITS: Unit[] = [
             kind: "learn",
             title: "Product #2",
             emoji: "🔁",
-            body: "Your second product is easier. You already have a shop, a brand, and customers. Ideas: a new theme in the same style, a holiday version, or something a customer asked for.",
+            body: "Your second product is easier. You already have a shop, a brand, and customers. Ideas: a new theme in the same style, a holiday version, or something a customer asked for. Roo can help you brainstorm.",
           },
           {
             kind: "quiz",
@@ -1122,7 +1231,7 @@ export const UNITS: Unit[] = [
               "Copying a famous character because it is popular",
             ],
             answer: 0,
-            explain: "Exactly! Listening to customers is the best idea generator there is. Bizzy is so proud of you. You're a real entrepreneur now!",
+            explain: "Exactly! Listening to customers is the best idea generator there is. Roo is so proud of you. You're a real entrepreneur now!",
           },
           {
             kind: "mission",
