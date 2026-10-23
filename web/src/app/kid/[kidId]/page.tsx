@@ -31,7 +31,7 @@ export default async function KidHome({ params }: { params: Promise<{ kidId: str
             <p className="text-sm text-ink-soft">
               {shop.sales.length > 0
                 ? `💰 You've earned ${formatMoney(totalEarned(kid), shop.product.currency)} from ${shop.sales.length} sale${shop.sales.length > 1 ? "s" : ""}!`
-                : "5 minutes a day keeps your streak buzzing."}
+                : "5 minutes a day keeps your streak hopping."}
             </p>
           </div>
           {nextId && <Link href={`/kid/${kidId}/lesson/${nextId}`} className="btn btn-sun hidden sm:inline-flex">Start</Link>}

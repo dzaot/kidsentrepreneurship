@@ -42,7 +42,12 @@ function contextFor(kid: Kid, lessonId?: string) {
   const lesson = lessonId ? findLesson(lessonId) : undefined;
   const lines = [
     `The kid is in the ${kid.ageBand} age group.`,
-    `Their shop so far: business: ${biz?.name ?? "not chosen yet"}; shop name: ${s.name ?? "not chosen yet"}; tagline: ${s.tagline ?? "none yet"}; product: ${s.product.title ?? "not named yet"}; description: ${s.product.description ?? "none yet"}.`,
+    "Their shop so far:",
+    `- business: ${biz?.name ?? "not chosen yet"}`,
+    `- shop name: ${s.name ?? "not chosen yet"}`,
+    `- tagline: ${s.tagline ?? "none yet"}`,
+    `- product: ${s.product.title ?? "not named yet"}`,
+    `- description: ${s.product.description ?? "none yet"}`,
     lesson ? `They are in the lesson "${lesson.title}". Help with what that lesson is about.` : "",
   ];
   return lines.filter(Boolean).join("\n");
