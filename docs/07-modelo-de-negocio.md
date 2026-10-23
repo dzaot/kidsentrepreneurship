@@ -15,7 +15,7 @@ Fecha: 23 de octubre de 2026. Documento de trabajo, versión 1. Se apoya en [01-
 5. **Mercado:** unos 34,5 millones de niños de 8 a 14 en EE.UU., Canadá y Australia, unos 24 millones de hogares (supuesto). TAM de unos USD 1.400 millones al año; SAM realista de unos USD 140 millones; el homeschool (más de 3,4 millones de alumnos en EE.UU.) es la cabeza de playa.
 6. **Unit economics (escenario base):** ingreso neto de unos USD 5,80 por familia pagadora al mes, COGS de unos USD 1,30 (IA, hosting, email), margen bruto del 73 %, LTV de unos USD 67, CAC mezclado de USD 45, **LTV/CAC de 1,5** y recuperación del CAC en unos 10 meses. Es justo. **Con anuncios pagados (CAC de 100 o más) no cierra.** Con pago anual por adelantado, el CAC se recupera el mismo día.
 7. **El riesgo económico número uno es la "churn por éxito":** la familia logra la primera venta y cancela. La respuesta es producto (Nivel 2, rutas de temporada, segundo y tercer proyecto) más anual por defecto.
-8. **Costo de IA:** con Opus en todo, unos 1,2 centavos por mensaje; con enrutamiento (Haiku para lo simple, Opus para lo difícil) baja a unos 0,6 centavos. El tope de 40 mensajes al día es un riesgo de costo (un niño intensivo podría costar más de USD 10 al mes): mantener el tope, pero con presupuesto mensual por familia y Haiku para el plan gratis.
+8. **Costo de IA:** con Opus en todo, unos 1,2 centavos por mensaje; con enrutamiento (Claude Haiku 5.5 para lo simple, Opus para lo difícil) baja a unos 0,4 centavos. El tope de 40 mensajes al día es un riesgo de costo (un niño intensivo podría costar más de USD 10 al mes): mantener el tope, pero con presupuesto mensual por familia y Haiku para el plan gratis.
 9. **Salida al mercado en 12 meses:** piloto (noviembre), lista de espera y regalo de Navidad (diciembre), lanzamiento pagado (enero de 2027), temporada homeschool y "30 días antes de Lemonade Day" (marzo a mayo), **"Summer CEO"** (junio a agosto, la ventana más grande), y segunda Navidad. En Australia la Navidad y las vacaciones de verano coinciden: doble gancho.
 10. **Proyección a 3 años (escenario base):** unas 7.200 familias pagadoras y unos USD 0,6 millones de ARR al final del año 3, con burn acumulado de unos USD 0,4 millones. Optimista: unos USD 2 millones de ARR (suscripción más partners) y cerca del punto de equilibrio. Pesimista: menos de USD 50.000 de ARR, señal para girar hacia colegios y alianzas o parar.
 11. **Hitos antes de levantar dinero:** 50 % de niños con primera venta en el piloto, 300 familias pagadoras con 40 % o más en plan anual, churn mensual menor al 8 %, un canal con CAC menor a USD 40 repetible y un partner firmado (feria o fintech).
@@ -183,15 +183,15 @@ La regla: **gratis lo que demuestra que el niño se engancha; pagado lo que llev
 
 ### 4.1 Costo por mensaje de Guroo
 
-Supuestos: precio de Claude Opus 5.5 que usamos en el doc 04 (USD 4 y 20 por millón de tokens de entrada y salida, **verificar** en la página de precios de Anthropic); Claude Haiku 4.5 a USD 1 y 5 por millón, con lectura de caché a USD 0,10 por millón ([Future AGI](https://futureagi.com/llm-cost-calculator/anthropic/claude-haiku-4-5), [Puter](https://developer.puter.com/tutorials/claude-api-pricing)). Lectura de caché a 0,1 veces el precio de entrada y escritura a 1,25 veces. Mensaje típico (supuesto): 3.000 tokens de prompt de sistema en caché, 1.500 tokens de historial sin caché, 250 tokens de respuesta.
+Supuestos: precio de Claude Opus 5.5 que usamos en el doc 04 (USD 4 y 20 por millón de tokens de entrada y salida, **verificar** en la página de precios de Anthropic); Claude Haiku 5.5 a USD 0,10 y 0,50 por millón de tokens de entrada y salida (tabla de modelos vigente de la API de Anthropic, octubre de 2026, para prompts de hasta 100.000 tokens). Lectura de caché a 0,1 veces el precio de entrada y escritura a 1,25 veces. Mensaje típico (supuesto): 3.000 tokens de prompt de sistema en caché, 1.500 tokens de historial sin caché, 250 tokens de respuesta.
 
 | Modelo | Sistema (caché) | Historial | Respuesta | **Total por mensaje** |
 |---|---|---|---|---|
 | Opus (USD 4 / 20) | 0,0012 | 0,0060 | 0,0050 | **~USD 0,012** |
-| Haiku 4.5 (USD 1 / 5) | 0,0003 | 0,0015 | 0,0013 | **~USD 0,003** |
-| Mezcla 70 % Haiku, 30 % Opus | | | | **~USD 0,006** |
+| Haiku 5.5 (USD 0,10 / 0,50) | 0,00003 | 0,00015 | 0,00013 | **~USD 0,0003** |
+| Mezcla 70 % Haiku, 30 % Opus | | | | **~USD 0,004** |
 
-**Corrección al doc 04:** allí decimos que Haiku es "unas 40 veces más barato". Con los precios públicos de Haiku 4.5 que encontramos, la diferencia frente a USD 4 / 20 es de unas **4 veces**, no 40. Revisar con la página oficial antes de decidir.
+**Nota:** el doc 04 dice que Haiku es "unas 40 veces más barato" que Opus. Es correcto para Claude Haiku 5.5 (USD 0,10 / 0,50 frente a USD 4 / 20). Las fuentes secundarias que hablan de USD 1 / 5 se refieren a Haiku 4.5, una generación anterior. Antes de cambiar de modelo hay que probar la calidad de las respuestas de Guroo con Haiku 5.5.
 
 **Uso (supuesto):** un niño activo en plan pago manda ~60 mensajes al mes (unos 5 por día en 12 días activos); 1,3 niños activos por familia, es decir ~80 mensajes por familia al mes. Un niño que usa el tope (40 al día, 30 días) gastaría 1.200 mensajes: unos USD 14 con Opus. **Por eso:** mantener el tope diario, añadir un presupuesto mensual por familia (por ejemplo 400 mensajes, luego Haiku) y alertar si una cuenta supera USD 3 al mes.
 
@@ -436,7 +436,7 @@ Riesgos menores a vigilar: copyright en productos de niños (reglas del creador,
 
 ## 9. Lo que no pudimos verificar
 
-- Precio oficial vigente de Claude Opus 5.5 y de un posible "Haiku 5.5"; solo encontramos Haiku 4.5 (USD 1 / 5 por millón).
+- Precio de Claude Opus 5.5 y Claude Haiku 5.5: tomados de la tabla de modelos de la API de Anthropic (octubre de 2026); confirmar en la página oficial de precios antes de proyecciones finales.
 - Precios oficiales 2026 de Duolingo Family, Acorns Early, Synthesis Tutor y Step.
 - Si Outschool tiene clases de emprendimiento para 8 a 14 y su precio típico.
 - Cifras oficiales de ABS (Australia) para 8 a 14 y número de homeschoolers en Canadá.
