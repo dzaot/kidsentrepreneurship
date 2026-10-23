@@ -20,6 +20,68 @@
   --font-display: "Baloo 2", "Nunito", ui-rounded, system-ui, sans-serif;
 }
 
+/* "Soft 3D World + Adventure Patches" tokens (docs/brand/direccion-visual.md, section 3.1).
+   Added on top of the base tokens above; nothing existing is renamed. */
+@theme {
+  /* Sky */
+  --color-sky-700: #1f7fc0;
+  --color-sky-500: #2e9bd6;
+  --color-sky-300: #7fd3f7;
+  --color-sky-100: #e8f7fd;
+  /* Support */
+  --color-lilac-300: #c9b8ff;
+  --color-lilac-100: #eee8ff;
+  --color-peach-300: #ffb37d;
+  --color-peach-100: #ffd9b8;
+  --color-honey: #ffc94d;
+  --color-mint: #7ed9c3;
+  --color-mint-100: #ddf5ec;
+  --color-cream-50: #fff8ee;
+  --color-cloud: #ffffff;
+
+  /* Surfaces */
+  --color-surface: #ffffff;
+  --color-surface-warm: #fff8ee;
+  --color-surface-sunk: #f6ead8;
+  --color-nav: #1b2340;
+
+  /* Radii. The spec's xs..xl scale is exposed as --radius-v-* so Tailwind's own
+     rounded-sm/lg/xl keep their current meaning across the app. */
+  --radius-v-xs: 8px;
+  --radius-v-sm: 12px;
+  --radius-v-md: 16px;
+  --radius-v-lg: 24px;
+  --radius-v-xl: 36px;
+  --radius-card: 28px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-soft: 0 10px 24px -10px rgb(27 35 64 / 0.28);
+  --shadow-card: 0 4px 0 rgb(27 35 64 / 0.08), 0 18px 32px -14px rgb(27 35 64 / 0.3);
+  --shadow-float: 0 14px 34px -10px rgb(27 35 64 / 0.45);
+  --shadow-glossy: inset 0 -6px 0 rgb(0 0 0 / 0.12), inset 0 6px 10px rgb(255 255 255 / 0.55), 0 8px 16px -6px rgb(27 35 64 / 0.35);
+  --shadow-inner-track: inset 0 2px 4px rgb(27 35 64 / 0.15);
+
+  /* Motion curves (section 4.2) */
+  --ease-press: cubic-bezier(0.3, 0, 0.5, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-spring: cubic-bezier(0.2, 0.9, 0.3, 1.2);
+  --ease-soft: cubic-bezier(0.25, 0.8, 0.25, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+}
+
+:root {
+  --grad-sky: linear-gradient(180deg, #1f7fc0 0%, #2e9bd6 38%, #7fd3f7 72%, #e8f7fd 100%);
+  --grad-sky-level2: linear-gradient(180deg, #c9b8ff 0%, #7fd3f7 55%, #e8f7fd 100%);
+  --grad-sunrise: linear-gradient(180deg, #ffd9b8 0%, #fff1de 100%);
+  --grad-gloss: radial-gradient(120% 90% at 30% 20%, rgb(255 255 255 / 0.65) 0%, rgb(255 255 255 / 0) 55%);
+  --grad-progress: linear-gradient(90deg, #2fa58c 0%, #7ed9c3 100%);
+  /* Hero sky for white display text: stays at sky-700/sky-500 behind the words, lightens only at the horizon. */
+  --grad-sky-hero: linear-gradient(180deg, #1a74b3 0%, #1f7fc0 45%, #2e9bd6 72%, #7fd3f7 90%, #e8f7fd 100%);
+  --ease-spring-real: linear(0, 0.18 6%, 0.62 15%, 1.04 27%, 1.1 33%, 1.03 44%, 0.99 56%, 1.005 72%, 1);
+  --kid-nav-space: calc(112px + env(safe-area-inset-bottom));
+}
+
 html,
 body {
   background: var(--color-cream);
@@ -63,6 +125,11 @@ h2,
 h3,
 .font-display {
   font-family: var(--font-display);
+}
+
+/* Parent screens: calmer, warmer white, no sky. */
+body:has(.parent-zone) {
+  background: var(--color-cream-50);
 }
 
 /* Component classes live in the components layer so Tailwind utilities (bg-*, border-*) can override them. */
@@ -157,6 +224,115 @@ h3,
   font-weight: 700;
   margin-bottom: 0.35rem;
 }
+
+/* Pill CTA (spec 3.6 F): 56px tall, chunky label, game edge. */
+.btn-pill {
+  border-radius: var(--radius-pill);
+  min-height: 3.5rem;
+  padding: 0.9rem 1.75rem;
+  font-size: 1.125rem;
+  box-shadow: 0 5px 0 var(--edge, rgba(0, 0, 0, 0.18));
+}
+.btn-pill-sm {
+  border-radius: var(--radius-pill);
+  min-height: 3rem;
+  padding: 0.55rem 1.2rem;
+  font-size: 0.95rem;
+}
+.btn-ink {
+  background: var(--color-ink);
+  color: var(--color-cream);
+  --edge: #0b1024;
+}
+.btn-peach {
+  background: var(--color-peach-300);
+  color: var(--color-ink);
+  --edge: #e08a4f;
+}
+.btn-white {
+  background: white;
+  color: var(--color-ink);
+  --edge: rgb(27 35 64 / 0.18);
+}
+
+/* Squash and stretch (spec 4.2). Used in the kid world and on marketing CTAs; parent screens keep the plain press. */
+.kid-world .btn,
+.btn-pill,
+.squish {
+  transition: transform 280ms var(--ease-bounce), box-shadow 280ms var(--ease-bounce), filter 0.15s;
+}
+.kid-world .btn:active:not(:disabled),
+.btn-pill:active:not(:disabled),
+.squish:active {
+  transform: translateY(4px) scale(1.04, 0.92);
+  box-shadow: 0 1px 0 var(--edge, rgba(0, 0, 0, 0.18));
+  transition-duration: 90ms;
+  transition-timing-function: var(--ease-press);
+}
+
+/* Big soft card that sits on the sky (Level card, unit cards). */
+.card-soft {
+  background: var(--color-surface);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+/* Round glossy category icon (spec 3.4). Set the color with background. */
+.glossy {
+  position: relative;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  box-shadow: var(--shadow-glossy);
+  isolation: isolate;
+}
+.glossy::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--grad-gloss);
+  pointer-events: none;
+}
+
+/* Game progress track (Level card, shop steps). */
+.track {
+  background: var(--color-surface-sunk);
+  box-shadow: var(--shadow-inner-track);
+  border-radius: 999px;
+}
+.fill-progress {
+  background: var(--grad-progress);
+}
+
+/* Sky hero (spec 3.6 G). */
+.sky {
+  background: var(--grad-sky);
+}
+.sky-hero {
+  background: var(--grad-sky-hero);
+}
+.sky-level2 {
+  background: var(--grad-sky-level2);
+}
+.sunrise {
+  background: var(--grad-sunrise);
+}
+.display-white {
+  color: white;
+  text-shadow: 0 3px 0 rgb(27 35 64 / 0.25);
+}
+
+/* The badge board: mint with a faint stitched pattern. */
+.badge-board {
+  background-color: var(--color-mint-100);
+  background-image: radial-gradient(rgb(27 35 64 / 0.07) 1.4px, transparent 1.6px);
+  background-size: 18px 18px;
+}
+.stitched {
+  outline: 2.5px dashed rgb(27 35 64 / 0.14);
+  outline-offset: -10px;
+}
 }
 
 @keyframes pop {
@@ -246,6 +422,127 @@ h3,
   height: 4px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.45);
+}
+
+/* ---------- Soft 3D World motion ---------- */
+
+/* Far clouds drift 24px over 18s; near clouds stay still. No scroll parallax. */
+@keyframes cloud-drift {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(24px); }
+}
+.cloud-drift { animation: cloud-drift 18s ease-in-out infinite; }
+.cloud-drift-slow { animation: cloud-drift 26s ease-in-out infinite reverse; }
+
+/* Gentle idle bob for 3D Guroo. */
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(-1deg); }
+}
+.animate-bob { animation: bob 4.2s ease-in-out infinite; }
+
+/* Spring entrance for cards. */
+@keyframes rise {
+  0% { transform: translateY(18px) scale(0.98); opacity: 0; }
+  100% { transform: none; opacity: 1; }
+}
+.animate-rise { animation: rise 520ms var(--ease-spring) both; }
+
+/* Guroo 3D hop (anticipation, jump, land, settle). */
+@keyframes guroo-hop {
+  0% { transform: translateY(40px) scale(0.9); opacity: 0; }
+  20% { transform: translateY(0) scale(1.06, 0.92); opacity: 1; }
+  45% { transform: translateY(-18px) scale(0.96, 1.06); }
+  70% { transform: translateY(0) scale(1.08, 0.9); }
+  85% { transform: translateY(0) scale(0.98, 1.02); }
+  100% { transform: none; }
+}
+.animate-guroo-hop { animation: guroo-hop 900ms var(--ease-soft) both; transform-origin: 50% 100%; }
+
+/* Progress bars and rings grow on arrival. */
+@keyframes bar-grow { from { width: 0; } }
+.animate-bar { animation: bar-grow 700ms var(--ease-spring) 150ms both; }
+@keyframes ring-fill { from { stroke-dashoffset: var(--ring-c); } }
+.animate-ring { animation: ring-fill 700ms var(--ease-spring) 200ms both; }
+@keyframes thumb-hop {
+  0%, 60% { transform: translate(-50%, -50%) scale(0.6); }
+  80% { transform: translate(-50%, -62%) scale(1.08); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+.animate-thumb { animation: thumb-hop 900ms var(--ease-bounce) both; }
+
+/* Badge reveal (spec 4.4): drop with a tilt, squash on landing, stitch, one gloss sweep. */
+@keyframes patch-drop {
+  0% { transform: translateY(-140px) rotate(-8deg) scale(0.9); opacity: 0; }
+  45% { transform: translateY(0) rotate(-2deg) scale(1); opacity: 1; }
+  60% { transform: translateY(0) rotate(0) scale(1.1, 0.88); }
+  78% { transform: translateY(-6px) scale(0.97, 1.04); }
+  100% { transform: none; opacity: 1; }
+}
+.patch-drop { animation: patch-drop 820ms var(--ease-soft) both; transform-origin: 50% 100%; }
+@keyframes stitch { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+.patch-stitch { stroke-dasharray: 1; stroke-dashoffset: 1; animation: stitch 500ms var(--ease-soft) forwards; }
+@keyframes gloss-sweep {
+  0% { transform: translateX(-120%) skewX(-18deg); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateX(220%) skewX(-18deg); opacity: 0; }
+}
+.patch-gloss { animation: gloss-sweep 420ms var(--ease-soft) both; }
+@keyframes glow-pulse {
+  0%, 100% { transform: scale(0.92); opacity: 0.55; }
+  50% { transform: scale(1.04); opacity: 0.9; }
+}
+.patch-glow { animation: glow-pulse 2.4s ease-in-out infinite; }
+
+/* Kid tab bar indicator slides between tabs. */
+.tab-indicator { transition: transform 320ms var(--ease-bounce), opacity 200ms var(--ease-soft); }
+.tab-icon { transition: transform 260ms var(--ease-bounce); }
+.tab-link:active .tab-icon { transform: scale(1.12, 0.88); transition-duration: 90ms; }
+
+/* Page content fades in with a small lift when switching tabs. */
+@keyframes page-in {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: none; }
+}
+.animate-page { animation: page-in 220ms var(--ease-soft) both; }
+
+/* Flat Guroo idle: blink and ear wiggle (hooks live in Mascot.tsx). */
+@keyframes guroo-blink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  94% { transform: scaleY(0.1); }
+  96% { transform: scaleY(1); }
+  97.5% { transform: scaleY(0.15); }
+}
+@keyframes guroo-ear-l {
+  0%, 86%, 100% { transform: rotate(0); }
+  89% { transform: rotate(-10deg); }
+  93% { transform: rotate(6deg); }
+  96% { transform: rotate(0); }
+}
+@keyframes guroo-ear-r {
+  0%, 87%, 100% { transform: rotate(0); }
+  90% { transform: rotate(10deg); }
+  94% { transform: rotate(-6deg); }
+  97% { transform: rotate(0); }
+}
+@keyframes guroo-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.015); }
+}
+.guroo-idle .guroo-eyes { transform-box: fill-box; transform-origin: center; animation: guroo-blink 5.3s ease-in-out infinite; }
+.guroo-idle .guroo-ear-l { transform-box: fill-box; transform-origin: 50% 100%; animation: guroo-ear-l 10.5s var(--ease-bounce) infinite; }
+.guroo-idle .guroo-ear-r { transform-box: fill-box; transform-origin: 50% 100%; animation: guroo-ear-r 10.5s var(--ease-bounce) infinite; }
+.guroo-idle .guroo-body { transform-box: fill-box; transform-origin: 50% 100%; animation: guroo-breathe 3.2s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cloud-drift, .cloud-drift-slow, .animate-bob, .patch-glow,
+  .guroo-idle .guroo-eyes, .guroo-idle .guroo-ear-l, .guroo-idle .guroo-ear-r, .guroo-idle .guroo-body {
+    animation: none !important;
+  }
+  .patch-drop, .animate-guroo-hop, .animate-rise, .animate-page { animation: fade-in 200ms ease-out both !important; }
+  .patch-stitch { stroke-dashoffset: 0; }
+  .patch-gloss { display: none; }
+  .kid-world .btn:active:not(:disabled), .btn-pill:active:not(:disabled), .squish:active { transform: translateY(2px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
