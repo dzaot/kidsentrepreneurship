@@ -1,6 +1,6 @@
 # Venturoo
 
-Duolingo-style web app where kids aged 8 to 14 learn entrepreneurship in 5 minutes a day and make their first online sale of a digital product in about 30 days, with parents learning alongside them, a kid-safe AI coach (Roo), and the kid's identity always kept private.
+Duolingo-style web app where kids aged 8 to 14 learn entrepreneurship in 5 minutes a day and make their first online sale of a digital product in about 30 days, with parents learning alongside them, a kid-safe AI coach (Guroo), and the kid's identity always kept private.
 
 ## Docs (Spanish)
 
@@ -29,7 +29,7 @@ Environment variables (set in Netlify):
 |---|---|
 | `SESSION_SECRET` | Signs parent login cookies. Required in production. |
 | `PILOT_CODE` | Optional invite code required to sign up. |
-| `ANTHROPIC_API_KEY` | Enables Roo, the AI coach (Claude). Without it the app works and Roo shows as unavailable. |
+| `ANTHROPIC_API_KEY` | Enables Guroo, the AI coach (Claude). Without it the app works and Guroo shows as unavailable. |
 | `ANTHROPIC_MODEL` | Optional. Defaults to `claude-opus-5-5`. |
 
 Deploys run on Netlify with `netlify.toml` at the repo root (base directory `web`).

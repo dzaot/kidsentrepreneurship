@@ -7,19 +7,19 @@ import { findPersonalInfo } from "@/lib/safety";
 const say = (text: string, status = 200) =>
   new Response(text, { status, headers: { "Content-Type": "text/plain; charset=utf-8" } });
 
-// Streams Roo's answer as plain text. Every check runs before anything reaches the model.
+// Streams Guroo's answer as plain text. Every check runs before anything reaches the model.
 export async function POST(req: Request, { params }: { params: Promise<{ kidId: string }> }) {
   const { kidId } = await params;
   const family = await currentFamily();
   const kid = family?.kids.find((k) => k.id === kidId);
   if (!family || !kid) return say("Not allowed", 401);
-  if (!coachConfigured()) return say("Roo is still getting ready. Try again soon! 🦘", 503);
-  if (!kid.ai?.enabled) return say("Roo is resting. Ask your grown-up to turn Roo on in the parent zone. 🦘", 403);
+  if (!coachConfigured()) return say("Guroo is still getting ready. Try again soon! 🦘", 503);
+  if (!kid.ai?.enabled) return say("Guroo is resting. Ask your grown-up to turn Guroo on in the parent zone. 🦘", 403);
 
   const body = await req.json().catch(() => null);
   const turns = cleanHistory(body?.messages);
   const last = turns[turns.length - 1];
-  if (!last || last.role !== "user") return say("Type a message for Roo first.", 400);
+  if (!last || last.role !== "user") return say("Type a message for Guroo first.", 400);
   const pii = findPersonalInfo(last.text);
   if (pii) return say(`Psst! That looks like ${pii}. Let's keep personal info secret, even from me. Try asking again without it. 🦘`, 422);
 
@@ -54,7 +54,7 @@ export async function POST(req: Request, { params }: { params: Promise<{ kidId: 
           const msg =
             error instanceof Anthropic.RateLimitError
               ? "Lots of kangaroos are hopping around right now. Try again in a minute!"
-              : "Oops, Roo tripped over her tail. Please try again!";
+              : "Oops, Guroo tripped over her tail. Please try again!";
           console.error("coach error", error instanceof Anthropic.APIError ? error.status : error);
           controller.enqueue(encoder.encode(msg));
           answer = "";

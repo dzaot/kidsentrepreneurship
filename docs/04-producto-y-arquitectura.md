@@ -1,6 +1,6 @@
 # Producto, arquitectura y decisiones del MVP
 
-Fecha: octubre 2026. Marca elegida: **Venturoo** (mascota: Roo, la canguro con una tienda en la bolsa). El nombre final se cambia en una sola constante (`web/src/lib/brand.ts`).
+Fecha: octubre 2026. Marca elegida: **Venturoo** (mascota: Guroo, la canguro sabia (suena a "gurú") con una tienda en la bolsa). El nombre final se cambia en una sola constante (`web/src/lib/brand.ts`).
 
 ## 1. Decisiones tomadas (y por qué)
 
@@ -18,7 +18,7 @@ Fecha: octubre 2026. Marca elegida: **Venturoo** (mascota: Roo, la canguro con u
 
 ## 2. El producto en una frase
 
-> El niño aprende 5 minutos al día con Roo, y cada lección construye una pieza de su tienda. En 30 días tiene una tienda real, aprobada por su papá o mamá, y hace su primera venta online.
+> El niño aprende 5 minutos al día con Guroo, y cada lección construye una pieza de su tienda. En 30 días tiene una tienda real, aprobada por su papá o mamá, y hace su primera venta online.
 
 ## 3. Flujo completo (ya funciona en el MVP)
 
@@ -43,10 +43,10 @@ Next.js 15 (App Router, Server Actions) en Netlify
   ├─ Zona de padres: /family (sesión con cookie firmada HMAC)
   ├─ Zona de niños: /kid/[id] (dentro de la cuenta del padre)
   └─ Acciones de servidor: cuentas, lecciones, tienda, publicación, ventas
-        │                                   └─ /api/coach: Roo (streaming) ──► Claude API (Anthropic)
+        │                                   └─ /api/coach: Guroo (streaming) ──► Claude API (Anthropic)
         ▼
 Netlify Blobs
-  ├─ "data": un documento JSON por familia + índices (email → familia, slug → tienda) + chats con Roo
+  ├─ "data": un documento JSON por familia + índices (email → familia, slug → tienda) + chats con Guroo
   └─ "files": archivos del producto y portadas (sin metadatos EXIF/GPS)
 ```
 
@@ -66,11 +66,11 @@ Netlify Blobs
 | `web/src/components/kid/` | Reproductor de lecciones y constructores de la tienda |
 | `web/src/app/` | Páginas (landing, padres, niños, tienda pública) |
 
-## 5. IA: Roo, el coach, y la IA como herramienta creativa
+## 5. IA: Guroo, el coach, y la IA como herramienta creativa
 
 **Decisión:** la IA es parte central del producto, con una regla pedagógica clara: *"la IA es tu ayudante, tú eres el jefe"*. El niño tiene la idea, escribe el prompt, elige, edita y añade su toque. Si usa imágenes hechas con IA, lo dice en la descripción.
 
-**Roo (dentro de la app):** chat de IA con Claude (Anthropic). Hace lluvia de ideas, nombres, eslóganes, listas de palabras para sopas de letras, adivinanzas, estructura de cuentos, descripciones y prompts para herramientas de imágenes. También acompaña al niño dentro de las lecciones con pasos "Ask Roo" que traen una pregunta inicial ya escrita.
+**Guroo (dentro de la app):** chat de IA con Claude (Anthropic). Hace lluvia de ideas, nombres, eslóganes, listas de palabras para sopas de letras, adivinanzas, estructura de cuentos, descripciones y prompts para herramientas de imágenes. También acompaña al niño dentro de las lecciones con pasos "Ask Guroo" que traen una pregunta inicial ya escrita.
 
 **Capas de seguridad (en orden):**
 1. Apagado por defecto. El padre lo enciende por cada hijo (consentimiento explícito, requerido por COPPA porque el texto va a un tercero).
@@ -80,9 +80,16 @@ Netlify Blobs
 5. Transparencia total: el padre lee y borra todas las conversaciones desde su panel.
 6. Respaldo automático del servidor si el modelo rechaza una respuesta (`fallbacks: "default"`), y mensaje amable si aun así no hay respuesta.
 
-**Imágenes con IA:** las herramientas como ChatGPT, Gemini, Canva AI o Adobe Firefly tienen límites de edad, así que el currículo las usa solo en la cuenta del padre y con él al lado: Roo ayuda al niño a escribir el prompt y el padre lo ejecuta. Generar imágenes dentro de Venturoo (con filtros para niños) queda para la fase 2.
+**Imágenes con IA:** las herramientas como ChatGPT, Gemini, Canva AI o Adobe Firefly tienen límites de edad, así que el currículo las usa solo en la cuenta del padre y con él al lado: Guroo ayuda al niño a escribir el prompt y el padre lo ejecuta. Generar imágenes dentro de Venturoo (con filtros para niños) queda para la fase 2.
 
 **Costo estimado:** el modelo por defecto es Claude Opus 5.5 (USD 4 y 20 por millón de tokens de entrada y salida), con caché del prompt de sistema y esfuerzo bajo. Una conversación típica cuesta del orden de 1 a 2 centavos por mensaje. Para bajar el costo a gran escala se puede cambiar `ANTHROPIC_MODEL` a Claude Haiku 5.5 (unas 40 veces más barato), probando antes la calidad.
+
+## 5b. Nivel 2: merch y YouTube
+
+Al terminar la ruta de lanzamiento (primera venta), se desbloquean dos rutas de 8 lecciones cada una. Detalle e investigación en `docs/06-youtube-y-dropshipping.md`.
+
+- **Merch Makers (print-on-demand y dropshipping):** primero se explica con honestidad cómo funciona el dropshipping y por qué casi todo el "hazte rico rápido" es humo (anuncios pagados, envíos lentos, devoluciones, márgenes bajos, y las plataformas exigen 18 años). Después, la versión para niños: print-on-demand con diseños propios (stickers, camisetas, tazas, cuadernos). La plataforma imprime y envía, no hay inventario ni costo inicial, y la cuenta es del padre.
+- **Faceless YouTube Studio (ideal de 11 a 14):** canal del padre (YouTube exige 13 años para tener canal), sin rostro y sin la voz real del niño. La IA ayuda con ideas, guiones y miniaturas. Se enseña a declarar el contenido hecho con IA y a evitar videos masivos de baja calidad, que YouTube no monetiza. El canal funciona como marketing de la tienda, no como fuente de ingresos por anuncios, porque el Programa de Socios de YouTube exige umbrales altos.
 
 ## 6. Lo que NO está en el MVP (a propósito)
 

@@ -4,7 +4,7 @@ import { BRAND } from "@/lib/brand";
 import { currentFamily } from "@/lib/auth";
 
 const STEPS = [
-  { emoji: "💡", title: "Learn", text: "5-minute lessons with Roo: ideas, customers, price, profit. Real business words, kid-sized." },
+  { emoji: "💡", title: "Learn", text: "5-minute lessons with Guroo: ideas, customers, price, profit. Real business words, kid-sized." },
   { emoji: "✏️", title: "Make", text: "Your kid creates a digital product (coloring pages, stickers, wallpapers, puzzles, a mini comic), by hand or with AI as a helper." },
   { emoji: "🏪", title: "Open shop", text: "A private-by-design shop page with a made-up brand name and a mascot. You review and publish it." },
   { emoji: "🎉", title: "First sale", text: "You share the link with family and friends. Buyers pay you directly and get an instant download." },
@@ -15,7 +15,7 @@ const PROMISES = [
   { emoji: "🔐", title: "You hold the keys", text: "The account is yours. Nothing goes public until you approve it, and you can unpublish anytime." },
   { emoji: "💸", title: "Money goes to you", text: "Buyers pay through your own payment link. We never touch the money, and it's $0 to start." },
   { emoji: "🧹", title: "Minimal data", text: "Just your email and a nickname. No ads, no tracking pixels, no data sales. Delete everything in one click." },
-  { emoji: "🦘", title: "A kid-safe AI coach", text: "Roo helps brainstorm ideas, names and descriptions, with kid-safe rules built in. Off until you turn it on, and you can read every chat." },
+  { emoji: "🦘", title: "A kid-safe AI coach", text: "Guroo helps brainstorm ideas, names and descriptions, with kid-safe rules built in. Off until you turn it on, and you can read every chat." },
   { emoji: "🤖", title: "AI skills, the right way", text: "Kids learn to use AI as a helper, not a shortcut: they write the prompts, pick, edit, and say when AI helped." },
 ];
 
@@ -98,6 +98,37 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ d
                 <p className="mt-2 text-ink-soft">{s.text}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="mx-auto max-w-6xl px-4">
+          <h2 className="text-center text-3xl font-bold sm:text-4xl">Then, level up</h2>
+          <p className="mx-auto mt-3 max-w-2xl text-center text-ink-soft">
+            After the first sale, kids unlock Level 2 tracks. Grown-ups own every account; kids stay faceless.
+          </p>
+          <div className="mt-10 grid gap-4 md:grid-cols-2">
+            <div className="card overflow-hidden">
+              <div className="grid h-24 place-items-center bg-sky text-6xl">👕</div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold">Merch Makers</h3>
+                <p className="mt-1 text-ink-soft">
+                  How dropshipping really works (and its traps), then the kid-friendly version: print-on-demand stickers,
+                  shirts and mugs with their own designs. No inventory, $0 upfront.
+                </p>
+              </div>
+            </div>
+            <div className="card overflow-hidden">
+              <div className="grid h-24 place-items-center bg-coral text-6xl">🎬</div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold">Faceless YouTube Studio</h3>
+                <p className="mt-1 text-ink-soft">
+                  Plan, script and make videos with AI as a helper, without showing a face or voice. The channel becomes
+                  marketing for their shop. Best for ages 11 to 14, on a grown-up&apos;s channel.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

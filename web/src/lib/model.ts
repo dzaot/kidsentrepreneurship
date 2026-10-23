@@ -49,7 +49,7 @@ export type Kid = {
   completed: Record<string, string>; // lessonId -> local day finished
   journal: Record<string, string>; // lessonId -> private answer
   shop: Shop;
-  ai?: { enabled: boolean; day?: string; count: number }; // Roo coach, off until the parent turns it on
+  ai?: { enabled: boolean; day?: string; count: number }; // Guroo coach, off until the parent turns it on
 };
 
 export type Family = {

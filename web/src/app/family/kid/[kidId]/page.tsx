@@ -1,8 +1,8 @@
 import Link from "next/link";
 import {
   approveShop,
-  clearRooChats,
-  setRooEnabled,
+  clearGurooChats,
+  setGurooEnabled,
   deleteSale,
   logSale,
   newDownloadLink,
@@ -21,7 +21,7 @@ import { formatMoney } from "@/lib/brand";
 import { totalEarned } from "@/lib/model";
 import { shopChecklist } from "@/lib/shop";
 import { downloadPath, shopPath, siteUrl } from "@/lib/url";
-import { LESSONS } from "@/content";
+import { ALL_LESSONS } from "@/content";
 import { DAILY_LIMIT, getTranscript } from "@/lib/coach";
 
 export const metadata = { title: "Shop & sales" };
@@ -44,9 +44,9 @@ export default async function KidAdminPage({ params }: { params: Promise<{ kidId
   const shopUrl = shop.slug ? base + shopPath(shop.slug) : null;
   const dlUrl = shop.slug ? base + downloadPath(shop.slug, p.downloadToken) : null;
   const checklist = shopChecklist(kid);
-  const corners = LESSONS.filter((l) => kid.completed[l.id]);
+  const corners = ALL_LESSONS.filter((l) => kid.completed[l.id]);
   const chats = await getTranscript(family.id, kidId);
-  const rooOn = Boolean(kid.ai?.enabled);
+  const gurooOn = Boolean(kid.ai?.enabled);
   const usedToday = kid.ai?.day === new Date().toISOString().slice(0, 10) ? kid.ai.count : 0;
 
   return (
@@ -205,32 +205,32 @@ export default async function KidAdminPage({ params }: { params: Promise<{ kidId
         <section className="card mt-8 p-5">
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div className="max-w-2xl">
-              <h2 className="text-2xl font-bold">🦘 Roo, the AI helper</h2>
+              <h2 className="text-2xl font-bold">🦘 Guroo, the AI helper</h2>
               <p className="mt-1 text-sm text-ink-soft">
-                Roo helps {kid.nickname} brainstorm ideas, names, word lists, story outlines and descriptions, and coaches
-                them through each step. Roo runs on Claude by Anthropic: messages {kid.nickname} types are sent to Anthropic
+                Guroo helps {kid.nickname} brainstorm ideas, names, word lists, story outlines and descriptions, and coaches
+                them through each step. Guroo runs on Claude by Anthropic: messages {kid.nickname} types are sent to Anthropic
                 to write a reply, and API data is not used to train models. Personal info (emails, phone numbers, addresses,
                 links) is blocked before sending. Limit: {DAILY_LIMIT} messages a day. You can read every chat below.
               </p>
             </div>
-            <form action={setRooEnabled.bind(null, kidId, !rooOn)}>
-              <button className={`btn ${rooOn ? "btn-ghost" : "btn-leaf"}`}>{rooOn ? "Turn Roo off" : "Turn Roo on"}</button>
+            <form action={setGurooEnabled.bind(null, kidId, !gurooOn)}>
+              <button className={`btn ${gurooOn ? "btn-ghost" : "btn-leaf"}`}>{gurooOn ? "Turn Guroo off" : "Turn Guroo on"}</button>
             </form>
           </div>
           <p className="mt-3 text-sm font-bold">
-            {rooOn ? `✅ On · ${usedToday}/${DAILY_LIMIT} messages today` : "⏸ Off. Lessons still work without Roo."}
+            {gurooOn ? `✅ On · ${usedToday}/${DAILY_LIMIT} messages today` : "⏸ Off. Lessons still work without Guroo."}
           </p>
           {chats.length > 0 && (
             <details className="mt-4 rounded-2xl bg-cream p-4">
-              <summary className="cursor-pointer font-bold">Read {kid.nickname}&apos;s chats with Roo ({chats.length} messages)</summary>
+              <summary className="cursor-pointer font-bold">Read {kid.nickname}&apos;s chats with Guroo ({chats.length} messages)</summary>
               <div className="mt-3 max-h-96 space-y-2 overflow-y-auto text-sm">
                 {chats.map((c, i) => (
                   <p key={i} className={`whitespace-pre-line rounded-xl px-3 py-2 ${c.role === "user" ? "bg-sky/20" : "bg-white"}`}>
-                    <b>{c.role === "user" ? kid.nickname : "Roo"}:</b> {c.text}
+                    <b>{c.role === "user" ? kid.nickname : "Guroo"}:</b> {c.text}
                   </p>
                 ))}
               </div>
-              <form action={clearRooChats.bind(null, kidId)} className="mt-3">
+              <form action={clearGurooChats.bind(null, kidId)} className="mt-3">
                 <button className="text-xs font-bold text-coral-dark underline">Delete chat history</button>
               </form>
             </details>

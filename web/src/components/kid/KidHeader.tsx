@@ -15,7 +15,7 @@ export function KidHeader({ kid }: { kid: Kid }) {
           <span className="rounded-full bg-white px-3 py-1.5 ring-2 ring-line" title="XP">⭐ {kid.xp}</span>
         </div>
         <nav className="flex items-center gap-1 text-sm font-bold">
-          <Link href={`${base}/roo`} className="rounded-xl px-2.5 py-2 hover:bg-white">🦘 <span className="hidden sm:inline">Ask Roo</span></Link>
+          <Link href={`${base}/guroo`} className="rounded-xl px-2.5 py-2 hover:bg-white">🦘 <span className="hidden sm:inline">Ask Guroo</span></Link>
           <Link href={`${base}/shop`} className="rounded-xl px-2.5 py-2 hover:bg-white">🏪 <span className="hidden sm:inline">My shop</span></Link>
           <Link href={`${base}/words`} className="rounded-xl px-2.5 py-2 hover:bg-white">📖 <span className="hidden sm:inline">Words</span></Link>
           <Link href="/family" className="rounded-xl px-2.5 py-2 text-ink-soft hover:bg-white" title="Grown-ups">🔒</Link>

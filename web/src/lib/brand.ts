@@ -1,7 +1,7 @@
 // Working brand. Swap these values when the final brand is chosen.
 export const BRAND = {
   name: "Venturoo",
-  mascot: "Roo the kangaroo",
+  mascot: "Guroo the kangaroo",
   tagline: "Hop into your first business.",
   kidTagline: "Learn it. Make it. Sell it.",
 };

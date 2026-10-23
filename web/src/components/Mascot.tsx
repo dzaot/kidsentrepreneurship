@@ -1,6 +1,6 @@
 import { BRAND } from "@/lib/brand";
 
-// Roo the kangaroo, with a little shop in her pouch. Drawn in SVG so it scales and needs no image files.
+// Guroo the kangaroo, with a little shop in her pouch. Drawn in SVG so it scales and needs no image files.
 export function Mascot({ size = 96, mood = "happy", className = "" }: { size?: number; mood?: "happy" | "wow"; className?: string }) {
   return (
     <svg width={size} height={size} viewBox="0 0 120 120" className={className} role="img" aria-label={BRAND.mascot}>
@@ -29,6 +29,12 @@ export function Mascot({ size = 96, mood = "happy", className = "" }: { size?: n
       <circle cx="70" cy="46" r="4.2" fill="#1B2340" />
       <circle cx="51.5" cy="44.5" r="1.5" fill="#fff" />
       <circle cx="71.5" cy="44.5" r="1.5" fill="#fff" />
+      {/* Round guru glasses */}
+      <g stroke="#1B2340" strokeWidth="2.5" fill="none">
+        <circle cx="50" cy="46" r="8" />
+        <circle cx="70" cy="46" r="8" />
+        <path d="M58 46 Q60 43.5 62 46" strokeLinecap="round" />
+      </g>
       <ellipse cx="42" cy="56" rx="4" ry="2.6" fill="#FF5D73" opacity=".55" />
       <ellipse cx="78" cy="56" rx="4" ry="2.6" fill="#FF5D73" opacity=".55" />
     </svg>

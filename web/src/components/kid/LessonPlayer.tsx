@@ -9,14 +9,14 @@ import type { Lesson, Step } from "@/content/types";
 import { Mascot } from "../Mascot";
 import { BUILDERS, builderDone } from "./Builders";
 import { Confetti } from "./Confetti";
-import { RooChat } from "./RooChat";
+import { GurooChat } from "./GurooChat";
 
 function localDay() {
   const d = new Date();
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 }
 
-export function LessonPlayer({ kidId, lesson, shop, color, aiOn }: { kidId: string; lesson: Lesson; shop: Shop; color: string; aiOn: boolean }) {
+export function LessonPlayer({ kidId, lesson, shop, color, aiOn, backHref }: { kidId: string; lesson: Lesson; shop: Shop; color: string; aiOn: boolean; backHref: string }) {
   const [i, setI] = useState(0);
   const [picked, setPicked] = useState<number | null>(null);
   const [checks, setChecks] = useState<Record<number, boolean>>({});
@@ -56,7 +56,7 @@ export function LessonPlayer({ kidId, lesson, shop, color, aiOn }: { kidId: stri
             <p className="font-display text-3xl font-bold text-coral">🔥 {result.streak}</p>
           </div>
         </div>
-        <Link href={`/kid/${kidId}`} className="btn btn-leaf mt-10 w-full max-w-sm text-lg">Continue</Link>
+        <Link href={backHref} className="btn btn-leaf mt-10 w-full max-w-sm text-lg">Continue</Link>
       </div>
     );
 
@@ -141,19 +141,19 @@ export function LessonPlayer({ kidId, lesson, shop, color, aiOn }: { kidId: stri
       );
       break;
     }
-    case "ask-roo": {
+    case "ask-guroo": {
       // Optional by design: the lesson never blocks on the AI.
       body = (
         <div>
-          <p className="text-sm font-bold uppercase tracking-wide text-sun-dark">🦘 Ask Roo</p>
+          <p className="text-sm font-bold uppercase tracking-wide text-sun-dark">🦘 Ask Guroo</p>
           <h2 className="mt-1 text-3xl font-bold">{step.title}</h2>
           <p className="mt-3 text-lg">{step.body}</p>
           <div className="mt-5">
             {aiOn ? (
-              <RooChat key={i} kidId={kidId} lessonId={lesson.id} starter={step.starter} compact />
+              <GurooChat key={i} kidId={kidId} lessonId={lesson.id} starter={step.starter} compact />
             ) : (
               <p className="card p-4 font-semibold">
-                Roo is resting right now. Think of your own ideas, or ask your grown-up to turn Roo on in the parent zone. 🦘
+                Guroo is resting right now. Think of your own ideas, or ask your grown-up to turn Guroo on in the parent zone. 🦘
               </p>
             )}
           </div>
@@ -181,7 +181,7 @@ export function LessonPlayer({ kidId, lesson, shop, color, aiOn }: { kidId: stri
   return (
     <div className="flex flex-1 flex-col">
       <div className="flex items-center gap-3">
-        <Link href={`/kid/${kidId}`} className="text-2xl text-ink-soft" aria-label="Close lesson">✕</Link>
+        <Link href={backHref} className="text-2xl text-ink-soft" aria-label="Close lesson">✕</Link>
         <div className="h-4 flex-1 overflow-hidden rounded-full bg-white ring-2 ring-line">
           <div className="h-full rounded-full transition-all" style={{ width: `${((i + 1) / lesson.steps.length) * 100}%`, background: color }} />
         </div>

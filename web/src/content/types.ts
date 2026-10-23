@@ -35,9 +35,9 @@ export type Step =
       placeholder?: string;
     }
   | {
-      kind: "ask-roo"; // opens the AI coach inline with a starter message the kid can edit
+      kind: "ask-guroo"; // opens Guroo, the AI coach, inline with a starter message the kid can edit
       title: string;
-      body: string; // what to ask Roo for and what to do with the answer
+      body: string; // what to ask Guroo for and what to do with the answer
       starter: string; // pre-filled message, written in the kid's voice
     };
 
@@ -63,6 +63,18 @@ export type Unit = {
   emoji: string;
   color: string; // hex, used for the unit header and lesson bubbles
   lessons: Lesson[];
+};
+
+// A Level 2 track, unlocked once the Launch Path is finished.
+export type Track = {
+  id: string; // kebab-case, unique
+  title: string;
+  subtitle: string;
+  emoji: string;
+  color: string; // hex
+  bestFor: string; // e.g. "Ages 11 to 14"
+  grownUpNote: string; // what the grown-up must own or supervise (accounts, age limits)
+  units: Unit[];
 };
 
 export type BusinessType = {

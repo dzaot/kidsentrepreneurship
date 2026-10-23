@@ -362,16 +362,16 @@ export async function deleteSale(kidId: string, saleId: string) {
   revalidatePath("/family");
 }
 
-// ---------- Roo, the AI coach (parent controls) ----------
+// ---------- Guroo, the AI coach (parent controls) ----------
 
-export async function setRooEnabled(kidId: string, enabled: boolean) {
+export async function setGurooEnabled(kidId: string, enabled: boolean) {
   const { family, kid } = await requireKid(kidId);
   kid.ai = { ...(kid.ai ?? { count: 0 }), enabled };
   await saveFamily(family);
   revalidatePath(`/family/kid/${kidId}`);
 }
 
-export async function clearRooChats(kidId: string) {
+export async function clearGurooChats(kidId: string) {
   const { family } = await requireKid(kidId);
   await clearTranscript(family.id, kidId);
   revalidatePath(`/family/kid/${kidId}`);

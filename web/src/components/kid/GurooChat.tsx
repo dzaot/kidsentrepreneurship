@@ -13,7 +13,7 @@ const IDEAS = [
   "Help me write a description that sells",
 ];
 
-export function RooChat({
+export function GurooChat({
   kidId,
   lessonId,
   starter,
@@ -73,7 +73,7 @@ export function RooChat({
           <div className="flex items-start gap-3">
             <Mascot size={48} className="shrink-0" />
             <p className="rounded-2xl rounded-tl-sm bg-cream px-4 py-3">
-              G&apos;day! I&apos;m Roo, your business helper. 🦘 Ask me for ideas, names, words, or help with any step.
+              G&apos;day! I&apos;m Guroo, your business helper. 🦘 Ask me for ideas, names, words, or help with any step.
               You&apos;re the boss, I just help you think!
             </p>
           </div>
@@ -87,7 +87,7 @@ export function RooChat({
             <div key={i} className="flex items-start gap-3">
               <Mascot size={36} className="shrink-0" />
               <p className="max-w-[85%] whitespace-pre-line rounded-2xl rounded-tl-sm bg-cream px-4 py-3">
-                {t.text || <span className="animate-pulse text-ink-soft">Roo is thinking…</span>}
+                {t.text || <span className="animate-pulse text-ink-soft">Guroo is thinking…</span>}
               </p>
             </div>
           ),
@@ -110,7 +110,7 @@ export function RooChat({
           send(input);
         }}
       >
-        {warn && <p className="mb-2 text-sm font-bold text-coral-dark">That looks like {warn}. Keep personal info secret, even from Roo!</p>}
+        {warn && <p className="mb-2 text-sm font-bold text-coral-dark">That looks like {warn}. Keep personal info secret, even from Guroo!</p>}
         <div className="flex gap-2">
           <textarea
             value={input}
@@ -123,14 +123,14 @@ export function RooChat({
             }}
             rows={input.length > 60 ? 3 : 1}
             maxLength={600}
-            placeholder="Ask Roo anything about your business…"
+            placeholder="Ask Guroo anything about your business…"
             className="input resize-none"
           />
           <button className="btn btn-sun shrink-0" disabled={busy || !input.trim() || Boolean(warn)}>
             {busy ? "…" : "Send"}
           </button>
         </div>
-        <p className="mt-2 text-xs text-ink-soft">Roo is an AI helper. It can make mistakes, so check its ideas. Your grown-up can see your chats.</p>
+        <p className="mt-2 text-xs text-ink-soft">Guroo is an AI helper. It can make mistakes, so check its ideas. Your grown-up can see your chats.</p>
       </form>
     </div>
   );
