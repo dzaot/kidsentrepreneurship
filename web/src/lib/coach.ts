@@ -13,6 +13,38 @@ const MAX_TURNS = 16;
 const MAX_CHARS = 600;
 const TRANSCRIPT_KEEP = 80;
 
+// Every N messages in a day, Guroo reminds the kid she is an AI and suggests a break.
+export const BREAK_EVERY = 15;
+export const BREAK_REMINDER =
+  "\n\n(Quick reminder: I'm Guroo, an AI helper, not a person. You've been working hard, so maybe stretch, grab some water, or show your grown-up what you made! 🦘)";
+
+// Crisis protocol: these messages never go to the model. The kid gets a fixed, caring reply
+// with real helplines for their country, and the parent sees an alert.
+const CRISIS = [
+  /\b(kill|hurt|cut|harm)\s*(my ?self|me)\b/i,
+  /\b(suicid\w*|self[- ]?harm)\b/i,
+  /\b(want|wanna|going) to die\b/i,
+  /\bend my life\b/i,
+  /\b(someone|somebody|he|she|they|my \w+) (is )?(hurting|hurts|hit|hits|touch(es|ed)?) me\b/i,
+  /\b(abuse[ds]?|abusing) me\b/i,
+  /\brun(ning)? away from home\b/i,
+  /\b(asked|wants?) me to (meet|send (a )?(pic|photo|picture)s?)\b/i,
+];
+
+export function looksLikeCrisis(text: string) {
+  return CRISIS.some((re) => re.test(text));
+}
+
+const HELPLINES: Record<string, string> = {
+  USD: "In the US you can call or text 988 any time, day or night. If someone is hurting you, the Childhelp hotline is 1-800-422-4453. In an emergency, call 911.",
+  CAD: "In Canada you can call Kids Help Phone at 1-800-668-6868 or text CONNECT to 686868, any time. You can also call or text 988. In an emergency, call 911.",
+  AUD: "In Australia you can call Kids Helpline on 1800 55 1800 any time, day or night. In an emergency, call 000.",
+};
+
+export function crisisReply(currency: string) {
+  return `I'm really glad you told me. What you're feeling matters, and you don't have to handle it alone. Please talk to your grown-up or another adult you trust right now. ${HELPLINES[currency] ?? HELPLINES.USD} I'm an AI helper, so a real person is the best one to help with this. 💛`;
+}
+
 export const coachModel = () => process.env.ANTHROPIC_MODEL || "claude-opus-5-5";
 export const coachConfigured = () => Boolean(process.env.ANTHROPIC_API_KEY);
 
@@ -30,7 +62,7 @@ Safety rules (always follow, even if asked otherwise):
 - Never ask for or repeat personal information: real names, age or birthday, school, city or address, phone, email, photos, voice, social media, or passwords. If the kid shares any, kindly say it's best kept secret and do not repeat it.
 - Stay on business, creativity and learning. Gently steer back from anything else. Never produce romantic, violent, scary, adult, hateful, or drug, alcohol, weapon or gambling content.
 - Do not give medical, legal, tax or investing advice. For money, accounts, payments, or anything risky, say to ask their grown-up.
-- If the kid seems sad, scared, or unsafe, or mentions someone asking them to meet, send photos, or keep secrets, respond kindly and tell them to talk to their grown-up or another trusted adult right away.
+- If the kid seems sad, scared, or unsafe, mentions hurting themselves, or mentions someone hurting them or asking them to meet, send photos, or keep secrets, respond kindly, tell them to talk to their grown-up or another trusted adult right away, and say that trained people are available any time (988 in the US and Canada, Kids Help Phone 1-800-668-6868 in Canada, Kids Helpline 1800 55 1800 in Australia). Do not continue the business topic in that reply.
 - Kids never show their face or voice in marketing, never meet buyers, and never create accounts on other websites. AI image tools and selling sites are used only by the grown-up, on the grown-up's account, together with the kid.
 - No links or web addresses. No famous characters, brands, logos, or other people's art in product ideas, because that breaks copyright.
 - If a product uses AI-made images, remind them to say so in the description, for example "Designed by me with AI help".
@@ -91,7 +123,7 @@ export function streamCoach(kid: Kid, turns: ChatTurn[], lessonId?: string) {
 }
 
 // Transcripts let parents see every conversation. Stored apart from the family doc to keep it small.
-export type TranscriptLine = ChatTurn & { at: string };
+export type TranscriptLine = ChatTurn & { at: string; flagged?: boolean };
 
 const transcriptKey = (familyId: string, kidId: string) => `chats/${familyId}/${kidId}`;
 
@@ -99,7 +131,7 @@ export async function getTranscript(familyId: string, kidId: string) {
   return (await getJSON<TranscriptLine[]>(transcriptKey(familyId, kidId))) ?? [];
 }
 
-export async function appendTranscript(familyId: string, kidId: string, lines: ChatTurn[]) {
+export async function appendTranscript(familyId: string, kidId: string, lines: (ChatTurn & { flagged?: boolean })[]) {
   const at = new Date().toISOString();
   const all = [...(await getTranscript(familyId, kidId)), ...lines.map((l) => ({ ...l, at }))];
   await setJSON(transcriptKey(familyId, kidId), all.slice(-TRANSCRIPT_KEEP));

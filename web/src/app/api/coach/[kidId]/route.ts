@@ -1,6 +1,17 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { currentFamily } from "@/lib/auth";
-import { appendTranscript, cleanHistory, coachConfigured, DAILY_LIMIT, FAMILY_MONTHLY_LIMIT, streamCoach } from "@/lib/coach";
+import {
+  appendTranscript,
+  BREAK_EVERY,
+  BREAK_REMINDER,
+  cleanHistory,
+  coachConfigured,
+  crisisReply,
+  DAILY_LIMIT,
+  FAMILY_MONTHLY_LIMIT,
+  looksLikeCrisis,
+  streamCoach,
+} from "@/lib/coach";
 import { saveFamily } from "@/lib/model";
 import { findPersonalInfo } from "@/lib/safety";
 
@@ -20,6 +31,16 @@ export async function POST(req: Request, { params }: { params: Promise<{ kidId: 
   const turns = cleanHistory(body?.messages);
   const last = turns[turns.length - 1];
   if (!last || last.role !== "user") return say("Type a message for Guroo first.", 400);
+  if (looksLikeCrisis(last.text)) {
+    const reply = crisisReply(family.currency);
+    family.alerts = [...(family.alerts ?? []), { kidId: kid.id, at: new Date().toISOString(), kind: "crisis" as const }].slice(-20);
+    await saveFamily(family);
+    await appendTranscript(family.id, kid.id, [
+      { ...last, flagged: true },
+      { role: "assistant", text: reply },
+    ]);
+    return say(reply);
+  }
   const pii = findPersonalInfo(last.text);
   if (pii) return say(`Psst! That looks like ${pii}. Let's keep personal info secret, even from me. Try asking again without it. 🦘`, 422);
 
@@ -54,6 +75,10 @@ export async function POST(req: Request, { params }: { params: Promise<{ kidId: 
             const nudge = "Hmm, let's try a different question! Ask me about your business, your product, or your shop. 🦘";
             answer += (answer ? "\n\n" : "") + nudge;
             controller.enqueue(encoder.encode((answer === nudge ? "" : "\n\n") + nudge));
+          }
+          if ((used + 1) % BREAK_EVERY === 0) {
+            answer += BREAK_REMINDER;
+            controller.enqueue(encoder.encode(BREAK_REMINDER));
           }
         } catch (error) {
           const msg =

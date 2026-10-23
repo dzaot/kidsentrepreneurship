@@ -60,6 +60,7 @@ export type Family = {
   currency: Currency;
   kids: Kid[];
   aiMonth?: { month: string; count: number }; // Guroo messages across all kids this month (cost cap)
+  alerts?: { kidId: string; at: string; kind: "crisis" }[]; // safety alerts the parent must see
 };
 
 type UserRecord = { familyId: string; salt: string; hash: string };
