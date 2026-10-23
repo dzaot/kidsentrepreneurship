@@ -1,6 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { currentFamily } from "@/lib/auth";
-import { appendTranscript, cleanHistory, coachConfigured, DAILY_LIMIT, streamCoach } from "@/lib/coach";
+import { appendTranscript, cleanHistory, coachConfigured, DAILY_LIMIT, FAMILY_MONTHLY_LIMIT, streamCoach } from "@/lib/coach";
 import { saveFamily } from "@/lib/model";
 import { findPersonalInfo } from "@/lib/safety";
 
@@ -26,7 +26,12 @@ export async function POST(req: Request, { params }: { params: Promise<{ kidId: 
   const today = new Date().toISOString().slice(0, 10);
   const used = kid.ai.day === today ? kid.ai.count : 0;
   if (used >= DAILY_LIMIT) return say("We've done lots of thinking today! Let's hop back tomorrow. 🦘", 429);
+  const month = today.slice(0, 7);
+  const familyUsed = family.aiMonth?.month === month ? family.aiMonth.count : 0;
+  if (familyUsed >= FAMILY_MONTHLY_LIMIT)
+    return say("Guroo has done a LOT of thinking for your family this month! She'll be back next month. 🦘", 429);
   kid.ai = { enabled: true, day: today, count: used + 1 };
+  family.aiMonth = { month, count: familyUsed + 1 };
   await saveFamily(family);
 
   const lessonId = typeof body?.lessonId === "string" ? body.lessonId : undefined;

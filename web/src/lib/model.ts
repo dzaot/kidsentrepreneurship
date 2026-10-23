@@ -59,6 +59,7 @@ export type Family = {
   consent: { at: string; version: string };
   currency: Currency;
   kids: Kid[];
+  aiMonth?: { month: string; count: number }; // Guroo messages across all kids this month (cost cap)
 };
 
 type UserRecord = { familyId: string; salt: string; hash: string };

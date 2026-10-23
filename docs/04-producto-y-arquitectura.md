@@ -76,7 +76,7 @@ Postgres (Neon)
 1. Apagado por defecto. El padre lo enciende por cada hijo (consentimiento explícito, requerido por COPPA porque el texto va a un tercero).
 2. Filtro de datos personales en el navegador y otra vez en el servidor, antes de enviar nada al modelo.
 3. Prompt de sistema con reglas para niños: solo temas de negocio y creatividad, nunca pedir datos personales, nada de links ni personajes famosos, derivar al adulto ante cualquier riesgo, recordar declarar el uso de IA.
-4. Límite de 40 mensajes por día por niño (controla el costo y el uso excesivo).
+4. Límite de 40 mensajes por día por niño y 500 al mes por familia (controla el costo: en el peor caso unos USD 6 al mes por familia con Opus 5.5).
 5. Transparencia total: el padre lee y borra todas las conversaciones desde su panel.
 6. Respaldo automático del servidor si el modelo rechaza una respuesta (`fallbacks: "default"`), y mensaje amable si aun así no hay respuesta.
 

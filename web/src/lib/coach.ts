@@ -7,6 +7,8 @@ import { BUSINESS_TYPES } from "@/content/businesses";
 import { findLesson } from "@/content";
 
 export const DAILY_LIMIT = 40;
+// Keeps a family's worst-case AI cost well below the subscription price.
+export const FAMILY_MONTHLY_LIMIT = 500;
 const MAX_TURNS = 16;
 const MAX_CHARS = 600;
 const TRANSCRIPT_KEEP = 80;
