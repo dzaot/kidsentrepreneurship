@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 280" role="img" aria-labelledby="lookout-t">
+<title id="lookout-t">Lookout badge</title>
+<defs><clipPath id="lookout-clip"><path d="M35 118A85 85 0 0 1 205 118V212Q120 194 35 212Z"/></clipPath></defs>
+<path d="M14 118A106 106 0 0 1 226 118V242Q226 266 202 266H38Q14 266 14 242Z" fill="#5BC0EB" stroke="#1B2340" stroke-width="7" stroke-linejoin="round"/>
+<path d="M23 118A97 97 0 0 1 217 118V241Q217 257 201 257H39Q23 257 23 241Z" fill="none" stroke="#FFFFFF" stroke-opacity=".7" stroke-width="2.5" stroke-dasharray="6 5" stroke-linecap="round"/>
+<g clip-path="url(#lookout-clip)" stroke="#1B2340" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+<rect x="20" y="20" width="200" height="200" fill="#FFF1DE"/>
+<circle cx="168" cy="62" r="16" fill="#FFD84D" stroke-width="5"/>
+<path d="M46 70H80.5A8.3 8.3 0 0 0 74.5 58.8A10.5 10.5 0 0 0 56.5 56.5A9 9 0 0 0 46 70Z" fill="#FFFFFF" stroke-width="4"/>
+<path d="M96 70V62H108V70M132 70V62H144V70" fill="#2FA58C" stroke-width="5"/>
+<rect x="72" y="68" width="44" height="74" rx="18" fill="#2FA58C"/>
+<rect x="124" y="68" width="44" height="74" rx="18" fill="#2FA58C"/>
+<rect x="108" y="84" width="24" height="26" rx="5" fill="#1B2340"/>
+<circle cx="94" cy="118" r="17" fill="#5BC0EB" stroke-width="5"/>
+<circle cx="146" cy="118" r="17" fill="#5BC0EB" stroke-width="5"/>
+<path transform="translate(94 119) scale(0.85)" d="M0 8C-4 4-10 1-10-4C-10-8-5-10 0-5C5-10 10-8 10-4C10 1 4 4 0 8Z" fill="#FF5D73" stroke-width="3.5"/><path transform="translate(146 119) scale(0.85)" d="M0 8C-4 4-10 1-10-4C-10-8-5-10 0-5C5-10 10-8 10-4C10 1 4 4 0 8Z" fill="#FF5D73" stroke-width="3.5"/>
+<path d="M84 110a10 10 0 0 1 6-5M136 110a10 10 0 0 1 6-5" fill="none" stroke="#FFFFFF" stroke-width="3.5"/>
+<g transform="rotate(-40 64 206)"><path d="M64 206C38 176 46 144 64 136C82 144 90 176 64 206Z" fill="#2FA58C" stroke-width="5"/><path d="M64 196V152" stroke-width="3.5"/></g><g transform="rotate(-15 100 210)"><path d="M100 210C74 180 82 148 100 140C118 148 126 180 100 210Z" fill="#5CC4A8" stroke-width="5"/><path d="M100 200V156" stroke-width="3.5"/></g><g transform="rotate(15 140 210)"><path d="M140 210C114 180 122 148 140 140C158 148 166 180 140 210Z" fill="#2FA58C" stroke-width="5"/><path d="M140 200V156" stroke-width="3.5"/></g><g transform="rotate(40 176 206)"><path d="M176 206C150 176 158 144 176 136C194 144 202 176 176 206Z" fill="#5CC4A8" stroke-width="5"/><path d="M176 196V152" stroke-width="3.5"/></g><g transform="rotate(0 120 218)"><path d="M120 218C94 188 102 156 120 148C138 156 146 188 120 218Z" fill="#2FA58C" stroke-width="5"/><path d="M120 208V164" stroke-width="3.5"/></g>
+</g>
+<path d="M35 118A85 85 0 0 1 205 118V212Q120 194 35 212Z" fill="none" stroke="#1B2340" stroke-width="6" stroke-linejoin="round"/>
+<path d="M8 214Q120 196 232 214V248Q120 230 8 248Z" fill="#FFF1DE" stroke="#1B2340" stroke-width="6" stroke-linejoin="round"/>
+<path id="lookout-tp" d="M20 240.2Q120 222.2 220 240.2" fill="none"/>
+<text font-family="'Baloo 2', 'Nunito', 'Arial Rounded MT Bold', sans-serif" font-weight="800" font-size="27" letter-spacing=".5" fill="#1B2340"><textPath href="#lookout-tp" startOffset="50%" text-anchor="middle" textLength="113.4" lengthAdjust="spacingAndGlyphs">LOOKOUT</textPath></text>
+</svg>

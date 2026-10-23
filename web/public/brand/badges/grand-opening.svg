@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 280" role="img" aria-labelledby="grand-opening-t">
+<title id="grand-opening-t">Grand Opening badge</title>
+<defs><clipPath id="grand-opening-clip"><path d="M35 118A85 85 0 0 1 205 118V212Q120 194 35 212Z"/></clipPath></defs>
+<path d="M14 118A106 106 0 0 1 226 118V242Q226 266 202 266H38Q14 266 14 242Z" fill="#2FA58C" stroke="#1B2340" stroke-width="7" stroke-linejoin="round"/>
+<path d="M23 118A97 97 0 0 1 217 118V241Q217 257 201 257H39Q23 257 23 241Z" fill="none" stroke="#FFFFFF" stroke-opacity=".7" stroke-width="2.5" stroke-dasharray="6 5" stroke-linecap="round"/>
+<g clip-path="url(#grand-opening-clip)" stroke="#1B2340" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+<rect x="20" y="20" width="200" height="200" fill="#E8F7FD"/>
+<path d="M40 68H74.5A8.3 8.3 0 0 0 68.5 56.8A10.5 10.5 0 0 0 50.5 54.5A9 9 0 0 0 40 68Z" fill="#FFFFFF" stroke-width="4"/><path d="M160 60H189.9A7.2 7.2 0 0 0 184.7 50.3A9.1 9.1 0 0 0 169.1 48.3A7.8 7.8 0 0 0 160 60Z" fill="#FFFFFF" stroke-width="4"/>
+<path d="M20 186H220V220H20Z" fill="#FFF1DE" stroke-width="5"/>
+<rect x="78" y="94" width="84" height="54" fill="#FFF1DE" stroke-width="5"/>
+<path d="M80 98V186M160 98V186" stroke-width="7"/>
+<path d="M66 66H174L186 92H54Z" fill="#FFFFFF" stroke-width="5"/><path d="M66 66H84L76 92H54Z" fill="#2FA58C" stroke-width="4"/><path d="M102 66H120L120 92H98Z" fill="#2FA58C" stroke-width="4"/><path d="M138 66H156L164 92H142Z" fill="#2FA58C" stroke-width="4"/><path d="M66 66H174L186 92H54Z" fill="none" stroke-width="5"/><path d="M54 92a11 11 0 0 0 22 0Z" fill="#2FA58C" stroke-width="5"/><path d="M76 92a11 11 0 0 0 22 0Z" fill="#FFFFFF" stroke-width="5"/><path d="M98 92a11 11 0 0 0 22 0Z" fill="#2FA58C" stroke-width="5"/><path d="M120 92a11 11 0 0 0 22 0Z" fill="#FFFFFF" stroke-width="5"/><path d="M142 92a11 11 0 0 0 22 0Z" fill="#2FA58C" stroke-width="5"/><path d="M164 92a11 11 0 0 0 22 0Z" fill="#FFFFFF" stroke-width="5"/>
+<path d="M104 104L98 120M136 104L142 120" stroke-width="3.5"/>
+<rect x="90" y="118" width="60" height="26" rx="6" fill="#FFFFFF" stroke-width="5"/>
+<text x="120" y="137.5" text-anchor="middle" font-family="'Baloo 2', 'Nunito', 'Arial Rounded MT Bold', sans-serif" font-weight="800" font-size="19" textLength="44" lengthAdjust="spacingAndGlyphs" fill="#C7344C" stroke="none">OPEN</text>
+<rect x="70" y="148" width="100" height="40" rx="4" fill="#FF8A3D"/>
+<path d="M40 158Q70 156 82 160Q98 166 102 182M200 158Q170 156 158 160Q142 166 138 182" fill="none" stroke-width="14"/>
+<path d="M40 158Q70 156 82 160Q98 166 102 182M200 158Q170 156 158 160Q142 166 138 182" fill="none" stroke="#FF5D73" stroke-width="7" stroke-linecap="butt"/>
+<path d="M96 182L102 188L108 180Z M132 180L138 188L144 182Z" fill="#FF5D73" stroke-width="3"/>
+<path d="M120 162Q121.2 166.8 126 168Q121.2 169.2 120 174Q118.8 169.2 114 168Q118.8 166.8 120 162Z" fill="#FFD84D" stroke-width="3"/><path d="M48 95Q49.4 100.6 55 102Q49.4 103.4 48 109Q46.6 103.4 41 102Q46.6 100.6 48 95Z" fill="#FFD84D" stroke-width="3"/><path d="M192 102Q193.2 106.8 198 108Q193.2 109.2 192 114Q190.8 109.2 186 108Q190.8 106.8 192 102Z" fill="#FFFFFF" stroke-width="3"/>
+</g>
+<path d="M35 118A85 85 0 0 1 205 118V212Q120 194 35 212Z" fill="none" stroke="#1B2340" stroke-width="6" stroke-linejoin="round"/>
+<path d="M8 214Q120 196 232 214V248Q120 230 8 248Z" fill="#FFF1DE" stroke="#1B2340" stroke-width="6" stroke-linejoin="round"/>
+<path id="grand-opening-tp" d="M20 239.6Q120 221.6 220 239.6" fill="none"/>
+<text font-family="'Baloo 2', 'Nunito', 'Arial Rounded MT Bold', sans-serif" font-weight="800" font-size="25.3" letter-spacing=".5" fill="#1B2340"><textPath href="#grand-opening-tp" startOffset="50%" text-anchor="middle" textLength="184" lengthAdjust="spacingAndGlyphs">GRAND OPENING</textPath></text>
+</svg>

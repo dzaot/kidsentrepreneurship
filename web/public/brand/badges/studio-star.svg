@@ -1,26 +1,33 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 280" role="img" aria-labelledby="studio-star-t">
-<title id="studio-star-t">Studio star badge</title>
-<defs><clipPath id="studio-star-clip"><path d="M35 118A85 85 0 0 1 205 118V200H35Z"/></clipPath></defs>
-<path d="M14 118A106 106 0 0 1 226 118V242Q226 266 202 266H38Q14 266 14 242Z" fill="#E8574A" stroke="#1B2340" stroke-width="7" stroke-linejoin="round"/>
-<path d="M23 118A97 97 0 0 1 217 118V241Q217 257 201 257H39Q23 257 23 241Z" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="2.5" stroke-dasharray="6 5" stroke-linecap="round"/>
+<title id="studio-star-t">Studio Star badge</title>
+<defs><clipPath id="studio-star-clip"><path d="M35 118A85 85 0 0 1 205 118V212Q120 194 35 212Z"/></clipPath></defs>
+<path d="M14 118A106 106 0 0 1 226 118V242Q226 266 202 266H38Q14 266 14 242Z" fill="#1F7FC0" stroke="#1B2340" stroke-width="7" stroke-linejoin="round"/>
+<path d="M23 118A97 97 0 0 1 217 118V241Q217 257 201 257H39Q23 257 23 241Z" fill="none" stroke="#FFFFFF" stroke-opacity=".7" stroke-width="2.5" stroke-dasharray="6 5" stroke-linecap="round"/>
 <g clip-path="url(#studio-star-clip)" stroke="#1B2340" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
-<rect x="20" y="20" width="200" height="190" fill="#5BC0EB"/>
-<path d="M120 40L176 200H64Z" fill="#BFE6F7" opacity=".6" stroke="none"/>
-<path d="M56 71Q57.8 78.2 65 80Q57.8 81.8 56 89Q54.2 81.8 47 80Q54.2 78.2 56 71Z" fill="#FFD84D" stroke-width="3"/><path d="M186 67Q187.4 72.6 193 74Q187.4 75.4 186 81Q184.6 75.4 179 74Q184.6 72.6 186 67Z" fill="#FFFFFF" stroke-width="3"/><path d="M62 164Q63.2 168.8 68 170Q63.2 171.2 62 176Q60.8 171.2 56 170Q60.8 168.8 62 164Z" fill="#FFFFFF" stroke-width="3"/><path d="M184 160.5Q185.5 166.5 191.5 168Q185.5 169.5 184 175.5Q182.5 169.5 176.5 168Q182.5 166.5 184 160.5Z" fill="#FFD84D" stroke-width="3"/>
-<defs><clipPath id="ss-b1"><rect x="72" y="92" width="96" height="16"/></clipPath><clipPath id="ss-b2"><rect x="72" y="72" width="96" height="16"/></clipPath></defs>
-<rect x="72" y="104" width="96" height="74" rx="6" fill="#1B2340"/>
-<rect x="72" y="92" width="96" height="16" fill="#FFFFFF"/>
-<g clip-path="url(#ss-b1)" fill="#1B2340" stroke="none"><path d="M72 92h11l-11 16h-11Z"/><path d="M94 92h11l-11 16h-11Z"/><path d="M116 92h11l-11 16h-11Z"/><path d="M138 92h11l-11 16h-11Z"/><path d="M160 92h11l-11 16h-11Z"/></g>
-<rect x="72" y="92" width="96" height="16" fill="none"/>
-<g transform="rotate(-16 74 88)">
-<rect x="72" y="72" width="96" height="16" fill="#FFFFFF"/>
-<g clip-path="url(#ss-b2)" fill="#1B2340" stroke="none"><path d="M72 72h11l-11 16h-11Z"/><path d="M94 72h11l-11 16h-11Z"/><path d="M116 72h11l-11 16h-11Z"/><path d="M138 72h11l-11 16h-11Z"/><path d="M160 72h11l-11 16h-11Z"/></g>
-<rect x="72" y="72" width="96" height="16" fill="none"/>
+<rect x="20" y="20" width="200" height="200" fill="#E8F7FD"/>
+<path d="M104 40L156 210H52Z" fill="#7FD3F7" opacity=".5" stroke="none"/>
+<path d="M54 72Q55.6 78.4 62 80Q55.6 81.6 54 88Q52.4 81.6 46 80Q52.4 78.4 54 72Z" fill="#FFD84D" stroke-width="3"/><path d="M190 63.5Q191.3 68.7 196.5 70Q191.3 71.3 190 76.5Q188.7 71.3 183.5 70Q188.7 68.7 190 63.5Z" fill="#FFFFFF" stroke-width="3"/><path d="M56 176Q57.2 180.8 62 182Q57.2 183.2 56 188Q54.8 183.2 50 182Q54.8 180.8 56 176Z" fill="#FFD84D" stroke-width="3"/>
+<defs><clipPath id="ss-b1"><rect x="60" y="94" width="86" height="15"/></clipPath><clipPath id="ss-b2"><rect x="60" y="76" width="86" height="15"/></clipPath></defs>
+<rect x="60" y="105" width="86" height="68" rx="6" fill="#1B2340"/>
+<rect x="60" y="94" width="86" height="15" fill="#FFFFFF"/>
+<g clip-path="url(#ss-b1)" fill="#1B2340" stroke="none"><path d="M60 94h10l-10 15h-10Z"/><path d="M80 94h10l-10 15h-10Z"/><path d="M100 94h10l-10 15h-10Z"/><path d="M120 94h10l-10 15h-10Z"/><path d="M140 94h10l-10 15h-10Z"/></g>
+<rect x="60" y="94" width="86" height="15" fill="none"/>
+<g transform="rotate(-16 62 92)">
+<rect x="60" y="76" width="86" height="15" fill="#FFFFFF"/>
+<g clip-path="url(#ss-b2)" fill="#1B2340" stroke="none"><path d="M60 76h10l-10 15h-10Z"/><path d="M80 76h10l-10 15h-10Z"/><path d="M100 76h10l-10 15h-10Z"/><path d="M120 76h10l-10 15h-10Z"/><path d="M140 76h10l-10 15h-10Z"/></g>
+<rect x="60" y="76" width="86" height="15" fill="none"/>
 </g>
-<circle cx="74" cy="90" r="4" fill="#FFFFFF" stroke-width="3"/>
-<path d="M120 114L125.9 127.9L140.9 129.2L129.5 139.1L132.9 153.8L120 146L107.1 153.8L110.5 139.1L99.1 129.2L114.1 127.9Z" fill="#FFD84D" stroke-width="5"/>
-<path d="M86 166H112M128 166H154" stroke="#FFFFFF" stroke-width="4" opacity=".55"/>
+<circle cx="62" cy="92" r="4" fill="#FFFFFF" stroke-width="3"/>
+<path d="M103 116L108.3 128.7L122 129.8L111.6 138.8L114.8 152.2L103 145L91.2 152.2L94.4 138.8L84 129.8L97.7 128.7Z" fill="#FFD84D" stroke-width="4.5"/>
+<path d="M74 162H96M110 162H132" stroke="#FFFFFF" stroke-width="4" opacity=".55"/>
+<path d="M176 186V156" stroke-width="6"/>
+<path d="M160 190Q176 180 192 190Z" fill="#5BC0EB" stroke-width="5"/>
+<path d="M162 128V136A14 14 0 0 0 190 136V128" fill="none" stroke-width="5"/>
+<rect x="166" y="94" width="20" height="44" rx="10" fill="#FF5D73"/>
+<path d="M168 108H184M168 116H184" stroke-width="3.5"/>
 </g>
-<path d="M35 118A85 85 0 0 1 205 118V200H35Z" fill="none" stroke="#1B2340" stroke-width="6" stroke-linejoin="round"/>
-<text x="120" y="241.3" text-anchor="middle" font-family="'Baloo 2', 'Nunito', 'Arial Rounded MT Bold', sans-serif" font-weight="800" font-size="28.6" letter-spacing="1" textLength="176" lengthAdjust="spacingAndGlyphs" fill="#FFFFFF" stroke="#1B2340" stroke-width="5" stroke-linejoin="round" paint-order="stroke">STUDIO STAR</text>
+<path d="M35 118A85 85 0 0 1 205 118V212Q120 194 35 212Z" fill="none" stroke="#1B2340" stroke-width="6" stroke-linejoin="round"/>
+<path d="M8 214Q120 196 232 214V248Q120 230 8 248Z" fill="#FFF1DE" stroke="#1B2340" stroke-width="6" stroke-linejoin="round"/>
+<path id="studio-star-tp" d="M20 240.2Q120 222.2 220 240.2" fill="none"/>
+<text font-family="'Baloo 2', 'Nunito', 'Arial Rounded MT Bold', sans-serif" font-weight="800" font-size="27" letter-spacing=".5" fill="#1B2340"><textPath href="#studio-star-tp" startOffset="50%" text-anchor="middle" textLength="178.2" lengthAdjust="spacingAndGlyphs">STUDIO STAR</textPath></text>
 </svg>

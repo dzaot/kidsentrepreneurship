@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 280" role="img" aria-labelledby="summit-t">
+<title id="summit-t">Summit badge</title>
+<defs><clipPath id="summit-clip"><path d="M35 118A85 85 0 0 1 205 118V212Q120 194 35 212Z"/></clipPath></defs>
+<path d="M14 118A106 106 0 0 1 226 118V242Q226 266 202 266H38Q14 266 14 242Z" fill="#FFC94D" stroke="#1B2340" stroke-width="7" stroke-linejoin="round"/>
+<path d="M23 118A97 97 0 0 1 217 118V241Q217 257 201 257H39Q23 257 23 241Z" fill="none" stroke="#FFFFFF" stroke-opacity=".7" stroke-width="2.5" stroke-dasharray="6 5" stroke-linecap="round"/>
+<g clip-path="url(#summit-clip)" stroke="#1B2340" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+<rect x="20" y="20" width="200" height="200" fill="#E8F7FD"/>
+<path d="M40 96H76.8A8.8 8.8 0 0 0 70.4 84A11.2 11.2 0 0 0 51.2 81.6A9.6 9.6 0 0 0 40 96Z" fill="#FFFFFF" stroke-width="4"/><path d="M160 82H192.2A7.7 7.7 0 0 0 186.6 71.5A9.8 9.8 0 0 0 169.8 69.4A8.4 8.4 0 0 0 160 82Z" fill="#FFFFFF" stroke-width="4"/>
+<path d="M28 206L108 86Q120 70 132 86L212 206Z" fill="#5BC0EB"/>
+<path d="M120 76Q126 76 132 86L212 206H136Z" fill="#2E9BD6" stroke="none"/>
+<path d="M28 206L108 86Q120 70 132 86L212 206Z" fill="none"/>
+<path d="M98 101L108 86Q120 70 132 86L142 101L131 96L120 106L109 96Z" fill="#FFFFFF" stroke-width="5"/>
+<path d="M120 77V42" stroke-width="5"/>
+<path d="M121 42L146 50L121 58Z" fill="#FF8A3D" stroke-width="5"/>
+<path d="M116 200L150 180L100 158L136 138L110 120L122 110" fill="none" stroke="#FFF1DE" stroke-width="5" stroke-dasharray="7 6"/>
+<path d="M20 196Q60 176 100 194T220 190V220H20Z" fill="#2FA58C" stroke-width="5"/>
+<g transform="translate(46 196) scale(0.6)"><path d="M0 0V7" stroke-width="5"/><path d="M0-26L9-13H5L13 0H-13L-5-13H-9Z" fill="#2FA58C" stroke-width="4"/></g><g transform="translate(194 198) scale(0.65)"><path d="M0 0V7" stroke-width="5"/><path d="M0-26L9-13H5L13 0H-13L-5-13H-9Z" fill="#2FA58C" stroke-width="4"/></g>
+</g>
+<path d="M35 118A85 85 0 0 1 205 118V212Q120 194 35 212Z" fill="none" stroke="#1B2340" stroke-width="6" stroke-linejoin="round"/>
+<path d="M8 214Q120 196 232 214V248Q120 230 8 248Z" fill="#1B2340" stroke="#1B2340" stroke-width="6" stroke-linejoin="round"/>
+<path id="summit-tp" d="M20 240.2Q120 222.2 220 240.2" fill="none"/>
+<text font-family="'Baloo 2', 'Nunito', 'Arial Rounded MT Bold', sans-serif" font-weight="800" font-size="27" letter-spacing=".5" fill="#FFF1DE"><textPath href="#summit-tp" startOffset="50%" text-anchor="middle" textLength="97.2" lengthAdjust="spacingAndGlyphs">SUMMIT</textPath></text>
+</svg>

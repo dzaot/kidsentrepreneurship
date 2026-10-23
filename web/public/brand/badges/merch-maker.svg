@@ -1,20 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 280" role="img" aria-labelledby="merch-maker-t">
-<title id="merch-maker-t">Merch maker badge</title>
-<defs><clipPath id="merch-maker-clip"><path d="M35 118A85 85 0 0 1 205 118V200H35Z"/></clipPath></defs>
-<path d="M14 118A106 106 0 0 1 226 118V242Q226 266 202 266H38Q14 266 14 242Z" fill="#FFD84D" stroke="#1B2340" stroke-width="7" stroke-linejoin="round"/>
-<path d="M23 118A97 97 0 0 1 217 118V241Q217 257 201 257H39Q23 257 23 241Z" fill="none" stroke="rgba(27,35,64,.35)" stroke-width="2.5" stroke-dasharray="6 5" stroke-linecap="round"/>
+<title id="merch-maker-t">Merch Maker badge</title>
+<defs><clipPath id="merch-maker-clip"><path d="M35 118A85 85 0 0 1 205 118V212Q120 194 35 212Z"/></clipPath></defs>
+<path d="M14 118A106 106 0 0 1 226 118V242Q226 266 202 266H38Q14 266 14 242Z" fill="#FFB37D" stroke="#1B2340" stroke-width="7" stroke-linejoin="round"/>
+<path d="M23 118A97 97 0 0 1 217 118V241Q217 257 201 257H39Q23 257 23 241Z" fill="none" stroke="#FFFFFF" stroke-opacity=".7" stroke-width="2.5" stroke-dasharray="6 5" stroke-linecap="round"/>
 <g clip-path="url(#merch-maker-clip)" stroke="#1B2340" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
-<rect x="20" y="20" width="200" height="190" fill="#BFE6F7"/>
+<rect x="20" y="20" width="200" height="200" fill="#E8F7FD"/>
 <path d="M36 50H204" stroke-width="7"/>
-<path d="M60 88Q61.6 94.4 68 96Q61.6 97.6 60 104Q58.4 97.6 52 96Q58.4 94.4 60 88Z" fill="#FFD84D" stroke-width="3"/><path d="M184 99Q185.4 104.6 191 106Q185.4 107.4 184 113Q182.6 107.4 177 106Q182.6 104.6 184 99Z" fill="#FFFFFF" stroke-width="3"/><path d="M184 172Q185.2 176.8 190 178Q185.2 179.2 184 184Q182.8 179.2 178 178Q182.8 176.8 184 172Z" fill="#FFD84D" stroke-width="3"/>
+<path d="M190 75Q191.4 80.6 197 82Q191.4 83.4 190 89Q188.6 83.4 183 82Q188.6 80.6 190 75Z" fill="#FFD84D" stroke-width="3"/><path d="M56 176Q57.2 180.8 62 182Q57.2 183.2 56 188Q54.8 183.2 50 182Q54.8 180.8 56 176Z" fill="#FFFFFF" stroke-width="3"/>
+<g transform="translate(-14 2) translate(120 120) scale(.86) translate(-120 -120)">
 <path d="M120 76V66C120 58 130 58 130 50" fill="none" stroke-width="5"/>
 <path d="M120 66L80 86H160Z" fill="none" stroke-width="5"/>
 <path d="M98 76L74 86L54 112L76 126L86 114V186H154V114L164 126L186 112L166 86L142 76Q120 98 98 76Z" fill="#FF5D73"/>
-<path d="M98 76Q120 98 142 76" fill="none" stroke="#FFFFFF" stroke-width="10" opacity="0"/>
 <path d="M100 77Q120 94 140 77" fill="none" stroke-width="4"/>
-<path d="M120 118L125.9 131.9L140.9 133.2L129.5 143.1L132.9 157.8L120 150L107.1 157.8L110.5 143.1L99.1 133.2L114.1 131.9Z" fill="#FFD84D" stroke-width="5"/>
-<rect x="140" y="160" width="22" height="16" rx="3" fill="#FFFFFF" stroke-width="3.5" transform="rotate(12 151 168)"/>
+<path d="M120 113L127.6 129.5L145.7 131.7L132.4 144L135.9 161.8L120 153L104.1 161.8L107.6 144L94.3 131.7L112.4 129.5Z" fill="#FFFFFF" stroke-width="4"/>
+<path d="M120 121L125.3 132.7L138.1 134.1L128.6 142.8L131.2 155.4L120 149L108.8 155.4L111.4 142.8L101.9 134.1L114.7 132.7Z" fill="#FFD84D" stroke-width="4"/>
 </g>
-<path d="M35 118A85 85 0 0 1 205 118V200H35Z" fill="none" stroke="#1B2340" stroke-width="6" stroke-linejoin="round"/>
-<text x="120" y="241.3" text-anchor="middle" font-family="'Baloo 2', 'Nunito', 'Arial Rounded MT Bold', sans-serif" font-weight="800" font-size="28.6" letter-spacing="1" textLength="176" lengthAdjust="spacingAndGlyphs" fill="#FF5D73" stroke="#1B2340" stroke-width="5" stroke-linejoin="round" paint-order="stroke">MERCH MAKER</text>
+<path d="M180 158H186A9 9 0 0 1 186 176H180" fill="none" stroke-width="6"/>
+<rect x="146" y="150" width="36" height="40" rx="7" fill="#5BC0EB"/>
+<path d="M164 162L166.1 167.2L171.6 167.5L167.3 171.1L168.7 176.5L164 173.5L159.3 176.5L160.7 171.1L156.4 167.5L161.9 167.2Z" fill="#FFFFFF" stroke-width="3.5"/>
+<path d="M156 144Q152 138 156 132M168 144Q164 138 168 132" fill="none" stroke-width="3.5"/>
+</g>
+<path d="M35 118A85 85 0 0 1 205 118V212Q120 194 35 212Z" fill="none" stroke="#1B2340" stroke-width="6" stroke-linejoin="round"/>
+<path d="M8 214Q120 196 232 214V248Q120 230 8 248Z" fill="#FFF1DE" stroke="#1B2340" stroke-width="6" stroke-linejoin="round"/>
+<path id="merch-maker-tp" d="M20 240.2Q120 222.2 220 240.2" fill="none"/>
+<text font-family="'Baloo 2', 'Nunito', 'Arial Rounded MT Bold', sans-serif" font-weight="800" font-size="27" letter-spacing=".5" fill="#1B2340"><textPath href="#merch-maker-tp" startOffset="50%" text-anchor="middle" textLength="178.2" lengthAdjust="spacingAndGlyphs">MERCH MAKER</textPath></text>
 </svg>

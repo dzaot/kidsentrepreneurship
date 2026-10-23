@@ -1,27 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 280" role="img" aria-labelledby="brand-builder-t">
-<title id="brand-builder-t">Brand builder badge</title>
-<defs><clipPath id="brand-builder-clip"><path d="M35 118A85 85 0 0 1 205 118V200H35Z"/></clipPath></defs>
-<path d="M14 118A106 106 0 0 1 226 118V242Q226 266 202 266H38Q14 266 14 242Z" fill="#FF5D73" stroke="#1B2340" stroke-width="7" stroke-linejoin="round"/>
-<path d="M23 118A97 97 0 0 1 217 118V241Q217 257 201 257H39Q23 257 23 241Z" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2.5" stroke-dasharray="6 5" stroke-linecap="round"/>
+<title id="brand-builder-t">Brand Builder badge</title>
+<defs><clipPath id="brand-builder-clip"><path d="M35 118A85 85 0 0 1 205 118V212Q120 194 35 212Z"/></clipPath></defs>
+<path d="M14 118A106 106 0 0 1 226 118V242Q226 266 202 266H38Q14 266 14 242Z" fill="#C9B8FF" stroke="#1B2340" stroke-width="7" stroke-linejoin="round"/>
+<path d="M23 118A97 97 0 0 1 217 118V241Q217 257 201 257H39Q23 257 23 241Z" fill="none" stroke="#FFFFFF" stroke-opacity=".7" stroke-width="2.5" stroke-dasharray="6 5" stroke-linecap="round"/>
 <g clip-path="url(#brand-builder-clip)" stroke="#1B2340" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
-<rect x="20" y="20" width="200" height="190" fill="#BFE6F7"/>
-<path d="M40 76H76.8A8.8 8.8 0 0 0 70.4 64A11.2 11.2 0 0 0 51.2 61.6A9.6 9.6 0 0 0 40 76Z" fill="#FFFFFF" stroke-width="4"/><path d="M160 64H192.2A7.7 7.7 0 0 0 186.6 53.5A9.8 9.8 0 0 0 169.8 51.4A8.4 8.4 0 0 0 160 64Z" fill="#FFFFFF" stroke-width="4"/>
-<path d="M20 178H220V210H20Z" fill="#2FA58C" stroke-width="5"/>
-<path d="M120 72V38" stroke-width="5"/>
-<path d="M121 38L148 46L121 55Z" fill="#FF5D73" stroke-width="5"/>
-<rect x="78" y="96" width="84" height="40" fill="#FFF1DE" stroke-width="5"/>
-<path d="M80 100V180M160 100V180" stroke-width="7"/>
-<path d="M68 72H172L184 98H56Z" fill="#FFFFFF"/>
-<path d="M68 72H85.3L77.3 98H56Z" fill="#2FA58C" stroke-width="4"/><path d="M102.7 72H120L120 98H98.7Z" fill="#2FA58C" stroke-width="4"/><path d="M137.3 72H154.6L162.6 98H141.3Z" fill="#2FA58C" stroke-width="4"/>
-<path d="M68 72H172L184 98H56Z" fill="none"/>
-<path d="M56 98a10.67 10.67 0 0 0 21.33 0Z" fill="#2FA58C" stroke-width="5"/><path d="M77.3 98a10.67 10.67 0 0 0 21.33 0Z" fill="#FFFFFF" stroke-width="5"/><path d="M98.7 98a10.67 10.67 0 0 0 21.33 0Z" fill="#2FA58C" stroke-width="5"/><path d="M120 98a10.67 10.67 0 0 0 21.33 0Z" fill="#FFFFFF" stroke-width="5"/><path d="M141.3 98a10.67 10.67 0 0 0 21.33 0Z" fill="#2FA58C" stroke-width="5"/><path d="M162.6 98a10.67 10.67 0 0 0 21.33 0Z" fill="#FFFFFF" stroke-width="5"/>
-<circle cx="98" cy="130" r="8" fill="#FF5D73" stroke-width="4"/>
-<rect x="112" y="120" width="16" height="16" rx="3" fill="#FFD84D" stroke-width="4"/>
-<path d="M136 136V126a6 6 0 0 1 12 0V136Z" fill="#5BC0EB" stroke-width="4"/>
-<rect x="70" y="136" width="100" height="48" rx="4" fill="#FF8A3D"/>
-<rect x="92" y="146" width="56" height="28" rx="6" fill="#FFF1DE" stroke-width="5"/>
-<path d="M120 150L122.6 156.4L129.5 156.9L124.3 161.4L125.9 168.1L120 164.5L114.1 168.1L115.7 161.4L110.5 156.9L117.4 156.4Z" fill="#FF5D73" stroke-width="3.5"/>
+<rect x="20" y="20" width="200" height="200" fill="#E8F7FD"/>
+<path d="M150 66H184.5A8.3 8.3 0 0 0 178.5 54.8A10.5 10.5 0 0 0 160.5 52.5A9 9 0 0 0 150 66Z" fill="#FFFFFF" stroke-width="4"/><path d="M40 120H67.6A6.6 6.6 0 0 0 62.8 111A8.4 8.4 0 0 0 48.4 109.2A7.2 7.2 0 0 0 40 120Z" fill="#FFFFFF" stroke-width="4"/>
+<rect x="134" y="128" width="60" height="44" fill="#FFF1DE" stroke-width="5"/>
+<rect x="150" y="146" width="18" height="26" rx="2" fill="#5BC0EB" stroke-width="4"/>
+<path d="M132 106H196L202 124H126Z" fill="#FFFFFF" stroke-width="5"/><path d="M132 106H148L145 124H126Z" fill="#2FA58C" stroke-width="4"/><path d="M164 106H180L183 124H164Z" fill="#2FA58C" stroke-width="4"/><path d="M132 106H196L202 124H126Z" fill="none" stroke-width="5"/><path d="M126 124a9.5 9.5 0 0 0 19 0Z" fill="#2FA58C" stroke-width="5"/><path d="M145 124a9.5 9.5 0 0 0 19 0Z" fill="#FFFFFF" stroke-width="5"/><path d="M164 124a9.5 9.5 0 0 0 19 0Z" fill="#2FA58C" stroke-width="5"/><path d="M183 124a9.5 9.5 0 0 0 19 0Z" fill="#FFFFFF" stroke-width="5"/>
+<path d="M20 176Q90 138 220 180V220H20Z" fill="#2FA58C" stroke-width="5"/>
+<path d="M76 164L72 172H90L86 164Z" fill="#B4520F" stroke-width="4"/>
+<path d="M82 166V48" stroke-width="6"/>
+<circle cx="82" cy="46" r="5" fill="#FFD84D" stroke-width="4"/>
+<path d="M84 56Q104 48 122 56T156 56V100Q140 92 122 100T84 100Z" fill="#FF5D73"/>
+<circle cx="120" cy="78" r="15" fill="#FFFFFF" stroke-width="4.5"/>
+<path d="M120 68L122.9 75L130.5 75.6L124.8 80.5L126.5 87.9L120 84L113.5 87.9L115.2 80.5L109.5 75.6L117.1 75Z" fill="#FFD84D" stroke-width="3.5"/>
+<g transform="translate(176 186) scale(0.55)"><path d="M0 0V16" stroke-width="4"/><circle cx="0" cy="-8" r="6.5" fill="#FFFFFF" stroke-width="3.5"/><circle cx="7.6" cy="-2.5" r="6.5" fill="#FFFFFF" stroke-width="3.5"/><circle cx="4.7" cy="6.5" r="6.5" fill="#FFFFFF" stroke-width="3.5"/><circle cx="-4.7" cy="6.5" r="6.5" fill="#FFFFFF" stroke-width="3.5"/><circle cx="-7.6" cy="-2.5" r="6.5" fill="#FFFFFF" stroke-width="3.5"/><circle r="5" fill="#FFD84D" stroke-width="3.5"/></g><g transform="translate(50 192) scale(0.5)"><path d="M0 0V16" stroke-width="4"/><circle cx="0" cy="-8" r="6.5" fill="#FFD84D" stroke-width="3.5"/><circle cx="7.6" cy="-2.5" r="6.5" fill="#FFD84D" stroke-width="3.5"/><circle cx="4.7" cy="6.5" r="6.5" fill="#FFD84D" stroke-width="3.5"/><circle cx="-4.7" cy="6.5" r="6.5" fill="#FFD84D" stroke-width="3.5"/><circle cx="-7.6" cy="-2.5" r="6.5" fill="#FFD84D" stroke-width="3.5"/><circle r="5" fill="#FFD84D" stroke-width="3.5"/></g>
 </g>
-<path d="M35 118A85 85 0 0 1 205 118V200H35Z" fill="none" stroke="#1B2340" stroke-width="6" stroke-linejoin="round"/>
-<text x="120" y="239.7" text-anchor="middle" font-family="'Baloo 2', 'Nunito', 'Arial Rounded MT Bold', sans-serif" font-weight="800" font-size="24.2" letter-spacing="1" textLength="176" lengthAdjust="spacingAndGlyphs" fill="#FFF1DE" stroke="#1B2340" stroke-width="5" stroke-linejoin="round" paint-order="stroke">BRAND BUILDER</text>
+<path d="M35 118A85 85 0 0 1 205 118V212Q120 194 35 212Z" fill="none" stroke="#1B2340" stroke-width="6" stroke-linejoin="round"/>
+<path d="M8 214Q120 196 232 214V248Q120 230 8 248Z" fill="#FFF1DE" stroke="#1B2340" stroke-width="6" stroke-linejoin="round"/>
+<path id="brand-builder-tp" d="M20 239.6Q120 221.6 220 239.6" fill="none"/>
+<text font-family="'Baloo 2', 'Nunito', 'Arial Rounded MT Bold', sans-serif" font-weight="800" font-size="25.3" letter-spacing=".5" fill="#1B2340"><textPath href="#brand-builder-tp" startOffset="50%" text-anchor="middle" textLength="184" lengthAdjust="spacingAndGlyphs">BRAND BUILDER</textPath></text>
 </svg>
