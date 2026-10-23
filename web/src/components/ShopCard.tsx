@@ -50,15 +50,15 @@ export function ShopCard({
       <p className="mt-1 whitespace-pre-line text-ink-soft">{p.description ?? "A short description that makes people want it."}</p>
       <div className="mt-4 flex items-center justify-between gap-3">
         <span className="font-display text-3xl font-bold">
-          {p.priceCents ? formatMoney(p.priceCents, p.currency) : "$?"}
+          {p.priceCents ? formatMoney(p.priceCents, p.currency) : <span className="text-base text-ink-soft">Set a price</span>}
         </span>
         {buyHref ? (
           <a href={buyHref} className="btn btn-leaf" rel="noopener noreferrer">Buy &amp; download</a>
         ) : (
-          <span className="btn btn-leaf pointer-events-none opacity-80">Buy &amp; download</span>
+          <span className="btn btn-leaf pointer-events-none opacity-80" aria-disabled="true">Buy &amp; download</span>
         )}
       </div>
-      <p className="mt-3 text-xs text-ink-soft">Digital download · instant after payment</p>
+      <p className="mt-3 text-xs font-semibold text-ink-soft">📄 Digital download</p>
     </div>
   );
 }

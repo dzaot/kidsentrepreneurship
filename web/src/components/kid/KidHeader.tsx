@@ -28,16 +28,16 @@ export function KidHeader({ kid }: { kid: Kid }) {
         </div>
         <nav className="flex items-center" aria-label="Kid menu">
           <Link href={`${base}/guroo`} className={item} aria-label="Ask Guroo">
-            <span aria-hidden>🦘</span> <span className="hidden sm:inline">Guroo</span>
+            <span aria-hidden className="text-xl leading-none">🦘</span> <span className="hidden sm:inline">Guroo</span>
           </Link>
           <Link href={`${base}/shop`} className={item} aria-label="My shop">
-            <span aria-hidden>🏪</span> <span className="hidden sm:inline">My shop</span>
+            <span aria-hidden className="text-xl leading-none">🏪</span> <span className="hidden sm:inline">My shop</span>
           </Link>
           <Link href={`${base}/words`} className={item} aria-label="Business words">
-            <span aria-hidden>📖</span> <span className="hidden sm:inline">Words</span>
+            <span aria-hidden className="text-xl leading-none">📖</span> <span className="hidden sm:inline">Words</span>
           </Link>
           <Link href="/family" className={`${item} text-ink-soft`} aria-label="Grown-ups only" title="Grown-ups">
-            <span aria-hidden>🔒</span>
+            <span aria-hidden className="text-xl leading-none">🔒</span>
           </Link>
         </nav>
       </div>

@@ -138,7 +138,7 @@ export function GurooChat({
             {busy ? "…" : "Send"}
           </button>
         </div>
-        <p className="mt-2 text-xs text-ink-soft">Guroo is an AI helper. It can make mistakes, so check its ideas. Your grown-up can see your chats.</p>
+        <p className="mt-2 text-xs text-ink-soft">Guroo is an AI, not a person. AI can make mistakes, so check her ideas. Your grown-up can see your chats.</p>
       </form>
     </div>
   );

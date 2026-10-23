@@ -15,7 +15,7 @@ export function Submit({ children, className = "btn btn-sun w-full" }: { childre
 
 export function ErrorText({ state }: { state: ActionResult | null }) {
   if (!state || state.ok) return null;
-  return <p className="rounded-xl bg-coral/10 px-4 py-3 text-sm font-bold text-coral-dark">{state.error}</p>;
+  return <p className="rounded-xl bg-coral/10 px-4 py-3 text-sm font-bold text-ink" role="alert">⚠️ {state.error}</p>;
 }
 
 type FormAction = (prev: ActionResult | null, fd: FormData) => Promise<ActionResult>;
@@ -43,7 +43,7 @@ export function ActionForm({
     <form ref={ref} action={formAction} className={className}>
       {children}
       <ErrorText state={state} />
-      {state?.ok && success && <p className="text-sm font-bold text-leaf-dark">{success}</p>}
+      {state?.ok && success && <p className="text-sm font-bold text-ink" role="status">{success}</p>}
     </form>
   );
 }

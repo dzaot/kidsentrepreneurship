@@ -31,7 +31,7 @@ export default async function TrackPage({ params }: { params: Promise<{ kidId: s
         {nextId ? (
           <Link href={`/kid/${kidId}/lesson/${nextId}`} className="btn btn-sun mt-4 w-full text-lg">▶ Start next lesson</Link>
         ) : (
-          <p className="card mt-4 p-4 text-center font-bold">🏆 Track complete! Amazing work.</p>
+          <p className="card mt-4 p-4 text-center font-bold">🏆 Track complete! You did the work, and it shows.</p>
         )}
         <div className="mt-10">
           <PathMap kidId={kidId} units={track.units} completed={kid.completed} nextId={nextId} label="Part" />

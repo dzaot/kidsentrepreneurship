@@ -18,7 +18,7 @@ export default async function ThanksPage({ params }: { params: Promise<{ slug: s
       </span>
       <h1 className="mt-5 text-4xl font-bold">Thank you! 🎉</h1>
       <p className="mt-2 text-lg text-ink-soft">
-        You just supported <b className="text-ink">{shop.name}</b>, a young entrepreneur&apos;s very real business.
+        You just made <b className="text-ink">{shop.name}</b>&apos;s day. This is a real business, run by a young founder.
       </p>
       <a href={`/s/${slug}/file/${token}`} className="btn btn-leaf mt-8 w-full text-lg">
         ⬇ Download {shop.product.title}

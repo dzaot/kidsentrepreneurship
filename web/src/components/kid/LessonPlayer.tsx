@@ -34,7 +34,7 @@ const KIND_LABEL: Record<Step["kind"], { text: string; cls: string } | null> = {
   "ask-guroo": { text: "🦘 Ask Guroo", cls: "text-sun-ink" },
 };
 
-const CHEERS = ["Hop-tastic!", "Nailed it!", "Boss move!", "You're on fire!", "Big brain!"];
+const CHEERS = ["Small hops, big leaps.", "Hop-tastic!", "Boss move!", "You did the work!", "Big brain!"];
 
 function CountUp({ to }: { to: number }) {
   const [n, setN] = useState(0);
@@ -305,7 +305,7 @@ export function LessonPlayer({
             ))}
           </div>
           <p className="mt-3 text-sm font-bold text-ink-soft" aria-live="polite">
-            {all ? "🎉 Mission complete!" : `${doneCount} of ${step.checklist.length} done. Not finished? Continue now and do it later today.`}
+            {all ? "🎉 Mission complete!" : `${doneCount} of ${step.checklist.length} done. Not done yet? That's okay. Keep going and finish the mission later.`}
           </p>
         </div>
       );
@@ -338,7 +338,7 @@ export function LessonPlayer({
               <div className="card flex items-center gap-3 p-4">
                 <Mascot size={52} className="shrink-0" />
                 <p className="font-semibold">
-                  Guroo is resting right now. Think of your own ideas, or ask your grown-up to turn Guroo on in the parent zone.
+                  Guroo is resting right now. Try your own ideas first, you&apos;re the boss! Your grown-up can turn her on in the parent zone.
                 </p>
               </div>
             )}
@@ -448,7 +448,14 @@ export function LessonPlayer({
       </div>
 
       {leaving && (
-        <div className="fixed inset-0 z-50 grid place-items-end bg-ink/40 p-4 sm:place-items-center" role="dialog" aria-modal="true" aria-labelledby="leave-title">
+        <div
+          className="fixed inset-0 z-50 grid place-items-end bg-ink/40 p-4 sm:place-items-center"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="leave-title"
+          onKeyDown={(e) => e.key === "Escape" && setLeaving(false)}
+          onClick={(e) => e.target === e.currentTarget && setLeaving(false)}
+        >
           <div className="card animate-slide-up w-full max-w-sm p-6 text-center">
             <Mascot size={72} mood="wow" className="mx-auto" />
             <h2 id="leave-title" className="mt-3 text-2xl font-bold">

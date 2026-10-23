@@ -12,7 +12,7 @@ export default async function GurooPage({ params }: { params: Promise<{ kidId: s
       <KidHeader kid={kid} />
       <main id="main" className="mx-auto max-w-2xl px-4 py-6">
         <h1 className="text-3xl font-bold">🦘 Ask Guroo</h1>
-        <p className="mb-4 text-ink-soft">Your AI business buddy for ideas, names, words and tricky steps.</p>
+        <p className="mb-4 text-ink-soft">Your AI business helper for ideas, names, words and tricky steps.</p>
         {kid.ai?.enabled ? (
           <GurooChat kidId={kid.id} />
         ) : (
@@ -20,7 +20,7 @@ export default async function GurooPage({ params }: { params: Promise<{ kidId: s
             <Mascot size={110} />
             <p className="mt-4 font-display text-2xl font-bold">Guroo is resting 💤</p>
             <p className="mt-2 max-w-sm text-ink-soft">
-              Ask your grown-up to turn Guroo on in the parent zone (🔒 at the top). Until then, your own ideas are the best ones!
+              Ask your grown-up to turn her on in the parent zone (🔒 at the top). Until then, try your own ideas first. You&apos;re the boss!
             </p>
           </div>
         )}

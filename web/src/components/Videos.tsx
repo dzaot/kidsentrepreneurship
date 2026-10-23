@@ -7,6 +7,7 @@ import type { VideoResource } from "@/content/types";
 // and the player is the privacy-enhanced (no cookies) one. Never autoplays.
 export function VideoCard({ video, compact = false }: { video: VideoResource; compact?: boolean }) {
   const [on, setOn] = useState(false);
+  const [thumb, setThumb] = useState(true);
   const id = encodeURIComponent(video.youtubeId);
   return (
     <figure className="overflow-hidden rounded-2xl border-2 border-line bg-white text-left">
@@ -29,13 +30,15 @@ export function VideoCard({ video, compact = false }: { video: VideoResource; co
             aria-label={`Play video: ${video.title}`}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            {thumb && <img
+              onError={() => setThumb(false)}
               src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`}
               alt=""
               loading="lazy"
               referrerPolicy="no-referrer"
               className="absolute inset-0 h-full w-full object-cover opacity-90 transition group-hover:opacity-100"
-            />
+            />}
+            {!thumb && <span className="absolute left-4 top-3 text-sm font-bold text-white/80" aria-hidden>▶ YouTube</span>}
             <span className="relative grid h-16 w-16 place-items-center rounded-full bg-white text-ink shadow-[0_4px_0_rgba(0,0,0,0.25)] transition group-hover:scale-110 group-active:scale-95">
               <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
                 <path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z" fill="currentColor" />

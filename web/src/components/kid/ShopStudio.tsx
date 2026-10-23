@@ -23,11 +23,18 @@ export function ShopStudio({ kidId, shop }: { kidId: string; shop: Shop }) {
     <div className="space-y-3">
       {SECTIONS.map(({ action, title }) => {
         const Builder = BUILDERS[action];
-        const done = action !== "product-cover" && builderDone(action, shop);
+        const optional = action === "product-cover";
+        const done = !optional && builderDone(action, shop);
         return (
-          <details key={action} className="card p-4" open={action === "request-publish" && shop.status === "draft"}>
-            <summary className="cursor-pointer list-none font-display text-lg font-bold">
-              {done ? "✅" : "⬜"} {title}
+          <details key={action} className="group card p-4" open={action === "request-publish" && shop.status === "draft"}>
+            <summary className="flex min-h-11 cursor-pointer list-none items-center gap-3 font-display text-lg font-bold [&::-webkit-details-marker]:hidden">
+              <span aria-hidden>{optional ? "🖼️" : done ? "✅" : "⬜"}</span>
+              <span className="flex-1">
+                {title}
+                <span className="sr-only">{optional ? " (optional)" : done ? " (done)" : " (to do)"}</span>
+              </span>
+              {optional && <span className="rounded-full bg-cream px-2 py-0.5 text-xs font-bold text-ink-soft">Optional</span>}
+              <span className="text-ink-soft transition group-open:rotate-180" aria-hidden>▾</span>
             </summary>
             <div className="mt-4">
               <Builder kidId={kidId} shop={shop} />

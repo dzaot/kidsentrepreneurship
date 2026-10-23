@@ -74,7 +74,7 @@ export function PathMap({
                       {bubble}
                     </Link>
                   ) : (
-                    <span role="img" aria-label={`Lesson ${num}: ${l.title} (${status})`}>
+                    <span role="img" aria-label={`Lesson ${num}: ${l.title} (${status}). Finish the lesson before to unlock this one.`} title="Finish the lesson before to unlock this one">
                       {bubble}
                     </span>
                   )}

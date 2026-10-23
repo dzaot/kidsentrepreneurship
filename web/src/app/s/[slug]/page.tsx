@@ -40,10 +40,10 @@ export default async function PublicShop({ params }: { params: Promise<{ slug: s
           buyHref={shop.product.paymentLink}
         />
         <div className="card mt-4 flex gap-3 p-4 text-sm text-ink-soft">
-          <span className="text-2xl">🌱</span>
+          <span className="text-2xl" aria-hidden>🌱</span>
           <p>
-            This shop is run by a young entrepreneur learning business with {BRAND.name}, with a grown-up handling payments.
-            Every purchase is a real first step. Thank you!
+            A young founder made this shop while learning business with {BRAND.name}. A grown-up handles payments and
+            questions. Every purchase is a real first step. Thank you!
           </p>
         </div>
         <p className="mt-6 text-center text-xs text-ink-soft">
