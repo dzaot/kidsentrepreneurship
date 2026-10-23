@@ -6,3 +6,7 @@
 [build.environment]
   # Node 22 has a built-in WebSocket, which the Neon serverless driver uses.
   NODE_VERSION = "22"
+
+# Runs the Next.js server (SSR, server actions, API routes) as Netlify functions.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
