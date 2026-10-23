@@ -74,6 +74,14 @@ export const UNITS: Unit[] = [
           tip: "A business is a repeatable way of creating value that someone pays for. Over the next 30 days your child runs a tiny real one, coached by Guroo, a text-only AI helper inside the app. You own the accounts, approve publishing, and share the link.",
           talkAbout: "What is a local business we both like, and why do you think people keep coming back?",
         },
+        videos: [
+          {
+            youtubeId: "ZL-hdqYGuOw",
+            title: "Advice from young entrepreneurs",
+            channel: "Careers and Personal Finance by Khan Academy",
+            why: "Hear real young business owners share what they wish they knew at the start.",
+          },
+        ],
       },
       {
         id: "needs-and-wants",
@@ -128,6 +136,14 @@ export const UNITS: Unit[] = [
           tip: "Most consumer spending beyond essentials is driven by wants: comfort, entertainment, identity. Digital products like printables and wallpapers live squarely in the 'small joy, small price' category, which makes them an easy first purchase.",
           talkAbout: "What is one 'want' you bought recently that was totally worth it, and why?",
         },
+        videos: [
+          {
+            youtubeId: "8X03VasFY38",
+            title: "Wants and Needs with Bert and Ernie",
+            channel: "Sesame Workshop",
+            why: "Watch Bert help Ernie sort needs from wants at the grocery store.",
+          },
+        ],
       },
       {
         id: "problems-are-treasure",
@@ -385,6 +401,14 @@ export const UNITS: Unit[] = [
           tip: "This is the 'minimum viable product' idea: build the smallest version that tests the concept. If your child wants AI images, you run the image tool on your own account, side by side. Praise the choices they make, not just the polish.",
           talkAbout: "What is something you got better at by doing a rough version first?",
         },
+        videos: [
+          {
+            youtubeId: "fxJWin195kU",
+            title: "The Engineering Process: Crash Course Kids #12.2",
+            channel: "Crash Course Kids",
+            why: "See how makers plan, build, test, and improve, step by step.",
+          },
+        ],
       },
       {
         id: "quality-check",
@@ -574,6 +598,14 @@ export const UNITS: Unit[] = [
           tip: "Customer interviews are how founders learn before they build too much. Model receiving feedback calmly; how you react to their criticism teaches them more than the words.",
           talkAbout: "Tell about a time feedback helped you, even though it was hard to hear.",
         },
+        videos: [
+          {
+            youtubeId: "_y5jkSQDC5E",
+            title: "Sesame Street: Power of Yet Lyric Video with Janelle Monáe",
+            channel: "Sesame Street",
+            why: "A catchy song about how practice and feedback help you get better.",
+          },
+        ],
       },
       {
         id: "finish-your-file",
@@ -1015,6 +1047,14 @@ export const UNITS: Unit[] = [
           tip: "A 'soft launch' to a warm audience lets you test the checkout, gather reviews, and fix issues before going wider. Keep sharing within people you know personally; there is no need to post publicly yet.",
           talkAbout: "Who do you think will buy first? Let's guess and see if we are right!",
         },
+        videos: [
+          {
+            youtubeId: "X_duZ-1LApg",
+            title: "Pause & Think Online",
+            channel: "Common Sense Education",
+            why: "Learn to stop and think before you share anything online.",
+          },
+        ],
       },
       {
         id: "faceless-marketing",
@@ -1248,6 +1288,14 @@ export const UNITS: Unit[] = [
           tip: "Reinvesting, saving, and giving are the core uses of profit in any business. A 30-day retrospective ('what worked, what did not, what next') is the same habit good teams use, and it turns one sale into a repeatable skill.",
           talkAbout: "What did you learn about money this month that surprised you?",
         },
+        videos: [
+          {
+            youtubeId: "oqgtFqd8nHo",
+            title: "Elmo’s Spend, Share, and Save Jars",
+            channel: "Sesame Workshop",
+            why: "See how three jars help Abby decide what to spend, share, and save.",
+          },
+        ],
       },
     ],
   },

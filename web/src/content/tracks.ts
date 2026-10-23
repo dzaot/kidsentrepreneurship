@@ -149,6 +149,14 @@ export const TRACKS: Track[] = [
               tip: "In 2024 the FTC settled with Automators AI and related companies, which sold 'passive income' AI e-commerce stores and coaching; most clients lost money, and the defendants were banned from selling e-commerce business opportunities (about $21.7M judgment, partly suspended). Teaching kids to spot these pitches protects the whole family.",
               talkAbout: "What is one 'too good to be true' offer you have seen, and how did you know?",
             },
+            videos: [
+              {
+                youtubeId: "SBGfHk91Vrk",
+                title: "How to spot a pyramid scheme - Stacie Bosley",
+                channel: "TED-Ed",
+                why: "Learn the tricks some money schemes use so nobody can fool you.",
+              },
+            ],
           },
           {
             id: "pod-print-on-demand",
