@@ -3,30 +3,154 @@ import { Logo, Mascot } from "@/components/Mascot";
 import { BRAND } from "@/lib/brand";
 import { currentFamily } from "@/lib/auth";
 
+// Landing copy lives in docs/copy/landing.md. Hero variants are picked with ?v=b or ?v=c for A/B tests.
+const HEROES = {
+  a: {
+    eyebrow: "For kids 8 to 14 · Parents learn too",
+    lead: "Your kid's ",
+    highlight: "first online sale",
+    tail: ", in about 30 days.",
+    sub: `${BRAND.name} is a 5-minute daily game where your child learns real business skills and builds a real digital shop, one step at a time. Zero money down. No faces, no real names. You approve everything.`,
+  },
+  b: {
+    eyebrow: "Private by design · You approve everything",
+    lead: "The ",
+    highlight: "safe way",
+    tail: " for kids to start a real business online.",
+    sub: "Five minutes a day with Guroo, our kid-safe coach. Your child makes a digital product and opens a shop under a made-up brand. You own the account, approve every step, and the money goes to you.",
+  },
+  c: {
+    eyebrow: "For kids 8 to 14 · 5 minutes a day",
+    lead: "Turn screen time into their ",
+    highlight: "first business",
+    tail: ".",
+    sub: "Short daily lessons, real-world missions, and a shop they build themselves. Kids learn customers, price and profit by actually doing it, with you in the loop the whole way.",
+  },
+} as const;
+
+const TRUST = ["No faces or real names", "You approve everything", "$0 to start", "No ads, ever"];
+
+const PROBLEMS = [
+  {
+    emoji: "🔞",
+    title: "Selling sites are built for adults",
+    text: "Shop and seller platforms require a grown-up account holder. Most kids never get past the sign-up page.",
+  },
+  {
+    emoji: "🏫",
+    title: "School rarely gets there",
+    text: "Money classes mostly start in high school, and they rarely cover making something and selling it.",
+  },
+  {
+    emoji: "📱",
+    title: "Feeds teach the wrong version",
+    text: "Kids see \"get rich quick\" videos every day. They deserve the honest version: real work, real customers, real pride.",
+  },
+];
+
 const STEPS = [
-  { emoji: "💡", title: "Learn", text: "5-minute lessons with Guroo: ideas, customers, price, profit. Real business words, kid-sized." },
-  { emoji: "✏️", title: "Make", text: "Your kid creates a digital product (coloring pages, stickers, wallpapers, puzzles, a mini comic), by hand or with AI as a helper." },
-  { emoji: "🏪", title: "Open shop", text: "A private-by-design shop page with a made-up brand name and a mascot. You review and publish it." },
-  { emoji: "🎉", title: "First sale", text: "You share the link with family and friends. Buyers pay you directly and get an instant download." },
+  { emoji: "💡", title: "Learn", text: "Five-minute lessons with Guroo: needs and wants, customers, price, profit. Real business words, kid-sized." },
+  { emoji: "✏️", title: "Make", text: "One digital product: coloring pages, a sticker pack, wallpapers, a puzzle pack or a mini comic. Paper and your phone camera are enough." },
+  { emoji: "🏪", title: "Open shop", text: "They build the shop inside the lessons: a secret shop name, a mascot, a tagline, a price. You review it and publish it." },
+  { emoji: "🎉", title: "First sale", text: "You share the link with people you trust. Buyers pay through your own payment link and get an instant download." },
 ];
 
-const PROMISES = [
-  { emoji: "🙈", title: "No faces, no names", text: "Kids sell as a brand with a mascot. We never ask for a photo, real name, school or location." },
+const SAFETY = [
+  { emoji: "🙈", title: "No faces, no real names", text: "Kids sell as a made-up brand with a mascot. We never ask for a photo, real name, birthday, school or location." },
   { emoji: "🔐", title: "You hold the keys", text: "The account is yours. Nothing goes public until you approve it, and you can unpublish anytime." },
-  { emoji: "💸", title: "Money goes to you", text: "Buyers pay through your own payment link. We never touch the money, and it's $0 to start." },
-  { emoji: "🧹", title: "Minimal data", text: "Just your email and a nickname. No ads, no tracking pixels, no data sales. Delete everything in one click." },
-  { emoji: "🦘", title: "A kid-safe AI coach", text: "Guroo helps brainstorm ideas, names and descriptions, with kid-safe rules built in. Off until you turn it on, and you can read every chat." },
-  { emoji: "🤖", title: "AI skills, the right way", text: "Kids learn to use AI as a helper, not a shortcut: they write the prompts, pick, edit, and say when AI helped." },
+  { emoji: "💳", title: "The money goes to you", text: "Buyers pay through your own Stripe, PayPal or Square link. We never touch the money." },
+  { emoji: "🚫", title: "Nothing social between kids", text: "No kid-to-kid chat, no public profiles, no leaderboards with strangers. Shops are shared by link and hidden from search engines." },
+  { emoji: "🧽", title: "A personal-info filter", text: "Text for the shop or for Guroo is checked for emails, phone numbers, addresses and links, and blocked. Photo location data is stripped from uploads." },
+  { emoji: "🧹", title: "Minimal data, no ads", text: "Just your email and a nickname. No ads, no tracking pixels, no data sales. Delete everything from Settings, anytime." },
 ];
 
-export default async function Home({ searchParams }: { searchParams: Promise<{ deleted?: string }> }) {
+const GUROO_DOES = [
+  "Brainstorms ideas and themes",
+  "Suggests shop names and taglines",
+  "Makes word lists, riddles and story outlines",
+  "Helps draft descriptions and share messages",
+  "Helps write image prompts to try together with you",
+];
+
+const GUROO_RULES = [
+  "Off until you turn it on, for each kid",
+  "Sticks to business, making and learning",
+  "Never asks for personal info, and blocks it",
+  "Sends kids to a grown-up if anything feels off",
+  "Up to 40 messages a day",
+  "You can read and delete every chat",
+];
+
+const TRACKS = [
+  {
+    emoji: "👕",
+    bg: "bg-sky",
+    title: "Merch Makers",
+    meta: "8 lessons · ages 9 to 14",
+    text: "The honest truth about dropshipping (and its traps), then the kid-friendly version: their own designs on stickers, shirts and mugs with print-on-demand. No inventory, $0 upfront, on your account.",
+  },
+  {
+    emoji: "🎬",
+    bg: "bg-coral",
+    title: "Faceless YouTube Studio",
+    meta: "8 lessons · best for ages 11 to 14",
+    text: "Plan, script and make helpful videos with AI as a helper, never showing a face or using their real voice. The channel is yours and works as marketing for their shop.",
+  },
+];
+
+const FAQ: [string, string][] = [
+  [
+    "Is it really zero money down?",
+    "Yes. Digital products cost nothing to make, and there is no inventory. Payment providers take a small fee per sale (Stripe is about 2.9% plus 30¢), and the price step shows your kid exactly what they keep.",
+  ],
+  [
+    "Will my kid really make a sale?",
+    "We can't promise a sale, and we won't pretend to. The path is designed so every kid finishes with a real product and a real shop in about 30 days. Most first buyers are family and friends, and that's the point: a safe first customer. The pilot measures how many kids get there.",
+  ],
+  [
+    "How much of my time does it take?",
+    "Your kid does 5 minutes a day. You step in at a few key moments: adding your kid, approving the shop, pasting your payment link, sharing it and logging sales. Parent Corner is there whenever you want it.",
+  ],
+  [
+    "What does Guroo, the AI coach, do with my kid's messages?",
+    "Guroo is off until you turn it on. Messages are checked for personal info first, then sent to Anthropic (the maker of Claude) to write a reply. Anthropic does not use API data to train its models. You can read and delete every chat from your parent zone.",
+  ],
+  [
+    "Is my kid's name or face ever public?",
+    "No. The public shop shows only the made-up shop name, the mascot, the product and the price. Never your kid's nickname, your email or account details. Faceless is a rule, not a setting.",
+  ],
+  [
+    "What age is it for?",
+    "Kids 8 to 14, with lessons for two age groups (8 to 10 and 11 to 14). Up to 4 kids per family account. The account itself is always a parent's or guardian's (18+).",
+  ],
+  [
+    "Do I need to download an app?",
+    "No. It's a web app that works in the browser on a computer, tablet or phone. You can add it to your home screen so it opens like an app.",
+  ],
+  [
+    "Do you show ads or sell data?",
+    "Never. No ads to kids or parents, no tracking pixels, no data sales. If partners ever appear, they will be offered to parents, never to kids.",
+  ],
+];
+
+export default async function Home({ searchParams }: { searchParams: Promise<{ deleted?: string; v?: string }> }) {
   const family = await currentFamily();
-  const { deleted } = await searchParams;
+  const { deleted, v } = await searchParams;
+  const hero = HEROES[v === "b" || v === "c" ? v : "a"];
+  const needsCode = Boolean(process.env.PILOT_CODE);
+  const primary = family
+    ? { href: "/family", label: "Open the parent zone" }
+    : { href: "/signup", label: "Join the free pilot" };
+
   return (
-    <main>
-      <header className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-        <Logo />
-        <nav className="flex items-center gap-2">
+    <main className="overflow-x-clip">
+      <header className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-4">
+        <Link href="/" aria-label={`${BRAND.name} home`}><Logo /></Link>
+        <nav className="flex items-center gap-2 text-sm font-bold">
+          <a href="#how" className="hidden rounded-xl px-3 py-2 hover:bg-white lg:inline">How it works</a>
+          <a href="#safety" className="hidden rounded-xl px-3 py-2 hover:bg-white lg:inline">Safety</a>
+          <a href="#pricing" className="hidden rounded-xl px-3 py-2 hover:bg-white lg:inline">Pricing</a>
+          <a href="#faq" className="hidden rounded-xl px-3 py-2 hover:bg-white lg:inline">FAQ</a>
           {family ? (
             <Link href="/family" className="btn btn-sun !py-2.5">Open app</Link>
           ) : (
@@ -39,107 +163,115 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ d
       </header>
 
       {deleted && (
-        <p className="mx-auto max-w-6xl px-4 text-sm font-bold text-leaf-dark">Your account and all data were deleted.</p>
+        <p className="mx-auto max-w-6xl px-4 text-sm font-bold text-ink" role="status">
+          ✓ Done. Your account and all its data were permanently deleted.
+        </p>
       )}
 
-      <section className="mx-auto grid max-w-6xl items-center gap-10 px-4 pb-16 pt-8 md:grid-cols-2 md:pt-16">
+      {/* Hero */}
+      <section className="mx-auto grid max-w-6xl items-center gap-12 px-4 pb-16 pt-8 md:grid-cols-2 md:pt-16">
         <div>
           <p className="mb-4 inline-block rounded-full bg-white px-4 py-1.5 text-sm font-bold text-ink-soft ring-2 ring-line">
-            For ages 8 to 14 · Parents learn too
+            {hero.eyebrow}
           </p>
           <h1 className="text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
-            Your kid&apos;s <span className="text-coral">first online sale</span> in 30 days.
+            {hero.lead}
+            <span className="text-coral-dark">{hero.highlight}</span>
+            {hero.tail}
           </h1>
-          <p className="mt-5 max-w-xl text-lg text-ink-soft">
-            {BRAND.name} is like Duolingo for starting a business. Five minutes a day, a real digital product,
-            zero money down, and your child&apos;s identity stays private the whole way.
-          </p>
+          <p className="mt-5 max-w-xl text-lg text-ink-soft">{hero.sub}</p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/signup" className="btn btn-sun text-lg">Start free</Link>
-            <a href="#how" className="btn btn-ghost text-lg">How it works</a>
+            <Link href={primary.href} className="btn btn-sun text-lg">{primary.label}</Link>
+            <a href="#how" className="btn btn-ghost text-lg">See how it works</a>
           </div>
+          <ul className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-sm font-bold text-ink-soft">
+            {TRUST.map((t) => (
+              <li key={t} className="flex items-center gap-1.5">
+                <span className="text-leaf-dark" aria-hidden>✓</span> {t}
+              </li>
+            ))}
+          </ul>
         </div>
-        <div className="relative mx-auto w-full max-w-sm">
+        <div className="relative mx-auto w-full max-w-sm" aria-hidden>
           <div className="card rotate-2 p-5 shadow-xl">
             <div className="flex items-center gap-3">
-              <span className="grid h-14 w-14 place-items-center rounded-2xl bg-[#5BC0EB] text-3xl">🐙</span>
+              <span className="grid h-14 w-14 place-items-center rounded-2xl bg-sky text-3xl">🐙</span>
               <div>
                 <p className="font-display text-xl font-bold">Ocean Doodle Co.</p>
                 <p className="text-sm text-ink-soft">Coloring pages that make a splash</p>
               </div>
             </div>
-            <div className="mt-4 grid aspect-[4/3] place-items-center rounded-2xl bg-gradient-to-br from-[#5BC0EB] to-[#9B6BFF] text-7xl">🐠</div>
+            <div className="mt-4 grid aspect-[4/3] place-items-center rounded-2xl bg-gradient-to-br from-[#5BC0EB] to-[#2FA58C] text-7xl">🐠</div>
             <p className="mt-4 font-bold">10 Ocean Coloring Pages</p>
             <div className="mt-2 flex items-center justify-between">
               <span className="font-display text-2xl font-bold">$3</span>
-              <span className="btn btn-leaf !py-2">Buy &amp; download</span>
+              <span className="btn btn-sun !py-2">Buy &amp; download</span>
             </div>
+            <p className="mt-3 text-xs text-ink-soft">Example shop · made-up brand, no names</p>
           </div>
-          <div className="card absolute -bottom-6 -left-4 flex items-center gap-2 px-4 py-3 shadow-lg animate-float">
+          <div className="card absolute -bottom-6 -left-2 flex items-center gap-2 px-4 py-3 shadow-lg animate-float sm:-left-4">
             <span className="text-2xl">🎉</span>
             <span className="font-bold">First sale: $3!</span>
           </div>
-          <Mascot size={88} className="absolute -right-6 -top-10 animate-float" />
+          <Mascot size={88} className="absolute -right-2 -top-10 animate-float sm:-right-6" />
         </div>
       </section>
 
-      <section id="how" className="bg-white py-16">
+      {/* Problem */}
+      <section className="bg-white py-16">
         <div className="mx-auto max-w-6xl px-4">
-          <h2 className="text-center text-3xl font-bold sm:text-4xl">From idea to first sale</h2>
-          <p className="mx-auto mt-3 max-w-2xl text-center text-ink-soft">
-            A guided 30-day path. Each lesson ends with a tiny real action, and each step builds the shop.
-          </p>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {STEPS.map((s, i) => (
-              <div key={s.title} className="card p-6">
-                <div className="text-4xl">{s.emoji}</div>
-                <p className="mt-3 text-sm font-bold text-ink-soft">Step {i + 1}</p>
-                <h3 className="text-xl font-bold">{s.title}</h3>
-                <p className="mt-2 text-ink-soft">{s.text}</p>
+          <h2 className="mx-auto max-w-3xl text-center text-3xl font-bold sm:text-4xl">
+            Kids love to make things. The internet wasn&apos;t built for them to sell.
+          </h2>
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            {PROBLEMS.map((p) => (
+              <div key={p.title} className="card p-6">
+                <div className="text-4xl" aria-hidden>{p.emoji}</div>
+                <h3 className="mt-3 text-xl font-bold">{p.title}</h3>
+                <p className="mt-2 text-ink-soft">{p.text}</p>
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="py-16">
-        <div className="mx-auto max-w-6xl px-4">
-          <h2 className="text-center text-3xl font-bold sm:text-4xl">Then, level up</h2>
-          <p className="mx-auto mt-3 max-w-2xl text-center text-ink-soft">
-            After the first sale, kids unlock Level 2 tracks. Grown-ups own every account; kids stay faceless.
+          <p className="mx-auto mt-8 max-w-2xl text-center text-lg font-bold">
+            {BRAND.name} is the safe middle step: the lessons, the shop and the guardrails, with you holding the keys.
           </p>
-          <div className="mt-10 grid gap-4 md:grid-cols-2">
-            <div className="card overflow-hidden">
-              <div className="grid h-24 place-items-center bg-sky text-6xl">👕</div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold">Merch Makers</h3>
-                <p className="mt-1 text-ink-soft">
-                  How dropshipping really works (and its traps), then the kid-friendly version: print-on-demand stickers,
-                  shirts and mugs with their own designs. No inventory, $0 upfront.
-                </p>
-              </div>
-            </div>
-            <div className="card overflow-hidden">
-              <div className="grid h-24 place-items-center bg-coral text-6xl">🎬</div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold">Faceless YouTube Studio</h3>
-                <p className="mt-1 text-ink-soft">
-                  Plan, script and make videos with AI as a helper, without showing a face or voice. The channel becomes
-                  marketing for their shop. Best for ages 11 to 14, on a grown-up&apos;s channel.
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
-      <section className="py-16">
+      {/* How it works */}
+      <section id="how" className="scroll-mt-4 py-16">
+        <div className="mx-auto max-w-6xl px-4">
+          <h2 className="text-center text-3xl font-bold sm:text-4xl">From idea to first sale, in four hops</h2>
+          <p className="mx-auto mt-3 max-w-2xl text-center text-ink-soft">
+            A guided 30-day Launch Path. Every lesson ends with a tiny real action, and every step builds a piece of the shop.
+          </p>
+          <ol className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {STEPS.map((s, i) => (
+              <li key={s.title} className="card p-6">
+                <div className="text-4xl" aria-hidden>{s.emoji}</div>
+                <p className="mt-3 text-sm font-bold text-ink-soft">Step {i + 1}</p>
+                <h3 className="text-xl font-bold">{s.title}</h3>
+                <p className="mt-2 text-ink-soft">{s.text}</p>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-6 text-center text-sm font-bold text-ink-soft">
+            20 lessons in 4 units · Real-world missions · A private journal · A glossary of real business words
+          </p>
+        </div>
+      </section>
+
+      {/* Safety */}
+      <section id="safety" className="scroll-mt-4 bg-white py-16">
         <div className="mx-auto max-w-6xl px-4">
           <h2 className="text-center text-3xl font-bold sm:text-4xl">Safe by design, not by afterthought</h2>
+          <p className="mx-auto mt-3 max-w-2xl text-center text-ink-soft">
+            Privacy isn&apos;t a setting you have to find. It&apos;s how {BRAND.name} works, for every family.
+          </p>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {PROMISES.map((p) => (
+            {SAFETY.map((p) => (
               <div key={p.title} className="card flex gap-4 p-6">
-                <div className="text-4xl">{p.emoji}</div>
+                <div className="text-4xl" aria-hidden>{p.emoji}</div>
                 <div>
                   <h3 className="text-xl font-bold">{p.title}</h3>
                   <p className="mt-1 text-ink-soft">{p.text}</p>
@@ -147,25 +279,148 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ d
               </div>
             ))}
           </div>
+          <p className="mt-8 text-center text-ink-soft">
+            Plain-language privacy notice, readable in 2 minutes:{" "}
+            <Link href="/privacy" className="font-bold text-ink underline">read it here</Link>.
+          </p>
         </div>
       </section>
 
+      {/* Guroo */}
+      <section id="guroo" className="scroll-mt-4 py-16">
+        <div className="mx-auto max-w-6xl px-4">
+          <div className="grid items-center gap-8 md:grid-cols-[auto_1fr]">
+            <Mascot size={140} className="mx-auto" />
+            <div>
+              <h2 className="text-3xl font-bold sm:text-4xl">Meet Guroo, a kid-safe AI coach</h2>
+              <p className="mt-3 max-w-2xl text-lg text-ink-soft">
+                A wise kangaroo with round glasses and a little shop in her pouch. Guroo helps your kid think. She
+                doesn&apos;t do the work for them.
+              </p>
+            </div>
+          </div>
+          <div className="mt-10 grid gap-4 md:grid-cols-2">
+            <div className="card p-6">
+              <h3 className="text-xl font-bold">What Guroo helps with</h3>
+              <ul className="mt-3 space-y-2">
+                {GUROO_DOES.map((t) => (
+                  <li key={t} className="flex gap-2"><span aria-hidden>💡</span> {t}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="card p-6">
+              <h3 className="text-xl font-bold">The guardrails</h3>
+              <ul className="mt-3 space-y-2">
+                {GUROO_RULES.map((t) => (
+                  <li key={t} className="flex gap-2"><span aria-hidden>🛡️</span> {t}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div className="card mt-4 bg-cream p-6">
+            <p className="text-lg font-bold">The rule we teach: AI is your helper, you&apos;re the boss.</p>
+            <p className="mt-1 text-ink-soft">
+              Kids write the prompts, choose, edit and add their own twist, and they say so when AI helped. Guroo runs on
+              Claude by Anthropic, and lessons work fine with Guroo switched off.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Level 2 */}
+      <section id="level-2" className="scroll-mt-4 bg-white py-16">
+        <div className="mx-auto max-w-6xl px-4">
+          <h2 className="text-center text-3xl font-bold sm:text-4xl">After the first sale: Level 2</h2>
+          <p className="mx-auto mt-3 max-w-2xl text-center text-ink-soft">
+            Finishing the Launch Path unlocks two new tracks. Grown-ups own every account. Kids stay faceless.
+          </p>
+          <div className="mt-10 grid gap-4 md:grid-cols-2">
+            {TRACKS.map((t) => (
+              <div key={t.title} className="card overflow-hidden">
+                <div className={`grid h-24 place-items-center text-6xl ${t.bg}`} aria-hidden>{t.emoji}</div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold">{t.title}</h3>
+                  <p className="text-sm font-bold text-ink-soft">{t.meta}</p>
+                  <p className="mt-2 text-ink-soft">{t.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Parent Corner */}
       <section className="bg-ink py-16 text-white">
         <div className="mx-auto max-w-3xl px-4 text-center">
           <Mascot size={80} className="mx-auto" />
-          <h2 className="mt-4 text-3xl font-bold sm:text-4xl">Every lesson has a Parent Corner</h2>
-          <p className="mt-4 text-lg text-white/80">
-            While your kid learns, you get the grown-up version: one business idea and one question to talk about at
-            dinner or in the car. Many parents tell us they learn as much as their kids.
+          <h2 className="mt-4 text-3xl font-bold sm:text-4xl">You learn too: every lesson has a Parent Corner</h2>
+          <p className="mt-4 text-lg text-white/85">
+            While your kid learns, you get the grown-up version of the same idea, plus one question to talk about at
+            dinner or in the car. You also see the notes from their private journal. Business talk becomes family talk.
           </p>
-          <Link href="/signup" className="btn btn-sun mt-8 text-lg">Join the free pilot</Link>
         </div>
       </section>
 
-      <footer className="mx-auto max-w-6xl px-4 py-10 text-sm text-ink-soft">
+      {/* Pricing teaser */}
+      <section id="pricing" className="scroll-mt-4 py-16">
+        <div className="mx-auto max-w-4xl px-4">
+          <h2 className="text-center text-3xl font-bold sm:text-4xl">Simple, family pricing</h2>
+          <div className="mt-10 grid gap-4 md:grid-cols-2">
+            <div className="card border-sun p-6">
+              <p className="inline-block rounded-full bg-sun px-3 py-1 text-sm font-bold text-ink">Now</p>
+              <h3 className="mt-3 text-2xl font-bold">Free during the pilot</h3>
+              <p className="mt-2 text-ink-soft">
+                The full Launch Path, the shop, Guroo and Parent Corner, for up to 4 kids. No card needed.
+              </p>
+              <Link href={primary.href} className="btn btn-sun mt-5 w-full">{primary.label}</Link>
+            </div>
+            <div className="card p-6">
+              <p className="inline-block rounded-full bg-cream px-3 py-1 text-sm font-bold text-ink-soft">After the pilot</p>
+              <h3 className="mt-3 text-2xl font-bold">A free plan and a family plan</h3>
+              <p className="mt-2 text-ink-soft">
+                We&apos;re testing a family plan at around US$7.99 a month or US$59.99 a year, for up to 4 kids, plus a free
+                plan with daily lessons. Prices aren&apos;t final. We&apos;ll never charge you unless you choose a plan.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="scroll-mt-4 bg-white py-16">
+        <div className="mx-auto max-w-3xl px-4">
+          <h2 className="text-center text-3xl font-bold sm:text-4xl">Questions parents ask</h2>
+          <div className="mt-10 space-y-3">
+            {FAQ.map(([q, a]) => (
+              <details key={q} className="card p-5">
+                <summary className="cursor-pointer font-display text-lg font-bold">{q}</summary>
+                <p className="mt-3 text-ink-soft">{a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-16">
+        <div className="mx-auto max-w-3xl px-4 text-center">
+          <Mascot size={96} mood="wow" className="mx-auto animate-float" />
+          <h2 className="mt-4 text-3xl font-bold sm:text-4xl">Ready for the first hop?</h2>
+          <p className="mt-3 text-lg text-ink-soft">
+            Create your family account in 2 minutes, add your kid with a nickname, and do the first lesson together.
+          </p>
+          <Link href={primary.href} className="btn btn-sun mt-8 text-lg">{primary.label}</Link>
+          {!family && needsCode && (
+            <p className="mt-4 text-sm text-ink-soft">The pilot is invite-only for now. You&apos;ll need the invite code you were sent.</p>
+          )}
+        </div>
+      </section>
+
+      <footer className="mx-auto max-w-6xl border-t-2 border-line px-4 py-10 text-sm text-ink-soft">
         <p>
-          © {new Date().getFullYear()} {BRAND.name} (pilot). Accounts are for parents and guardians 18+.{" "}
-          <Link href="/privacy" className="underline">Privacy</Link>
+          © {new Date().getFullYear()} {BRAND.name} (pilot). Made for families in the US, Canada and Australia. Accounts are
+          for parents and guardians 18+.{" "}
+          <Link href="/privacy" className="font-bold underline">Privacy</Link>
         </p>
       </footer>
     </main>
