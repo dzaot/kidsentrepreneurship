@@ -50,13 +50,13 @@ export function PickBusiness({ kidId, shop, onDone }: Props) {
         const chosen = shop.businessType === b.id;
         return (
           <div key={b.id} className={`card p-4 ${chosen ? "border-leaf bg-leaf/5" : ""}`}>
-            <button type="button" className="flex w-full items-center gap-3 text-left" onClick={() => setOpen(open === b.id ? null : b.id)}>
+            <button type="button" aria-expanded={open === b.id} className="flex min-h-11 w-full items-center gap-3 rounded-xl text-left" onClick={() => setOpen(open === b.id ? null : b.id)}>
               <span className="text-4xl">{b.emoji}</span>
               <span className="flex-1">
                 <span className="block font-display text-lg font-bold">{b.name}</span>
                 <span className="block text-sm text-ink-soft">{b.pitch}</span>
               </span>
-              {chosen && <span className="text-2xl">✅</span>}
+              {chosen ? <span className="text-2xl" aria-label="Picked">✅</span> : <span className="text-xl text-ink-soft" aria-hidden>{open === b.id ? "▴" : "▾"}</span>}
             </button>
             {open === b.id && (
               <div className="mt-3 space-y-2 border-t-2 border-line pt-3 text-sm">
@@ -80,6 +80,8 @@ export function PickBusiness({ kidId, shop, onDone }: Props) {
   );
 }
 
+const COLOR_NAMES: Record<string, string> = { "#FF8A3D": "Orange", "#2FA58C": "Green", "#5BC0EB": "Blue", "#FF5D73": "Pink", "#9B6BFF": "Purple", "#1B2340": "Navy" };
+
 const NAME_START = ["Happy", "Tiny", "Cosmic", "Sunny", "Pixel", "Doodle", "Brave", "Cozy", "Lucky", "Wild", "Mellow", "Zippy"];
 const NAME_END: Record<string, string[]> = {
   "coloring-pages": ["Doodle Co.", "Color Club", "Crayon Studio", "Lines Lab"],
@@ -98,7 +100,7 @@ export function BrandName({ kidId, shop, onDone }: Props) {
   };
   return (
     <div className="space-y-3">
-      <input className="input text-lg" value={name} maxLength={28} onChange={(e) => setName(e.target.value)} placeholder="e.g. Cosmic Doodle Co." />
+      <input className="input text-lg" aria-label="Shop name" value={name} maxLength={28} onChange={(e) => setName(e.target.value)} placeholder="e.g. Cosmic Doodle Co." />
       <p className="text-sm text-ink-soft">🙈 Secret-agent rule: no real names, school or town. Make it fun and easy to say.</p>
       <div className="flex gap-2">
         <button type="button" className="btn btn-ghost flex-1" onClick={idea}>🎲 Give me an idea</button>
@@ -125,7 +127,7 @@ export function BrandLook({ kidId, shop, onDone }: Props) {
         <p className="label">Mascot</p>
         <div className="flex flex-wrap gap-2">
           {MASCOTS.map((m) => (
-            <button key={m} type="button" onClick={() => setMascot(m)}
+            <button key={m} type="button" onClick={() => setMascot(m)} aria-pressed={mascot === m}
               className={`grid h-12 w-12 place-items-center rounded-xl border-2 text-2xl ${mascot === m ? "border-sky bg-sky/10" : "border-line bg-white"}`}>
               {m}
             </button>
@@ -136,7 +138,7 @@ export function BrandLook({ kidId, shop, onDone }: Props) {
         <p className="label">Color</p>
         <div className="flex flex-wrap gap-2">
           {COLORS.map((c) => (
-            <button key={c} type="button" onClick={() => setColor(c)} aria-label={c}
+            <button key={c} type="button" onClick={() => setColor(c)} aria-label={COLOR_NAMES[c] ?? c} aria-pressed={color === c}
               className={`h-12 w-12 rounded-full border-4 ${color === c ? "border-ink" : "border-white"}`} style={{ background: c }} />
           ))}
         </div>
@@ -152,7 +154,7 @@ export function Tagline({ kidId, shop, onDone }: Props) {
   const [text, setText] = useState(shop.tagline ?? "");
   return (
     <div className="space-y-3">
-      <input className="input text-lg" value={text} maxLength={70} onChange={(e) => setText(e.target.value)} placeholder="e.g. Coloring pages that make a splash" />
+      <input className="input text-lg" aria-label="Tagline" value={text} maxLength={70} onChange={(e) => setText(e.target.value)} placeholder="e.g. Coloring pages that make a splash" />
       <p className="text-sm text-ink-soft">Tip: say what people get, in under 8 words.</p>
       <button type="button" className="btn btn-leaf w-full" disabled={s.pending || !text.trim()} onClick={() => s.save({ tagline: text })}>Save tagline</button>
       <Status {...s} />
@@ -168,12 +170,12 @@ export function ProductDetails({ kidId, shop, onDone }: Props) {
   return (
     <div className="space-y-3">
       <div>
-        <label className="label">Product name</label>
-        <input className="input" value={title} maxLength={50} onChange={(e) => setTitle(e.target.value)} placeholder={biz?.examples[0] ?? "10 Ocean Coloring Pages"} />
+        <label className="label" htmlFor="product-title">Product name</label>
+        <input id="product-title" className="input" value={title} maxLength={50} onChange={(e) => setTitle(e.target.value)} placeholder={biz?.examples[0] ?? "10 Ocean Coloring Pages"} />
       </div>
       <div>
-        <label className="label">Description</label>
-        <textarea className="input min-h-28" value={desc} maxLength={400} onChange={(e) => setDesc(e.target.value)}
+        <label className="label" htmlFor="product-desc">Description</label>
+        <textarea id="product-desc" className="input min-h-28" value={desc} maxLength={400} onChange={(e) => setDesc(e.target.value)}
           placeholder="What's inside? Who is it for? Why will they love it?" />
         <p className="text-right text-xs text-ink-soft">{desc.length}/400</p>
       </div>
@@ -193,7 +195,8 @@ export function ProductPrice({ kidId, shop, onDone }: Props) {
   return (
     <div className="space-y-4">
       <p className="text-center font-display text-6xl font-bold">{formatMoney(cents, cur)}</p>
-      <input type="range" min={100} max={1000} step={50} value={cents} onChange={(e) => setCents(Number(e.target.value))} className="w-full accent-[#2FA58C]" aria-label="Price" />
+      <input type="range" min={100} max={1000} step={50} value={cents} onChange={(e) => setCents(Number(e.target.value))} className="h-11 w-full accent-[#1f7a67]" aria-label="Price" aria-valuetext={formatMoney(cents, cur)} />
+      <div className="-mt-2 flex justify-between text-xs font-bold text-ink-soft" aria-hidden><span>{formatMoney(100, cur)}</span><span>{formatMoney(1000, cur)}</span></div>
       <div className="grid grid-cols-3 gap-2 text-center text-sm">
         <div className="card p-3"><p className="text-ink-soft">Cost to make</p><p className="text-lg font-bold">{formatMoney(0, cur)}</p></div>
         <div className="card p-3"><p className="text-ink-soft">Payment fee</p><p className="text-lg font-bold">≈{formatMoney(fee, cur)}</p></div>
@@ -211,7 +214,7 @@ function Upload({ kidId, kind, accept, label, onDone }: { kidId: string; kind: "
   const [file, setFile] = useState<File | null>(null);
   return (
     <div className="space-y-3">
-      <label className="card flex cursor-pointer flex-col items-center gap-2 border-dashed p-6 text-center">
+      <label className="card flex cursor-pointer flex-col items-center gap-2 border-dashed p-6 text-center transition hover:border-sky-dark focus-within:border-sky-dark focus-within:ring-4 focus-within:ring-sky/30">
         <span className="text-4xl">📤</span>
         <span className="font-bold">{file ? file.name : label}</span>
         <span className="text-xs text-ink-soft">{kind === "file" ? "PDF, ZIP, PNG or JPG, under 4 MB" : "PNG, JPG or WebP, under 2 MB"}</span>
@@ -293,7 +296,7 @@ export function SharePlan({ kidId, shop, onDone }: Props) {
   );
   return (
     <div className="space-y-3">
-      <textarea className="input min-h-36" value={text} maxLength={500} onChange={(e) => setText(e.target.value)} />
+      <textarea className="input min-h-36" aria-label="Share message" value={text} maxLength={500} onChange={(e) => setText(e.target.value)} />
       <p className="text-sm text-ink-soft">Your grown-up adds the shop link and sends it to people you both trust. 💛</p>
       <button type="button" className="btn btn-leaf w-full" disabled={s.pending || !text.trim()} onClick={() => s.save({ sharePlan: text })}>Save my message</button>
       <Status {...s} />
