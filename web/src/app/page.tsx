@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { joinWaitlist } from "@/app/waitlist";
+import { ActionForm, Submit } from "@/components/forms";
 import { Logo, Mascot } from "@/components/Mascot";
 import { BRAND } from "@/lib/brand";
 import { currentFamily } from "@/lib/auth";
@@ -411,7 +413,27 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ d
           </p>
           <Link href={primary.href} className="btn btn-sun mt-8 text-lg">{primary.label}</Link>
           {!family && needsCode && (
-            <p className="mt-4 text-sm text-ink-soft">The pilot is invite-only for now. You&apos;ll need the invite code you were sent.</p>
+            <>
+              <p className="mt-4 text-sm text-ink-soft">The pilot is invite-only for now. You&apos;ll need the invite code you were sent.</p>
+              <div id="waitlist" className="card mx-auto mt-8 max-w-md scroll-mt-4 p-6 text-left">
+                <h3 className="text-xl font-bold">No invite yet? Join the waitlist</h3>
+                <p className="mt-1 text-sm text-ink-soft">We&apos;ll email you when spots open. Just your email, nothing about your kids.</p>
+                <ActionForm action={joinWaitlist} className="mt-4 space-y-3" success="You're on the list! We'll be in touch. 🦘" resetOnSuccess>
+                  <input name="email" type="email" required placeholder="you@example.com" className="input" aria-label="Your email" />
+                  <select name="country" className="input" defaultValue="US" aria-label="Country">
+                    <option value="US">United States</option>
+                    <option value="CA">Canada</option>
+                    <option value="AU">Australia</option>
+                    <option value="Other">Somewhere else</option>
+                  </select>
+                  <label className="flex gap-3 text-sm">
+                    <input type="checkbox" name="adult" required className="mt-0.5 h-5 w-5" />
+                    <span>I&apos;m a parent or guardian, 18 or older.</span>
+                  </label>
+                  <Submit>Join the waitlist</Submit>
+                </ActionForm>
+              </div>
+            </>
           )}
         </div>
       </section>

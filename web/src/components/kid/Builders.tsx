@@ -20,7 +20,7 @@ function useSave(kidId: string, onDone?: () => void) {
     start(async () => {
       setError(null);
       const res = await fn();
-      if (!res.ok) return setError(res.error ?? "Something went wrong.");
+      if (!res.ok) return setError(res.error ?? "Hmm, that didn't save. Try again?");
       setSaved(true);
       router.refresh();
       onDone?.();
@@ -35,9 +35,9 @@ function useSave(kidId: string, onDone?: () => void) {
 }
 
 function Status({ error, saved, pending }: { error: string | null; saved: boolean; pending: boolean }) {
-  if (pending) return <p className="text-sm font-bold text-ink-soft">Saving…</p>;
-  if (error) return <p className="rounded-xl bg-coral/10 px-3 py-2 text-sm font-bold text-coral-dark">{error}</p>;
-  if (saved) return <p className="text-sm font-bold text-leaf-dark">Saved ✓</p>;
+  if (pending) return <p className="text-sm font-bold text-ink-soft" role="status">Saving…</p>;
+  if (error) return <p className="rounded-xl bg-coral/10 px-3 py-2 text-sm font-bold text-ink" role="alert">⚠️ {error}</p>;
+  if (saved) return <p className="animate-pop inline-block rounded-full bg-leaf/15 px-3 py-1 text-sm font-bold text-ink" role="status">Saved ✓</p>;
   return null;
 }
 
@@ -199,7 +199,7 @@ export function ProductPrice({ kidId, shop, onDone }: Props) {
         <div className="card p-3"><p className="text-ink-soft">Payment fee</p><p className="text-lg font-bold">≈{formatMoney(fee, cur)}</p></div>
         <div className="card border-leaf p-3"><p className="text-ink-soft">You keep</p><p className="text-lg font-bold text-leaf-dark">≈{formatMoney(profit, cur)}</p></div>
       </div>
-      <p className="text-center text-sm text-ink-soft">Sell 10 and you keep about <b>{formatMoney(profit * 10, cur)}</b>! 🦘</p>
+      <p className="text-center text-sm text-ink-soft">If 10 people buy it, you keep about <b>{formatMoney(profit * 10, cur)}</b>.</p>
       <button type="button" className="btn btn-leaf w-full" disabled={s.pending} onClick={() => s.save({ priceCents: cents })}>Lock in my price</button>
       <Status {...s} />
     </div>
@@ -214,7 +214,7 @@ function Upload({ kidId, kind, accept, label, onDone }: { kidId: string; kind: "
       <label className="card flex cursor-pointer flex-col items-center gap-2 border-dashed p-6 text-center">
         <span className="text-4xl">📤</span>
         <span className="font-bold">{file ? file.name : label}</span>
-        <span className="text-xs text-ink-soft">{kind === "file" ? "PDF, ZIP, PNG or JPG, under 4 MB" : "PNG or JPG, under 2 MB"}</span>
+        <span className="text-xs text-ink-soft">{kind === "file" ? "PDF, ZIP, PNG or JPG, under 4 MB" : "PNG, JPG or WebP, under 2 MB"}</span>
         <input type="file" accept={accept} className="sr-only" onChange={(e) => setFile(e.target.files?.[0] ?? null)} />
       </label>
       <button type="button" className="btn btn-leaf w-full" disabled={s.pending || !file}
@@ -271,7 +271,7 @@ export function ProductCover({ kidId, shop, onDone }: Props) {
 export function RequestPublish({ kidId, shop, onDone }: Props) {
   const s = useSave(kidId, onDone);
   if (shop.status === "published")
-    return <p className="rounded-xl bg-leaf/10 p-4 font-bold text-leaf-dark">🎉 Your shop is LIVE! {onDone && <button type="button" className="underline" onClick={onDone}>Continue</button>}</p>;
+    return <p className="rounded-xl bg-leaf/10 p-4 font-bold text-leaf-dark">🎉 Your shop is live! {onDone && <button type="button" className="underline" onClick={onDone}>Continue</button>}</p>;
   return (
     <div className="space-y-3">
       {shop.status === "pending" && <p className="rounded-xl bg-sun/20 p-4 font-bold">⏳ Sent! Your grown-up will review it.</p>}
@@ -289,7 +289,7 @@ export function SharePlan({ kidId, shop, onDone }: Props) {
   const price = shop.product.priceCents ? formatMoney(shop.product.priceCents, shop.product.currency) : "";
   const [text, setText] = useState(
     shop.sharePlan ??
-      `Hi! I started my very own business called ${shop.name ?? "my shop"} ${shop.mascot ?? "🦘"}. ${shop.tagline ?? ""} My first product is ${shop.product.title ?? "ready"}${price ? ` for ${price}` : ""}. Would you check it out? Here's my shop:`,
+      `Hi! I started my very own business called ${shop.name ?? "my shop"} ${shop.mascot ?? "🦘"}.${shop.tagline ? ` ${shop.tagline}` : ""} My first product is ${shop.product.title ?? "ready"}${price ? ` for ${price}` : ""}. Want to take a look? Here's my shop:`,
   );
   return (
     <div className="space-y-3">

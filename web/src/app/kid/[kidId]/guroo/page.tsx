@@ -1,5 +1,6 @@
 import { KidHeader } from "@/components/kid/KidHeader";
 import { GurooChat } from "@/components/kid/GurooChat";
+import { Mascot } from "@/components/Mascot";
 import { requireKid } from "@/lib/auth";
 
 export const metadata = { title: "Ask Guroo" };
@@ -15,7 +16,13 @@ export default async function GurooPage({ params }: { params: Promise<{ kidId: s
         {kid.ai?.enabled ? (
           <GurooChat kidId={kid.id} />
         ) : (
-          <p className="card p-5 font-bold">Guroo is resting. Ask your grown-up to turn Guroo on in the parent zone (🔒). 🦘</p>
+          <div className="card flex flex-col items-center p-8 text-center">
+            <Mascot size={110} />
+            <p className="mt-4 font-display text-2xl font-bold">Guroo is resting 💤</p>
+            <p className="mt-2 max-w-sm text-ink-soft">
+              Ask your grown-up to turn Guroo on in the parent zone (🔒 at the top). Until then, your own ideas are the best ones!
+            </p>
+          </div>
         )}
       </main>
     </>

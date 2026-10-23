@@ -3,7 +3,7 @@
 import { randomUUID } from "node:crypto";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { AVATARS, COLORS, CURRENCIES, MASCOTS, type Currency } from "@/lib/brand";
+import { AVATARS, COLORS, CURRENCIES, MASCOTS, formatMoney, type Currency } from "@/lib/brand";
 import {
   checkPassword,
   endSession,
@@ -214,7 +214,8 @@ export async function updateShop(kidId: string, patch: ShopPatch): Promise<Actio
   }
   if (patch.priceCents !== undefined) {
     const cents = Math.round(patch.priceCents);
-    if (!(cents >= 100 && cents <= 2500)) return { ok: false, error: "Pick a price between $1 and $25." };
+    if (!(cents >= 100 && cents <= 1000))
+      return { ok: false, error: `Pick a price between ${formatMoney(100, product.currency)} and ${formatMoney(1000, product.currency)}.` };
     product.priceCents = cents;
   }
   if (patch.sharePlan !== undefined) {
@@ -239,7 +240,7 @@ export async function uploadShopFile(kidId: string, fd: FormData): Promise<Actio
   const file = fd.get("file");
   if (!(file instanceof File) || file.size === 0) return { ok: false, error: "Choose a file first." };
   if (!FILE_TYPES[kind].includes(file.type))
-    return { ok: false, error: kind === "cover" ? "Covers must be PNG or JPG." : "Upload a PDF, ZIP, PNG or JPG." };
+    return { ok: false, error: kind === "cover" ? "Covers can be PNG, JPG or WebP." : "Upload a PDF, ZIP, PNG or JPG." };
   if (file.size > MAX_BYTES[kind])
     return { ok: false, error: `That file is too big. Keep it under ${MAX_BYTES[kind] / 1024 / 1024} MB.` };
 
@@ -374,5 +375,14 @@ export async function setGurooEnabled(kidId: string, enabled: boolean) {
 export async function clearGurooChats(kidId: string) {
   const { family } = await requireKid(kidId);
   await clearTranscript(family.id, kidId);
+  revalidatePath(`/family/kid/${kidId}`);
+}
+
+// Safety alerts (Guroo crisis protocol): the parent marks a kid's alerts as seen once they've checked in.
+export async function markAlertsSeen(kidId: string) {
+  const { family } = await requireKid(kidId);
+  family.alerts = (family.alerts ?? []).filter((a) => a.kidId !== kidId);
+  await saveFamily(family);
+  revalidatePath("/family");
   revalidatePath(`/family/kid/${kidId}`);
 }

@@ -68,7 +68,7 @@ export function GurooChat({
 
   return (
     <div className={`card flex flex-col ${compact ? "max-h-[28rem]" : "min-h-[60vh]"}`}>
-      <div className="flex-1 space-y-3 overflow-y-auto p-4">
+      <div className="flex-1 space-y-3 overflow-y-auto p-4" aria-live="polite" aria-label="Chat with Guroo">
         {turns.length === 0 && (
           <div className="flex items-start gap-3">
             <Mascot size={48} className="shrink-0" />
@@ -87,7 +87,14 @@ export function GurooChat({
             <div key={i} className="flex items-start gap-3">
               <Mascot size={36} className="shrink-0" />
               <p className="max-w-[85%] whitespace-pre-line rounded-2xl rounded-tl-sm bg-cream px-4 py-3">
-                {t.text || <span className="animate-pulse text-ink-soft">Guroo is thinking…</span>}
+                {t.text || (
+                  <span className="inline-flex items-center gap-1 text-ink-soft" role="status">
+                    <span className="sr-only">Guroo is thinking…</span>
+                    <span className="h-2 w-2 animate-bounce rounded-full bg-ink-soft [animation-delay:-0.3s]" aria-hidden />
+                    <span className="h-2 w-2 animate-bounce rounded-full bg-ink-soft [animation-delay:-0.15s]" aria-hidden />
+                    <span className="h-2 w-2 animate-bounce rounded-full bg-ink-soft" aria-hidden />
+                  </span>
+                )}
               </p>
             </div>
           ),
@@ -97,7 +104,7 @@ export function GurooChat({
       {turns.length === 0 && !starter && (
         <div className="flex flex-wrap gap-2 px-4 pb-2">
           {IDEAS.map((idea) => (
-            <button key={idea} type="button" onClick={() => send(idea)} className="rounded-full border-2 border-line bg-white px-3 py-1.5 text-sm font-bold hover:border-sky">
+            <button key={idea} type="button" onClick={() => send(idea)} className="min-h-11 rounded-full border-2 border-line bg-white px-3 py-2 text-left text-sm font-bold hover:border-sky-dark">
               {idea}
             </button>
           ))}
@@ -110,9 +117,10 @@ export function GurooChat({
           send(input);
         }}
       >
-        {warn && <p className="mb-2 text-sm font-bold text-coral-dark">That looks like {warn}. Keep personal info secret, even from Guroo!</p>}
+        {warn && <p className="mb-2 text-sm font-bold text-coral-dark" role="alert">That looks like {warn}. Keep personal info secret, even from Guroo!</p>}
         <div className="flex gap-2">
           <textarea
+            aria-label="Message to Guroo"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => {
@@ -126,7 +134,7 @@ export function GurooChat({
             placeholder="Ask Guroo anything about your business…"
             className="input resize-none"
           />
-          <button className="btn btn-sun shrink-0" disabled={busy || !input.trim() || Boolean(warn)}>
+          <button className="btn btn-sun shrink-0 self-end" disabled={busy || !input.trim() || Boolean(warn)}>
             {busy ? "…" : "Send"}
           </button>
         </div>
