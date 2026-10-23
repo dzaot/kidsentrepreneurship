@@ -2,8 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   experimental: {
-    // Product files are capped at 4 MB; Netlify functions accept up to 6 MB.
-    serverActions: { bodySizeLimit: "5mb" },
+    // Product files are capped at 4 MB; Vercel functions accept request bodies up to 4.5 MB.
+    serverActions: { bodySizeLimit: "4.5mb" },
   },
 };
 

@@ -13,23 +13,29 @@ Duolingo-style web app where kids aged 8 to 14 learn entrepreneurship in 5 minut
 
 ## App
 
-The app lives in [`web/`](web) (Next.js 15, Tailwind 4, Netlify Blobs, Anthropic SDK).
+The app lives in [`web/`](web) (Next.js 15, Tailwind 4, Postgres via Neon, Anthropic SDK).
 
 ```bash
 cd web
 npm install
-npm run dev        # http://localhost:3000, data is stored in web/.data
+npm run dev        # http://localhost:3000; without DATABASE_URL data is stored in web/.data
 npm run typecheck
 npm run build
 ```
 
-Environment variables (set in Netlify):
+Environment variables (set in Vercel):
 
 | Name | Purpose |
 |---|---|
+| `DATABASE_URL` | Postgres connection string. Added automatically by the Neon integration on Vercel (`POSTGRES_URL` also works). Tables are created on first use. |
 | `SESSION_SECRET` | Signs parent login cookies. Required in production. |
 | `PILOT_CODE` | Optional invite code required to sign up. |
 | `ANTHROPIC_API_KEY` | Enables Guroo, the AI coach (Claude). Without it the app works and Guroo shows as unavailable. |
 | `ANTHROPIC_MODEL` | Optional. Defaults to `claude-opus-5-5`. |
 
-Deploys run on Netlify with `netlify.toml` at the repo root (base directory `web`).
+## Deploy on Vercel
+
+1. In Vercel, **Add New > Project**, import `dzaot/kidsentrepreneurship`, and set **Root Directory** to `web` (framework: Next.js, detected automatically).
+2. In the project, open **Storage > Create Database > Neon (Postgres)** and connect it to the project. This adds `DATABASE_URL`.
+3. Add `SESSION_SECRET` (a long random string), `PILOT_CODE`, and `ANTHROPIC_API_KEY` under **Settings > Environment Variables**.
+4. Deploy. Pushes to the production branch redeploy automatically.

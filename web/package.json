@@ -9,8 +9,8 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.1.0",
-    "@netlify/blobs": "^11.1.6",
     "next": "^15.5.28",
+    "postgres": "^3.4.9",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "server-only": "^0.0.1"
