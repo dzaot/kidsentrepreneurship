@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brand Options</title>
+<meta name="description" content="Cinco opciones de marca para la app de emprendimiento para niños, lado a lado.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=DM+Sans:wght@400;500;700&family=Fredoka:wght@500;600;700&family=Lilita+One&family=Nunito:wght@400;600;700;800&family=Sniglet:wght@400;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Page tokens (light) */
+  --page-bg: #FBF7F0;
+  --page-bg-2: #F3ECE0;
+  --surface: #FFFFFF;
+  --surface-2: #F7F3EC;
+  --text: #1E2233;
+  --text-muted: #5D6377;
+  --border: #E7DFD2;
+  --shadow: 0 1px 2px rgba(30,34,51,.06), 0 12px 32px -12px rgba(30,34,51,.18);
+  --chip: #EFE8DC;
+  --good: #1F9D61;
+  --mid: #C98400;
+  --good-bg: #E3F6EC;
+  --mid-bg: #FFF1D6;
+  --rec: #1F2A44;
+
+  /* Brand 1: Honeystand */
+  --hs-honey: #FFC531;
+  --hs-ink: #1F2A44;
+  --hs-leaf: #2BB673;
+  --hs-coral: #FF6B5B;
+  --hs-cream: #FFF8EC;
+
+  /* Brand 2: Venturoo */
+  --vr-sunset: #FF8A3D;
+  --vr-navy: #1B2340;
+  --vr-eucalyptus: #2FA58C;
+  --vr-sky: #5BC0EB;
+  --vr-sand: #FFF1DE;
+
+  /* Brand 3: Pocketeer */
+  --pk-fox: #FF7A45;
+  --pk-plum: #3F2464;
+  --pk-mint: #3FD0A0;
+  --pk-butter: #FFE07A;
+  --pk-cream: #FFF6EF;
+
+  /* Brand 4: Hatchly */
+  --ht-sunny: #FFD23F;
+  --ht-sky: #2F7BEA;
+  --ht-deep: #12355B;
+  --ht-peach: #FF9F6B;
+  --ht-shell: #FFFDF4;
+
+  /* Brand 5: Sparkstand */
+  --sp-violet: #6C4BFF;
+  --sp-midnight: #16122F;
+  --sp-lime: #C6F25A;
+  --sp-pink: #FF5FA2;
+  --sp-mist: #F4F1FF;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --page-bg: #11131B;
+    --page-bg-2: #171A25;
+    --surface: #1B1F2B;
+    --surface-2: #232838;
+    --text: #F2EFE8;
+    --text-muted: #A6ABBC;
+    --border: #2E3446;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 14px 36px -14px rgba(0,0,0,.6);
+    --chip: #262B3B;
+    --good: #5DD69A;
+    --mid: #FFC65C;
+    --good-bg: #173326;
+    --mid-bg: #3A2D12;
+    --rec: #FFC531;
+  }
+}
+:root[data-theme="dark"] {
+  --page-bg: #11131B;
+  --page-bg-2: #171A25;
+  --surface: #1B1F2B;
+  --surface-2: #232838;
+  --text: #F2EFE8;
+  --text-muted: #A6ABBC;
+  --border: #2E3446;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 14px 36px -14px rgba(0,0,0,.6);
+  --chip: #262B3B;
+  --good: #5DD69A;
+  --mid: #FFC65C;
+  --good-bg: #173326;
+  --mid-bg: #3A2D12;
+  --rec: #FFC531;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--page-bg);
+  background-image: radial-gradient(1200px 500px at 10% -10%, var(--page-bg-2), transparent 70%);
+  color: var(--text);
+  font-family: "Nunito", system-ui, sans-serif;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+.wrap { max-width: 1720px; margin: 0 auto; padding: 0 16px; }
+
+/* Header */
+header.top { padding: 44px 0 24px; }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-weight: 800; font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--text-muted);
+}
+.eyebrow i { width: 8px; height: 8px; border-radius: 50%; background: var(--hs-honey); display: inline-block; }
+h1 {
+  font-family: "Fredoka", sans-serif; font-weight: 700;
+  font-size: clamp(34px, 5vw, 56px); line-height: 1.05; margin: 10px 0 12px; letter-spacing: -.01em;
+}
+.lede { max-width: 760px; color: var(--text-muted); font-size: 17px; margin: 0; }
+.lede strong { color: var(--text); }
+.jump { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.jump a {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 7px 12px 7px 8px; border-radius: 999px; background: var(--surface);
+  border: 1px solid var(--border); color: var(--text); text-decoration: none; font-weight: 700; font-size: 14px;
+}
+.jump a span.dot { width: 18px; height: 18px; border-radius: 50%; }
+.jump a:hover { border-color: var(--text-muted); }
+.jump a em { font-style: normal; font-size: 11px; font-weight: 800; color: var(--rec); text-transform: uppercase; letter-spacing: .06em; }
+
+/* Grid */
+.grid {
+  display: grid; gap: 18px; padding: 8px 0 32px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 310px), 1fr));
+  align-items: start;
+}
+
+/* Card */
+.brand {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 24px;
+  box-shadow: var(--shadow); overflow: hidden; position: relative; min-width: 0;
+  scroll-margin-top: 16px;
+}
+.brand.rec { outline: 3px solid var(--rec); outline-offset: 0; }
+.ribbon {
+  position: absolute; top: 14px; left: 14px; z-index: 2;
+  background: var(--hs-ink); color: var(--hs-honey);
+  font-family: "Fredoka", sans-serif; font-weight: 600; font-size: 12px; letter-spacing: .04em;
+  padding: 5px 10px; border-radius: 999px; text-transform: uppercase;
+}
+.num {
+  position: absolute; top: 14px; right: 14px; z-index: 2;
+  width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
+  background: rgba(255,255,255,.75); color: var(--b-ink); font-weight: 800; font-size: 14px;
+}
+.stage {
+  background: var(--b-stage); padding: 30px 20px 18px; text-align: center; position: relative;
+}
+.stage::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(circle at 1px 1px, var(--b-dots) 1.2px, transparent 0);
+  background-size: 18px 18px; opacity: .5;
+  -webkit-mask-image: linear-gradient(to bottom, #000, transparent 85%);
+          mask-image: linear-gradient(to bottom, #000, transparent 85%);
+}
+.mascot { width: 132px; height: 132px; display: block; margin: 0 auto 6px; position: relative; z-index: 1; animation: bob 4s ease-in-out infinite; }
+.brand:nth-child(2) .mascot { animation-delay: -.8s; }
+.brand:nth-child(3) .mascot { animation-delay: -1.6s; }
+.brand:nth-child(4) .mascot { animation-delay: -2.4s; }
+.brand:nth-child(5) .mascot { animation-delay: -3.2s; }
+@keyframes bob { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-5px) } }
+@media (prefers-reduced-motion: reduce) { .mascot { animation: none; } }
+.wordmark { width: 100%; max-width: 250px; height: auto; display: block; margin: 0 auto; position: relative; z-index: 1; }
+.tagline {
+  font-family: var(--b-font-h); color: var(--b-ink); font-size: 17px; line-height: 1.25;
+  margin: 10px 0 0; position: relative; z-index: 1;
+}
+.mascot-name {
+  display: inline-block; margin-top: 10px; position: relative; z-index: 1;
+  font-size: 12px; font-weight: 700; color: var(--b-ink); opacity: .75;
+}
+
+.body { padding: 18px 18px 20px; display: grid; gap: 18px; }
+.label {
+  font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--text-muted); margin: 0 0 8px;
+}
+
+/* Palette */
+.swatches { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+.sw { min-width: 0; }
+.sw b {
+  display: block; height: 44px; border-radius: 12px; background: var(--c);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.08);
+}
+.sw span { display: block; font-size: 10.5px; font-weight: 700; margin-top: 5px; font-family: ui-monospace, "SF Mono", Menlo, monospace; color: var(--text); overflow-wrap: anywhere; }
+.sw small { display: block; font-size: 10.5px; color: var(--text-muted); line-height: 1.2; }
+
+/* Type */
+.type { display: flex; gap: 14px; align-items: center; background: var(--surface-2); border-radius: 16px; padding: 12px 14px; }
+.type .aa { font-family: var(--b-font-h); font-size: 46px; line-height: 1; color: var(--text); flex: none; }
+.type .meta { min-width: 0; }
+.type .meta strong { display: block; font-size: 13px; }
+.type .meta p { margin: 2px 0 0; font-family: var(--b-font-b); font-size: 14px; color: var(--text-muted); }
+.type .meta .h { display: block; font-family: var(--b-font-h); font-size: 18px; color: var(--text); line-height: 1.2; }
+
+/* App mock */
+.mock {
+  background: var(--b-stage); border-radius: 20px; padding: 14px; display: grid; gap: 12px;
+  font-family: var(--b-font-b); color: var(--b-ink);
+}
+.mock-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.streak {
+  display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: 13px;
+  background: #fff; padding: 5px 10px; border-radius: 999px; box-shadow: 0 1px 0 rgba(0,0,0,.06);
+}
+.streak svg { width: 14px; height: 14px; }
+.xp { font-size: 12px; font-weight: 700; opacity: .75; }
+.progress { height: 10px; background: rgba(255,255,255,.85); border-radius: 999px; overflow: hidden; }
+.progress i { display: block; height: 100%; width: 62%; background: var(--b-a1); border-radius: 999px; }
+.btn {
+  appearance: none; border: 0; cursor: pointer; width: 100%;
+  font-family: var(--b-font-h); font-size: 17px; letter-spacing: .01em;
+  color: var(--b-on-p); background: var(--b-p);
+  padding: 13px 16px; border-radius: 16px;
+  box-shadow: 0 4px 0 var(--b-p-dark);
+  transition: transform .08s ease, box-shadow .08s ease;
+}
+.btn:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--b-p-dark); }
+.btn:focus-visible { outline: 3px solid var(--b-a1); outline-offset: 3px; }
+
+/* Shop card */
+.shop {
+  background: #fff; border-radius: 16px; overflow: hidden;
+  box-shadow: 0 1px 0 rgba(0,0,0,.05), 0 8px 20px -10px rgba(0,0,0,.25);
+  color: var(--b-ink);
+}
+.shop-head { display: flex; align-items: center; gap: 10px; padding: 10px 12px; }
+.avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--b-stage); flex: none; display: grid; place-items: center; overflow: hidden; }
+.avatar svg { width: 34px; height: 34px; }
+.shop-head .who { min-width: 0; line-height: 1.2; }
+.shop-head .who b { display: block; font-family: var(--b-font-h); font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.shop-head .who small { font-size: 11.5px; opacity: .7; display: inline-flex; align-items: center; gap: 4px; }
+.shop-head .who small svg { width: 11px; height: 11px; }
+.shop-art { height: 112px; background: var(--b-art); position: relative; display: grid; place-items: center; }
+.shop-art svg { width: 100%; height: 100%; }
+.badge {
+  position: absolute; top: 8px; right: 8px; font-family: var(--b-font-h); font-size: 12px;
+  background: var(--b-a2); color: var(--b-on-a2); padding: 4px 9px; border-radius: 999px;
+  transform: rotate(4deg);
+}
+.shop-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 12px 12px; }
+.shop-foot .t { min-width: 0; }
+.shop-foot .t b { display: block; font-size: 14px; font-family: var(--b-font-b); font-weight: 700; }
+.shop-foot .t span { font-size: 12px; opacity: .7; }
+.buy {
+  font-family: var(--b-font-h); font-size: 14px; color: var(--b-on-p); background: var(--b-p);
+  border: 0; border-radius: 12px; padding: 8px 14px; box-shadow: 0 3px 0 var(--b-p-dark); flex: none; cursor: pointer;
+}
+
+/* Facts */
+.facts { display: grid; gap: 10px; font-size: 14px; }
+.facts p { margin: 0; color: var(--text-muted); }
+.facts p strong { color: var(--text); }
+.pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.pill {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 12px; font-weight: 600;
+  padding: 4px 8px; border-radius: 8px; background: var(--chip); color: var(--text);
+}
+.risk { display: inline-flex; align-items: center; gap: 6px; font-weight: 800; font-size: 13px; padding: 4px 10px; border-radius: 999px; }
+.risk::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.risk.low { color: var(--good); background: var(--good-bg); }
+.risk.mid { color: var(--mid); background: var(--mid-bg); }
+.facts ul { margin: 0; padding-left: 18px; color: var(--text-muted); }
+.facts li { margin: 2px 0; }
+.facts a { color: var(--text); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+
+/* Brand mappings */
+.b-honey {
+  --b-p: var(--hs-honey); --b-p-dark: #D99A00; --b-on-p: var(--hs-ink);
+  --b-ink: var(--hs-ink); --b-a1: var(--hs-leaf); --b-a2: var(--hs-coral); --b-on-a2: #fff;
+  --b-stage: var(--hs-cream); --b-dots: rgba(31,42,68,.18);
+  --b-art: linear-gradient(135deg, #FFE7A3, #FFD1C9);
+  --b-font-h: "Fredoka", sans-serif; --b-font-b: "Nunito", sans-serif;
+}
+.b-roo {
+  --b-p: var(--vr-sunset); --b-p-dark: #D9621A; --b-on-p: var(--vr-navy);
+  --b-ink: var(--vr-navy); --b-a1: var(--vr-eucalyptus); --b-a2: var(--vr-sky); --b-on-a2: var(--vr-navy);
+  --b-stage: var(--vr-sand); --b-dots: rgba(27,35,64,.16);
+  --b-art: linear-gradient(135deg, #BFE6F5, #FFD3B0);
+  --b-font-h: "Baloo 2", sans-serif; --b-font-b: "Nunito", sans-serif;
+}
+.b-fox {
+  --b-p: var(--pk-plum); --b-p-dark: #24123F; --b-on-p: #fff;
+  --b-ink: var(--pk-plum); --b-a1: var(--pk-fox); --b-a2: var(--pk-mint); --b-on-a2: var(--pk-plum);
+  --b-stage: var(--pk-cream); --b-dots: rgba(63,36,100,.16);
+  --b-art: linear-gradient(135deg, #FFE9A8, #BDF0DD);
+  --b-font-h: "Lilita One", sans-serif; --b-font-b: "DM Sans", sans-serif;
+}
+.b-hatch {
+  --b-p: var(--ht-sky); --b-p-dark: #1A57B3; --b-on-p: #fff;
+  --b-ink: var(--ht-deep); --b-a1: var(--ht-sunny); --b-a2: var(--ht-peach); --b-on-a2: var(--ht-deep);
+  --b-stage: var(--ht-shell); --b-dots: rgba(18,53,91,.15);
+  --b-art: linear-gradient(135deg, #D6E6FF, #FFF0B8);
+  --b-font-h: "Sniglet", sans-serif; --b-font-b: "Nunito", sans-serif;
+}
+.b-spark {
+  --b-p: var(--sp-violet); --b-p-dark: #4227C9; --b-on-p: #fff;
+  --b-ink: var(--sp-midnight); --b-a1: var(--sp-lime); --b-a2: var(--sp-pink); --b-on-a2: #fff;
+  --b-stage: var(--sp-mist); --b-dots: rgba(22,18,47,.14);
+  --b-art: linear-gradient(135deg, #2A2160, #6C4BFF);
+  --b-font-h: "Space Grotesk", sans-serif; --b-font-b: "DM Sans", sans-serif;
+}
+.b-hatch .tagline, .b-hatch .btn, .b-hatch .buy, .b-hatch .badge, .b-hatch .shop-head .who b { font-weight: 800; }
+.b-roo .tagline, .b-roo .btn, .b-roo .buy, .b-roo .badge, .b-roo .shop-head .who b, .b-roo .type .aa, .b-roo .type .h { font-weight: 800; }
+.b-honey .tagline, .b-honey .btn, .b-honey .buy, .b-honey .badge, .b-honey .shop-head .who b, .b-honey .type .aa, .b-honey .type .h { font-weight: 600; }
+.b-spark .tagline, .b-spark .btn, .b-spark .buy, .b-spark .badge, .b-spark .shop-head .who b, .b-spark .type .aa, .b-spark .type .h { font-weight: 700; letter-spacing: -.01em; }
+
+/* Bottom sections */
+section.extra { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); padding-bottom: 48px; }
+.panel { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 20px; box-shadow: var(--shadow); min-width: 0; }
+.panel h2 { font-family: "Fredoka", sans-serif; font-weight: 600; font-size: 22px; margin: 0 0 10px; }
+.panel p, .panel li { color: var(--text-muted); font-size: 15px; }
+.panel p strong, .panel li strong { color: var(--text); }
+.panel ul { padding-left: 18px; margin: 0; }
+.panel a { color: var(--text); }
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; min-width: 460px; }
+th, td { text-align: left; padding: 8px 8px; border-bottom: 1px solid var(--border); }
+th { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); }
+td:first-child { font-weight: 700; }
+footer { color: var(--text-muted); font-size: 13px; padding: 0 0 40px; }
+</style>
+</head>
+<body>
+
+<!-- Mascot sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <clipPath id="bee-clip"><circle cx="60" cy="70" r="33"/></clipPath>
+    <radialGradient id="glo" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#C6F25A" stop-opacity=".95"/>
+      <stop offset=".55" stop-color="#C6F25A" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#C6F25A" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Bee: Bizzy -->
+  <symbol id="m-bee" viewBox="0 0 120 120">
+    <ellipse cx="60" cy="108" rx="26" ry="4" fill="#1F2A44" opacity=".12"/>
+    <g stroke="#1F2A44" stroke-width="3" stroke-linejoin="round">
+      <ellipse cx="38" cy="36" rx="14" ry="20" transform="rotate(-28 38 36)" fill="#FFFFFF" fill-opacity=".9"/>
+      <ellipse cx="82" cy="36" rx="14" ry="20" transform="rotate(28 82 36)" fill="#FFFFFF" fill-opacity=".9"/>
+    </g>
+    <path d="M50 40 Q44 22 34 20 M70 40 Q76 22 86 20" stroke="#1F2A44" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <circle cx="34" cy="20" r="4.5" fill="#1F2A44"/><circle cx="86" cy="20" r="4.5" fill="#1F2A44"/>
+    <circle cx="60" cy="70" r="33" fill="#FFC531"/>
+    <g clip-path="url(#bee-clip)" fill="#1F2A44">
+      <rect x="20" y="84" width="80" height="7"/>
+      <rect x="20" y="97" width="80" height="7"/>
+    </g>
+    <circle cx="60" cy="70" r="33" fill="none" stroke="#1F2A44" stroke-width="3"/>
+    <circle cx="48" cy="64" r="5" fill="#1F2A44"/><circle cx="72" cy="64" r="5" fill="#1F2A44"/>
+    <circle cx="49.8" cy="62.2" r="1.8" fill="#fff"/><circle cx="73.8" cy="62.2" r="1.8" fill="#fff"/>
+    <ellipse cx="39" cy="74" rx="5" ry="3" fill="#FF6B5B" opacity=".75"/>
+    <ellipse cx="81" cy="74" rx="5" ry="3" fill="#FF6B5B" opacity=".75"/>
+    <path d="M53 73 Q60 80 67 73" stroke="#1F2A44" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- Kangaroo: Roo -->
+  <symbol id="m-roo" viewBox="0 0 120 120">
+    <ellipse cx="60" cy="112" rx="28" ry="4" fill="#1B2340" opacity=".12"/>
+    <g stroke="#1B2340" stroke-width="3" stroke-linejoin="round">
+      <ellipse cx="44" cy="22" rx="8" ry="18" transform="rotate(-16 44 22)" fill="#E9894B"/>
+      <ellipse cx="76" cy="22" rx="8" ry="18" transform="rotate(16 76 22)" fill="#E9894B"/>
+      <ellipse cx="60" cy="88" rx="27" ry="23" fill="#E9894B"/>
+    </g>
+    <ellipse cx="44" cy="23" rx="3.5" ry="11" transform="rotate(-16 44 23)" fill="#FFC7A1"/>
+    <ellipse cx="76" cy="23" rx="3.5" ry="11" transform="rotate(16 76 23)" fill="#FFC7A1"/>
+    <ellipse cx="60" cy="91" rx="18" ry="17" fill="#FFE1C4"/>
+    <!-- pouch shop -->
+    <path d="M45 92 L75 92 L73 104 Q60 110 47 104 Z" fill="#FFD2AA" stroke="#1B2340" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M44 86 h32 v6 q-4 4 -8 0 q-4 4 -8 0 q-4 4 -8 0 q-4 4 -8 0 z" fill="#2FA58C" stroke="#1B2340" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M52 86 v6 M60 86 v6 M68 86 v6" stroke="#FFFFFF" stroke-width="3"/>
+    <rect x="55" y="96" width="10" height="7" rx="2" fill="#5BC0EB" stroke="#1B2340" stroke-width="2"/>
+    <ellipse cx="60" cy="50" rx="25" ry="22" fill="#E9894B" stroke="#1B2340" stroke-width="3"/>
+    <ellipse cx="60" cy="59" rx="13" ry="9.5" fill="#FFE1C4"/>
+    <ellipse cx="60" cy="54" rx="4.5" ry="3.2" fill="#1B2340"/>
+    <path d="M56 61 Q60 65 64 61" stroke="#1B2340" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <circle cx="50" cy="46" r="4.2" fill="#1B2340"/><circle cx="70" cy="46" r="4.2" fill="#1B2340"/>
+    <circle cx="51.5" cy="44.5" r="1.5" fill="#fff"/><circle cx="71.5" cy="44.5" r="1.5" fill="#fff"/>
+    <ellipse cx="42" cy="56" rx="4" ry="2.6" fill="#FF6B5B" opacity=".55"/>
+    <ellipse cx="78" cy="56" rx="4" ry="2.6" fill="#FF6B5B" opacity=".55"/>
+  </symbol>
+
+  <!-- Fox: Pip -->
+  <symbol id="m-fox" viewBox="0 0 120 120">
+    <ellipse cx="60" cy="110" rx="26" ry="4" fill="#3F2464" opacity=".12"/>
+    <g stroke="#3F2464" stroke-width="3" stroke-linejoin="round">
+      <path d="M30 50 L36 14 L60 36 Z" fill="#FF7A45"/>
+      <path d="M90 50 L84 14 L60 36 Z" fill="#FF7A45"/>
+    </g>
+    <path d="M37 40 L39 23 L50 34 Z M83 40 L81 23 L70 34 Z" fill="#3F2464"/>
+    <path d="M20 54 Q26 32 60 32 Q94 32 100 54 Q96 82 60 102 Q24 82 20 54 Z" fill="#FF7A45" stroke="#3F2464" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M27 62 Q46 62 60 90 Q74 62 93 62 Q86 86 60 100 Q34 86 27 62 Z" fill="#FFFFFF"/>
+    <path d="M20 54 Q26 32 60 32 Q94 32 100 54 Q96 82 60 102 Q24 82 20 54 Z" fill="none" stroke="#3F2464" stroke-width="3" stroke-linejoin="round"/>
+    <circle cx="45" cy="58" r="4.8" fill="#3F2464"/><circle cx="75" cy="58" r="4.8" fill="#3F2464"/>
+    <circle cx="46.6" cy="56.4" r="1.7" fill="#fff"/><circle cx="76.6" cy="56.4" r="1.7" fill="#fff"/>
+    <path d="M38 50 Q45 46 51 50 M69 50 Q75 46 82 50" stroke="#3F2464" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".55"/>
+    <ellipse cx="60" cy="86" rx="5.5" ry="4.2" fill="#3F2464"/>
+    <path d="M55 93 Q60 97 65 93" stroke="#3F2464" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <ellipse cx="36" cy="70" rx="4.5" ry="2.8" fill="#FF7A45" opacity=".6"/>
+    <ellipse cx="84" cy="70" rx="4.5" ry="2.8" fill="#FF7A45" opacity=".6"/>
+    <!-- sticker star on ear -->
+    <path d="M90 14 l3.2 6.4 7 1 -5.1 5 1.2 7 -6.3 -3.3 -6.3 3.3 1.2 -7 -5.1 -5 7 -1 z" fill="#FFE07A" stroke="#3F2464" stroke-width="2.2" stroke-linejoin="round"/>
+  </symbol>
+
+  <!-- Chick in egg: Nugget -->
+  <symbol id="m-chick" viewBox="0 0 120 120">
+    <ellipse cx="60" cy="113" rx="28" ry="4" fill="#12355B" opacity=".12"/>
+    <path d="M55 28 Q55 14 63 20 Q66 10 71 24" stroke="#12355B" stroke-width="3" fill="#FFD23F" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="60" cy="52" r="27" fill="#FFD23F" stroke="#12355B" stroke-width="3"/>
+    <circle cx="50" cy="49" r="4.4" fill="#12355B"/><circle cx="70" cy="49" r="4.4" fill="#12355B"/>
+    <circle cx="51.6" cy="47.4" r="1.6" fill="#fff"/><circle cx="71.6" cy="47.4" r="1.6" fill="#fff"/>
+    <path d="M54 57 L66 57 L60 65 Z" fill="#FF9F6B" stroke="#12355B" stroke-width="2.4" stroke-linejoin="round"/>
+    <ellipse cx="41" cy="58" rx="4.5" ry="2.8" fill="#FF9F6B" opacity=".7"/>
+    <ellipse cx="79" cy="58" rx="4.5" ry="2.8" fill="#FF9F6B" opacity=".7"/>
+    <path d="M20 68 L30 60 L39 70 L49 60 L60 70 L71 60 L81 70 L90 60 L100 68 Q101 110 60 110 Q19 110 20 68 Z" fill="#FFFFFF" stroke="#12355B" stroke-width="3" stroke-linejoin="round"/>
+    <circle cx="42" cy="88" r="4" fill="#D6E6FF"/><circle cx="74" cy="96" r="5" fill="#D6E6FF"/><circle cx="80" cy="80" r="3" fill="#FFE59A"/>
+    <ellipse cx="30" cy="70" rx="6" ry="4" transform="rotate(-30 30 70)" fill="#FFD23F" stroke="#12355B" stroke-width="2.4"/>
+    <ellipse cx="90" cy="70" rx="6" ry="4" transform="rotate(30 90 70)" fill="#FFD23F" stroke="#12355B" stroke-width="2.4"/>
+  </symbol>
+
+  <!-- Firefly: Glo -->
+  <symbol id="m-fly" viewBox="0 0 120 120">
+    <circle cx="60" cy="86" r="34" fill="url(#glo)"/>
+    <g stroke="#16122F" stroke-width="3" stroke-linejoin="round">
+      <ellipse cx="36" cy="58" rx="13" ry="20" transform="rotate(-38 36 58)" fill="#FFFFFF" fill-opacity=".85"/>
+      <ellipse cx="84" cy="58" rx="13" ry="20" transform="rotate(38 84 58)" fill="#FFFFFF" fill-opacity=".85"/>
+      <ellipse cx="60" cy="86" rx="17" ry="19" fill="#C6F25A"/>
+    </g>
+    <path d="M44 80 Q60 86 76 80" stroke="#16122F" stroke-width="3" fill="none"/>
+    <path d="M50 34 Q44 16 34 16 M70 34 Q76 16 86 16" stroke="#16122F" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <circle cx="34" cy="16" r="4.5" fill="#C6F25A" stroke="#16122F" stroke-width="2.4"/>
+    <circle cx="86" cy="16" r="4.5" fill="#C6F25A" stroke="#16122F" stroke-width="2.4"/>
+    <circle cx="60" cy="54" r="24" fill="#6C4BFF" stroke="#16122F" stroke-width="3"/>
+    <circle cx="50" cy="51" r="7.5" fill="#fff"/><circle cx="70" cy="51" r="7.5" fill="#fff"/>
+    <circle cx="51.5" cy="52" r="3.8" fill="#16122F"/><circle cx="71.5" cy="52" r="3.8" fill="#16122F"/>
+    <circle cx="52.8" cy="50.6" r="1.3" fill="#fff"/><circle cx="72.8" cy="50.6" r="1.3" fill="#fff"/>
+    <path d="M54 63 Q60 68 66 63" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="42" cy="62" rx="4" ry="2.5" fill="#FF5FA2" opacity=".8"/>
+    <ellipse cx="78" cy="62" rx="4" ry="2.5" fill="#FF5FA2" opacity=".8"/>
+    <path d="M97 84 l2 4 4 2 -4 2 -2 4 -2 -4 -4 -2 4 -2z M22 96 l1.5 3 3 1.5 -3 1.5 -1.5 3 -1.5 -3 -3 -1.5 3 -1.5z" fill="#C6F25A"/>
+  </symbol>
+
+  <symbol id="i-flame" viewBox="0 0 16 16"><path d="M8 1c1 3 5 4.5 5 8.5A5 5 0 0 1 3 9.5C3 7 5 6 5 4c1.3 1 1.8 2 2 3 .6-1.5 1-3.5 1-6z" fill="#FF6B3D"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 16 16"><rect x="3" y="7" width="10" height="8" rx="2" fill="currentColor"/><path d="M5 7V5a3 3 0 0 1 6 0v2" stroke="currentColor" stroke-width="2" fill="none"/></symbol>
+</svg>
+
+<div class="wrap">
+  <header class="top">
+    <span class="eyebrow"><i></i>Identidad de marca · Octubre 2026</span>
+    <h1>Brand Options</h1>
+    <p class="lede">Cinco caminos de marca para la app de emprendimiento para niños de 8 a 14 años. Cada tarjeta muestra el logo, la mascota, la paleta, la tipografía y cómo se vería dentro de la app. <strong>Recomendación: Honeystand</strong>, que conserva la abeja y los colores del MVP. "Bizzy" queda como nombre de la mascota, no de la marca, por conflictos en la misma categoría.</p>
+    <nav class="jump" aria-label="Ir a una opción">
+      <a href="#honeystand"><span class="dot" style="background:var(--hs-honey)"></span>Honeystand <em>Recomendada</em></a>
+      <a href="#venturoo"><span class="dot" style="background:var(--vr-sunset)"></span>Venturoo</a>
+      <a href="#pocketeer"><span class="dot" style="background:var(--pk-fox)"></span>Pocketeer</a>
+      <a href="#hatchly"><span class="dot" style="background:var(--ht-sky)"></span>Hatchly</a>
+      <a href="#sparkstand"><span class="dot" style="background:var(--sp-violet)"></span>Sparkstand</a>
+    </nav>
+  </header>
+
+  <main class="grid">
+
+    <!-- 1. HONEYSTAND -->
+    <article class="brand b-honey rec" id="honeystand">
+      <span class="ribbon">Recomendada</span>
+      <span class="num">1</span>
+      <div class="stage">
+        <svg class="mascot" role="img" aria-label="Bizzy, la abeja"><use href="#m-bee"/></svg>
+        <svg class="wordmark" viewBox="0 0 260 60" role="img" aria-label="Honeystand">
+          <g transform="translate(6 10)">
+            <path d="M20 0 L37.3 10 L37.3 30 L20 40 L2.7 30 L2.7 10 Z" fill="#FFC531" stroke="#1F2A44" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M10 16 h20 v4 q-2.5 3 -5 0 q-2.5 3 -5 0 q-2.5 3 -5 0 q-2.5 3 -5 0 z" fill="#FF6B5B"/>
+            <rect x="12" y="22" width="16" height="9" rx="1.5" fill="#FFF8EC" stroke="#1F2A44" stroke-width="2"/>
+          </g>
+          <text x="52" y="43" font-family="Fredoka, sans-serif" font-weight="700" font-size="34" fill="#1F2A44" textLength="200" lengthAdjust="spacingAndGlyphs">honey<tspan fill="#E0A100">stand</tspan></text>
+        </svg>
+        <p class="tagline">Your first shop, one buzz at a time.</p>
+        <span class="mascot-name">Mascota: Bizzy, la abeja tendera</span>
+      </div>
+      <div class="body">
+        <div>
+          <p class="label">Paleta</p>
+          <div class="swatches">
+            <div class="sw"><b style="--c:var(--hs-honey)"></b><span>#FFC531</span><small>Honey</small></div>
+            <div class="sw"><b style="--c:var(--hs-ink)"></b><span>#1F2A44</span><small>Ink</small></div>
+            <div class="sw"><b style="--c:var(--hs-leaf)"></b><span>#2BB673</span><small>Leaf</small></div>
+            <div class="sw"><b style="--c:var(--hs-coral)"></b><span>#FF6B5B</span><small>Coral</small></div>
+            <div class="sw"><b style="--c:var(--hs-cream)"></b><span>#FFF8EC</span><small>Cream</small></div>
+          </div>
+        </div>
+        <div>
+          <p class="label">Tipografía</p>
+          <div class="type">
+            <span class="aa">Aa</span>
+            <div class="meta"><strong>Fredoka + Nunito</strong><span class="h">Make it. Sell it.</span><p>Five minutes a day, one real shop.</p></div>
+          </div>
+        </div>
+        <div>
+          <p class="label">En la app</p>
+          <div class="mock">
+            <div class="mock-row"><span class="streak"><svg><use href="#i-flame"/></svg>7 day streak</span><span class="xp">Day 12 of 30</span></div>
+            <div class="progress"><i></i></div>
+            <button class="btn" type="button">Start today's mission</button>
+            <div class="shop">
+              <div class="shop-head">
+                <span class="avatar"><svg><use href="#m-bee"/></svg></span>
+                <div class="who"><b>Starlight Doodles</b><small><svg><use href="#i-lock"/></svg>Secret-name shop</small></div>
+              </div>
+              <div class="shop-art">
+                <svg viewBox="0 0 280 112" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                  <g transform="translate(70 56) rotate(-8)"><circle r="26" fill="#fff" stroke="#1F2A44" stroke-width="3"/><path d="M0 -14 l4 9 10 1 -7.5 7 2 10 -8.5 -5 -8.5 5 2 -10 -7.5 -7 10 -1z" fill="#FFC531" stroke="#1F2A44" stroke-width="2"/></g>
+                  <g transform="translate(140 60) rotate(6)"><rect x="-28" y="-26" width="56" height="52" rx="14" fill="#fff" stroke="#1F2A44" stroke-width="3"/><path d="M-12 6 q12 14 24 0" stroke="#1F2A44" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="-9" cy="-6" r="4" fill="#1F2A44"/><circle cx="9" cy="-6" r="4" fill="#1F2A44"/></g>
+                  <g transform="translate(212 54) rotate(-4)"><circle r="24" fill="#fff" stroke="#1F2A44" stroke-width="3"/><path d="M-10 4 a10 10 0 0 0 20 0 a14 14 0 0 0 -20 -12" fill="#2BB673"/></g>
+                </svg>
+                <span class="badge">First sale!</span>
+              </div>
+              <div class="shop-foot"><div class="t"><b>Cosmic Sticker Pack</b><span>12 printable stickers</span></div><button class="buy" type="button">$3.00</button></div>
+            </div>
+          </div>
+        </div>
+        <div class="facts">
+          <div><span class="risk low">Riesgo bajo a medio</span></div>
+          <p><strong>Por qué funciona:</strong> "stand" evoca el puesto de limonada, el primer negocio clásico. Reutiliza todo el MVP (abeja, colores, fuentes).</p>
+          <p><strong>Conflictos:</strong> sin apps ni marcas "Honeystand". Vigilar "Honey" de PayPal (compras online, sector cercano).</p>
+          <ul>
+            <li><a href="https://help.joinhoney.com/article/217-how-do-i-download-the-honey-mobile-app">Honey (PayPal)</a></li>
+            <li><a href="https://texashighways.com/food-drink/this-modern-honey-stand-in-tomball-never-closes/">Solo puestos físicos de miel</a></li>
+          </ul>
+          <div class="pills"><span class="pill">honeystand.com</span><span class="pill">.co</span><span class="pill">.app</span><span class="pill">.kids</span><span class="pill">gethoneystand.com</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2. VENTUROO -->
+    <article class="brand b-roo" id="venturoo">
+      <span class="num">2</span>
+      <div class="stage">
+        <svg class="mascot" role="img" aria-label="Roo, la canguro"><use href="#m-roo"/></svg>
+        <svg class="wordmark" viewBox="0 0 260 64" role="img" aria-label="Venturoo">
+          <path d="M18 22 Q40 0 64 18" stroke="#2FA58C" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="1 7"/>
+          <circle cx="66" cy="20" r="3.5" fill="#2FA58C"/>
+          <text x="8" y="54" font-family="'Baloo 2', sans-serif" font-weight="800" font-size="42" fill="#1B2340" textLength="244" lengthAdjust="spacingAndGlyphs">ventur<tspan fill="#FF8A3D">oo</tspan></text>
+        </svg>
+        <p class="tagline">Hop into your first business.</p>
+        <span class="mascot-name">Mascota: Roo, con una tienda en la bolsa</span>
+      </div>
+      <div class="body">
+        <div>
+          <p class="label">Paleta</p>
+          <div class="swatches">
+            <div class="sw"><b style="--c:var(--vr-sunset)"></b><span>#FF8A3D</span><small>Sunset</small></div>
+            <div class="sw"><b style="--c:var(--vr-navy)"></b><span>#1B2340</span><small>Night</small></div>
+            <div class="sw"><b style="--c:var(--vr-eucalyptus)"></b><span>#2FA58C</span><small>Gum leaf</small></div>
+            <div class="sw"><b style="--c:var(--vr-sky)"></b><span>#5BC0EB</span><small>Sky</small></div>
+            <div class="sw"><b style="--c:var(--vr-sand)"></b><span>#FFF1DE</span><small>Sand</small></div>
+          </div>
+        </div>
+        <div>
+          <p class="label">Tipografía</p>
+          <div class="type">
+            <span class="aa">Aa</span>
+            <div class="meta"><strong>Baloo 2 + Nunito</strong><span class="h">One hop at a time.</span><p>Learn, make and launch with your crew.</p></div>
+          </div>
+        </div>
+        <div>
+          <p class="label">En la app</p>
+          <div class="mock">
+            <div class="mock-row"><span class="streak"><svg><use href="#i-flame"/></svg>7 day streak</span><span class="xp">Hop 12 of 30</span></div>
+            <div class="progress"><i></i></div>
+            <button class="btn" type="button">Let's hop to it</button>
+            <div class="shop">
+              <div class="shop-head">
+                <span class="avatar"><svg><use href="#m-roo"/></svg></span>
+                <div class="who"><b>Outback Pixel Co.</b><small><svg><use href="#i-lock"/></svg>Secret-name shop</small></div>
+              </div>
+              <div class="shop-art">
+                <svg viewBox="0 0 280 112" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                  <g transform="translate(96 56) rotate(-6)"><rect x="-26" y="-44" width="52" height="88" rx="10" fill="#1B2340"/><rect x="-21" y="-38" width="42" height="76" rx="6" fill="#FF8A3D"/><circle cx="0" cy="8" r="14" fill="#FFF1DE"/><path d="M-21 26 L-6 10 6 22 14 14 21 22 V38 H-21Z" fill="#2FA58C"/></g>
+                  <g transform="translate(176 56) rotate(5)"><rect x="-26" y="-44" width="52" height="88" rx="10" fill="#1B2340"/><rect x="-21" y="-38" width="42" height="76" rx="6" fill="#5BC0EB"/><circle cx="8" cy="-14" r="8" fill="#FFF1DE"/><path d="M-21 30 q21 -22 42 0 V38 H-21Z" fill="#FFF1DE"/></g>
+                </svg>
+                <span class="badge">New drop</span>
+              </div>
+              <div class="shop-foot"><div class="t"><b>Sunset Wallpapers</b><span>4 phone wallpapers</span></div><button class="buy" type="button">$2.00</button></div>
+            </div>
+          </div>
+        </div>
+        <div class="facts">
+          <div><span class="risk low">Riesgo bajo</span></div>
+          <p><strong>Por qué funciona:</strong> venture + roo. El nombre más original y fácil de registrar. Guiño a Australia, simpático en EE. UU. y Canadá.</p>
+          <p><strong>Conflictos:</strong> sin coincidencias exactas. Nombres parecidos en otros sectores, ninguno para niños.</p>
+          <ul>
+            <li><a href="https://superscout.co/accelerator/venturoso">Venturoso (aceleradora)</a></li>
+            <li><a href="https://at.trustpilot.com/review/www.venturu.com">Venturu (marketplace)</a></li>
+            <li><a href="https://www.trademarkelite.com/trademark/trademark-detail/99445491/VEND-AROO">VEND-AROO (marca de software)</a></li>
+          </ul>
+          <div class="pills"><span class="pill">venturoo.com</span><span class="pill">.co</span><span class="pill">.app</span><span class="pill">.kids</span><span class="pill">getventuroo.com</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 3. POCKETEER -->
+    <article class="brand b-fox" id="pocketeer">
+      <span class="num">3</span>
+      <div class="stage">
+        <svg class="mascot" role="img" aria-label="Pip, el zorro"><use href="#m-fox"/></svg>
+        <svg class="wordmark" viewBox="0 0 260 60" role="img" aria-label="Pocketeer">
+          <g transform="translate(4 8)">
+            <path d="M2 4 H38 V24 Q38 42 20 44 Q2 42 2 24 Z" fill="#FF7A45" stroke="#3F2464" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M2 12 H38" stroke="#3F2464" stroke-width="3"/>
+            <path d="M20 22 l2.6 5.2 5.7 .8 -4.1 4 1 5.7 -5.2 -2.7 -5.2 2.7 1 -5.7 -4.1 -4 5.7 -.8z" fill="#FFE07A"/>
+          </g>
+          <text x="52" y="44" font-family="'Lilita One', sans-serif" font-size="38" fill="#3F2464" textLength="200" lengthAdjust="spacingAndGlyphs">Pocket<tspan fill="#FF7A45">eer</tspan></text>
+        </svg>
+        <p class="tagline">A whole business, in your pocket.</p>
+        <span class="mascot-name">Mascota: Pip, el zorro ingenioso</span>
+      </div>
+      <div class="body">
+        <div>
+          <p class="label">Paleta</p>
+          <div class="swatches">
+            <div class="sw"><b style="--c:var(--pk-fox)"></b><span>#FF7A45</span><small>Fox</small></div>
+            <div class="sw"><b style="--c:var(--pk-plum)"></b><span>#3F2464</span><small>Plum</small></div>
+            <div class="sw"><b style="--c:var(--pk-mint)"></b><span>#3FD0A0</span><small>Mint</small></div>
+            <div class="sw"><b style="--c:var(--pk-butter)"></b><span>#FFE07A</span><small>Butter</small></div>
+            <div class="sw"><b style="--c:var(--pk-cream)"></b><span>#FFF6EF</span><small>Cream</small></div>
+          </div>
+        </div>
+        <div>
+          <p class="label">Tipografía</p>
+          <div class="type">
+            <span class="aa">Aa</span>
+            <div class="meta"><strong>Lilita One + DM Sans</strong><span class="h">Small shop. Big ideas.</span><p>Your pocket-sized business HQ.</p></div>
+          </div>
+        </div>
+        <div>
+          <p class="label">En la app</p>
+          <div class="mock">
+            <div class="mock-row"><span class="streak"><svg><use href="#i-flame"/></svg>7 day streak</span><span class="xp">Mission 12 of 30</span></div>
+            <div class="progress"><i></i></div>
+            <button class="btn" type="button">Open today's mission</button>
+            <div class="shop">
+              <div class="shop-head">
+                <span class="avatar"><svg><use href="#m-fox"/></svg></span>
+                <div class="who"><b>Comet Fox Studio</b><small><svg><use href="#i-lock"/></svg>Secret-name shop</small></div>
+              </div>
+              <div class="shop-art">
+                <svg viewBox="0 0 280 112" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                  <g transform="translate(140 58) rotate(-3)"><rect x="-40" y="-46" width="80" height="92" rx="6" fill="#fff" stroke="#3F2464" stroke-width="3"/><path d="M-26 -28 h52 M-26 -14 h40 M-26 0 h46 M-26 14 h30" stroke="#3F2464" stroke-width="4" stroke-linecap="round" opacity=".35"/><rect x="-28" y="-33" width="9" height="9" rx="2" fill="#3FD0A0"/><rect x="-28" y="-19" width="9" height="9" rx="2" fill="#FF7A45"/><rect x="-28" y="-5" width="9" height="9" rx="2" fill="#3FD0A0"/><circle cx="24" cy="30" r="10" fill="#FFE07A" stroke="#3F2464" stroke-width="2"/></g>
+                  <g transform="translate(62 54) rotate(-12)"><circle r="18" fill="#FF7A45" stroke="#3F2464" stroke-width="3"/></g>
+                  <g transform="translate(222 58) rotate(10)"><rect x="-16" y="-16" width="32" height="32" rx="8" fill="#3FD0A0" stroke="#3F2464" stroke-width="3"/></g>
+                </svg>
+                <span class="badge">First sale!</span>
+              </div>
+              <div class="shop-foot"><div class="t"><b>Homework Planner</b><span>Printable PDF, 8 pages</span></div><button class="buy" type="button">$4.00</button></div>
+            </div>
+          </div>
+        </div>
+        <div class="facts">
+          <div><span class="risk mid">Riesgo bajo a medio</span></div>
+          <p><strong>Por qué funciona:</strong> pocket + pioneer. Suena a aventura (Rocketeer) y a dinero propio sin decir "dinero". Muy bien para 11 a 14.</p>
+          <p><strong>Conflictos:</strong> sin app ni marca "Pocketeer". Mucho ruido con "Pocket"; evitar parecerse a "The Rocketeer" (Disney).</p>
+          <ul>
+            <li><a href="https://getpocket.com/apps">Pocket (app de lectura)</a></li>
+            <li><a href="https://trademark.justia.com/871/13/pocketweez-87113625.html">Búsqueda de marcas: solo similares</a></li>
+          </ul>
+          <div class="pills"><span class="pill">pocketeer.com</span><span class="pill">.co</span><span class="pill">.app</span><span class="pill">.kids</span><span class="pill">pocketeers.com</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 4. HATCHLY -->
+    <article class="brand b-hatch" id="hatchly">
+      <span class="num">4</span>
+      <div class="stage">
+        <svg class="mascot" role="img" aria-label="Nugget, el pollito"><use href="#m-chick"/></svg>
+        <svg class="wordmark" viewBox="0 0 260 64" role="img" aria-label="Hatchly">
+          <text x="30" y="44" font-family="Sniglet, sans-serif" font-weight="800" font-size="44" fill="#12355B" textLength="200" lengthAdjust="spacingAndGlyphs">hatchly</text>
+          <path d="M34 54 L54 48 L72 56 L92 48 L112 56 L132 48 L152 56 L172 48 L192 56 L212 48 L228 54" stroke="#FFD23F" stroke-width="5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+        </svg>
+        <p class="tagline">Hatch your first business.</p>
+        <span class="mascot-name">Mascota: Nugget, sale del huevo en 30 días</span>
+      </div>
+      <div class="body">
+        <div>
+          <p class="label">Paleta</p>
+          <div class="swatches">
+            <div class="sw"><b style="--c:var(--ht-sunny)"></b><span>#FFD23F</span><small>Yolk</small></div>
+            <div class="sw"><b style="--c:var(--ht-sky)"></b><span>#2F7BEA</span><small>Sky</small></div>
+            <div class="sw"><b style="--c:var(--ht-deep)"></b><span>#12355B</span><small>Deep</small></div>
+            <div class="sw"><b style="--c:var(--ht-peach)"></b><span>#FF9F6B</span><small>Peach</small></div>
+            <div class="sw"><b style="--c:var(--ht-shell)"></b><span>#FFFDF4</span><small>Shell</small></div>
+          </div>
+        </div>
+        <div>
+          <p class="label">Tipografía</p>
+          <div class="type">
+            <span class="aa">Aa</span>
+            <div class="meta"><strong>Sniglet + Nunito</strong><span class="h">Crack it open.</span><p>Every mission cracks the shell a bit more.</p></div>
+          </div>
+        </div>
+        <div>
+          <p class="label">En la app</p>
+          <div class="mock">
+            <div class="mock-row"><span class="streak"><svg><use href="#i-flame"/></svg>7 day streak</span><span class="xp">Day 12 of 30</span></div>
+            <div class="progress"><i></i></div>
+            <button class="btn" type="button">Crack today's mission</button>
+            <div class="shop">
+              <div class="shop-head">
+                <span class="avatar"><svg><use href="#m-chick"/></svg></span>
+                <div class="who"><b>Sunny Side Prints</b><small><svg><use href="#i-lock"/></svg>Secret-name shop</small></div>
+              </div>
+              <div class="shop-art">
+                <svg viewBox="0 0 280 112" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                  <g transform="translate(140 56)"><rect x="-58" y="-40" width="116" height="80" rx="8" fill="#fff" stroke="#12355B" stroke-width="3"/><path d="M-44 24 h88" stroke="#12355B" stroke-width="3" opacity=".25"/><circle cx="-24" cy="-6" r="14" fill="#FFD23F"/><circle cx="8" cy="-6" r="14" fill="#2F7BEA"/><circle cx="38" cy="-6" r="10" fill="#FF9F6B"/></g>
+                </svg>
+                <span class="badge">First sale!</span>
+              </div>
+              <div class="shop-foot"><div class="t"><b>Color-by-Number Set</b><span>6 coloring pages</span></div><button class="buy" type="button">$3.50</button></div>
+            </div>
+          </div>
+        </div>
+        <div class="facts">
+          <div><span class="risk mid">Riesgo medio</span></div>
+          <p><strong>Por qué funciona:</strong> "hatch" es el verbo de las ideas y de la naturaleza. El huevo que se rompe es la barra de progreso de 30 días.</p>
+          <p><strong>Conflictos:</strong> proyecto indie "Hatchly" (hábitos). "Hatch" es marca fuerte para padres y bebés; también Hatchimals.</p>
+          <ul>
+            <li><a href="https://contra.com/community/JAXMfaD2-gamify-your-habits-discover-dragons-with">Hatchly (habit tracker)</a></li>
+            <li><a href="https://apps.apple.com/app/id1158048301">Hatch Sleep</a></li>
+            <li><a href="https://engineering.osu.edu/news/2016/09/hatching-great-idea-helps-others-ideas-take-flight">Hatchli (2016)</a></li>
+          </ul>
+          <div class="pills"><span class="pill">hatchly.com</span><span class="pill">.co</span><span class="pill">.app</span><span class="pill">.kids</span><span class="pill">hatchlykids.com</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 5. SPARKSTAND -->
+    <article class="brand b-spark" id="sparkstand">
+      <span class="num">5</span>
+      <div class="stage">
+        <svg class="mascot" role="img" aria-label="Glo, la luciérnaga"><use href="#m-fly"/></svg>
+        <svg class="wordmark" viewBox="0 0 260 60" role="img" aria-label="Sparkstand">
+          <text x="10" y="44" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="38" fill="#16122F" textLength="232" lengthAdjust="spacingAndGlyphs">spark<tspan fill="#6C4BFF">stand</tspan></text>
+          <path d="M246 6 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3z" fill="#C6F25A" stroke="#16122F" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+        <p class="tagline">Got an idea? Light it up.</p>
+        <span class="mascot-name">Mascota: Glo, brilla más con tu racha</span>
+      </div>
+      <div class="body">
+        <div>
+          <p class="label">Paleta</p>
+          <div class="swatches">
+            <div class="sw"><b style="--c:var(--sp-violet)"></b><span>#6C4BFF</span><small>Volt</small></div>
+            <div class="sw"><b style="--c:var(--sp-midnight)"></b><span>#16122F</span><small>Midnight</small></div>
+            <div class="sw"><b style="--c:var(--sp-lime)"></b><span>#C6F25A</span><small>Glow</small></div>
+            <div class="sw"><b style="--c:var(--sp-pink)"></b><span>#FF5FA2</span><small>Pop</small></div>
+            <div class="sw"><b style="--c:var(--sp-mist)"></b><span>#F4F1FF</span><small>Mist</small></div>
+          </div>
+        </div>
+        <div>
+          <p class="label">Tipografía</p>
+          <div class="type">
+            <span class="aa">Aa</span>
+            <div class="meta"><strong>Space Grotesk + DM Sans</strong><span class="h">Your idea, live.</span><p>Build a shop that actually glows.</p></div>
+          </div>
+        </div>
+        <div>
+          <p class="label">En la app</p>
+          <div class="mock">
+            <div class="mock-row"><span class="streak"><svg><use href="#i-flame"/></svg>7 day streak</span><span class="xp">Level 12 of 30</span></div>
+            <div class="progress"><i></i></div>
+            <button class="btn" type="button">Light up today's mission</button>
+            <div class="shop">
+              <div class="shop-head">
+                <span class="avatar"><svg><use href="#m-fly"/></svg></span>
+                <div class="who"><b>NeonNova Packs</b><small><svg><use href="#i-lock"/></svg>Secret-name shop</small></div>
+              </div>
+              <div class="shop-art">
+                <svg viewBox="0 0 280 112" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                  <g fill="#C6F25A"><circle cx="40" cy="24" r="2"/><circle cx="250" cy="20" r="2.5"/><circle cx="230" cy="90" r="1.8"/><circle cx="56" cy="92" r="1.6"/></g>
+                  <g transform="translate(110 58) rotate(-8)"><rect x="-30" y="-30" width="60" height="60" rx="16" fill="#FF5FA2"/><path d="M-10 -14 L12 -2 -6 4 8 18" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+                  <g transform="translate(180 56) rotate(8)"><circle r="30" fill="#C6F25A"/><path d="M0 -16 l5 11 12 1 -9 8 3 12 -11 -6 -11 6 3 -12 -9 -8 12 -1z" fill="#16122F"/></g>
+                </svg>
+                <span class="badge">First sale!</span>
+              </div>
+              <div class="shop-foot"><div class="t"><b>Glow Icon Pack</b><span>20 app icons</span></div><button class="buy" type="button">$3.00</button></div>
+            </div>
+          </div>
+        </div>
+        <div class="facts">
+          <div><span class="risk low">Riesgo bajo</span></div>
+          <p><strong>Por qué funciona:</strong> spark (idea) + stand (puesto). La más "teen": ideal para retener a los de 12 a 14 y luce genial en modo oscuro.</p>
+          <p><strong>Conflictos:</strong> solo "Spark Standalone" (software técnico) y una app de Shopify llamada Spark. Nada para niños.</p>
+          <ul>
+            <li><a href="https://spark.apache.org/docs/0.8.1/spark-standalone.html">Apache Spark Standalone</a></li>
+            <li><a href="https://apps.shopify.com/spark?locale=es">Spark (app de Shopify)</a></li>
+          </ul>
+          <div class="pills"><span class="pill">sparkstand.com</span><span class="pill">.co</span><span class="pill">.app</span><span class="pill">.kids</span><span class="pill">getsparkstand.com</span></div>
+        </div>
+      </div>
+    </article>
+
+  </main>
+
+  <section class="extra">
+    <div class="panel">
+      <h2>¿Por qué no "Bizzy"?</h2>
+      <p>Hay conflictos en <strong>la misma categoría y el mismo público</strong>:</p>
+      <ul>
+        <li><strong>Bizzy Girls:</strong> programa de emprendimiento para niñas de 6 a 14 años en EE. UU., con app. <a href="https://bizzygirls2018.jumbula.com/">Fuente</a></li>
+        <li><strong>BizzyB:</strong> plataforma de planes de negocio para grados 3 a 12. <a href="https://solve.mit.edu/solutions/4700">Fuente</a></li>
+        <li><strong>Bizzy Bear:</strong> serie infantil de Nosy Crow con más de 18 millones de copias. <a href="https://en.wikipedia.org/wiki/Nosy_Crow">Fuente</a></li>
+        <li><strong>bizzy.ai:</strong> empresa B2B financiada. <a href="https://www.cbinsights.com/company/bizzy">Fuente</a></li>
+      </ul>
+      <p>Propuesta: <strong>Bizzy sigue como nombre de la abeja</strong> dentro de Honeystand.</p>
+    </div>
+    <div class="panel">
+      <h2>Comparativa rápida</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Opción</th><th>Padres</th><th>13 años</th><th>Reusa MVP</th><th>Riesgo</th></tr></thead>
+          <tbody>
+            <tr><td>Honeystand</td><td>Muy alta</td><td>Alta</td><td>Total</td><td>Bajo a medio</td></tr>
+            <tr><td>Venturoo</td><td>Alta</td><td>Alta</td><td>Baja</td><td>Bajo</td></tr>
+            <tr><td>Pocketeer</td><td>Media</td><td>Muy alta</td><td>Baja</td><td>Bajo a medio</td></tr>
+            <tr><td>Hatchly</td><td>Alta</td><td>Media</td><td>Media</td><td>Medio</td></tr>
+            <tr><td>Sparkstand</td><td>Alta</td><td>Muy alta</td><td>Baja</td><td>Bajo</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="panel">
+      <h2>Antes de decidir</h2>
+      <ul>
+        <li><strong>Dominios:</strong> no pude consultar WHOIS desde este entorno. No vi negocios activos indexados en esos .com, pero hay que confirmarlo en un registrador.</li>
+        <li><strong>Marca:</strong> búsqueda formal en USPTO, CIPO e IP Australia (clases 9, 35 y 41).</li>
+        <li><strong>Redes:</strong> reservar el @ en Instagram, TikTok y YouTube.</li>
+        <li>Detalle completo y guía de voz en <code>opciones-de-marca.md</code>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>Todos los logos y mascotas están hechos con SVG y CSS en línea. Son conceptos de exploración, no artes finales.</footer>
+</div>
+</body>
+</html>

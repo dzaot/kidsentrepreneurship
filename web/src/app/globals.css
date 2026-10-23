@@ -1,0 +1,145 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-honey: #ffc531;
+  --color-honey-dark: #e0a400;
+  --color-ink: #1f2a44;
+  --color-ink-soft: #5a6580;
+  --color-leaf: #2bb673;
+  --color-leaf-dark: #1e9259;
+  --color-sky: #5b8def;
+  --color-sky-dark: #3f6fd1;
+  --color-coral: #ff6b5b;
+  --color-coral-dark: #e04c3c;
+  --color-cream: #fff8ec;
+  --color-line: #ece3d3;
+  --font-sans: "Nunito", ui-rounded, system-ui, sans-serif;
+  --font-display: "Fredoka", "Nunito", ui-rounded, system-ui, sans-serif;
+}
+
+html,
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Chunky, tappable buttons with a bottom edge, like a game. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 1rem;
+  padding: 0.85rem 1.4rem;
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+  transition: transform 0.06s ease, box-shadow 0.06s ease, filter 0.15s;
+  box-shadow: 0 4px 0 var(--edge, rgba(0, 0, 0, 0.18));
+  cursor: pointer;
+  user-select: none;
+}
+.btn:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--edge, rgba(0, 0, 0, 0.18));
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.btn-honey {
+  background: var(--color-honey);
+  color: var(--color-ink);
+  --edge: var(--color-honey-dark);
+}
+.btn-leaf {
+  background: var(--color-leaf);
+  color: white;
+  --edge: var(--color-leaf-dark);
+}
+.btn-sky {
+  background: var(--color-sky);
+  color: white;
+  --edge: var(--color-sky-dark);
+}
+.btn-coral {
+  background: var(--color-coral);
+  color: white;
+  --edge: var(--color-coral-dark);
+}
+.btn-ghost {
+  background: white;
+  color: var(--color-ink);
+  border: 2px solid var(--color-line);
+  --edge: var(--color-line);
+}
+
+.card {
+  background: white;
+  border: 2px solid var(--color-line);
+  border-radius: 1.5rem;
+}
+
+.input {
+  width: 100%;
+  border: 2px solid var(--color-line);
+  border-radius: 0.9rem;
+  padding: 0.8rem 1rem;
+  background: white;
+  font-size: 1rem;
+  outline: none;
+}
+.input:focus {
+  border-color: var(--color-sky);
+}
+
+.label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+@keyframes pop {
+  0% { transform: scale(0.6); opacity: 0; }
+  60% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); }
+}
+.animate-pop { animation: pop 0.45s ease-out both; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.animate-float { animation: float 3s ease-in-out infinite; }
+
+@keyframes confetti-fall {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(105vh) rotate(720deg); opacity: 0.9; }
+}
+.confetti-piece {
+  position: fixed;
+  top: 0;
+  width: 10px;
+  height: 14px;
+  border-radius: 3px;
+  animation: confetti-fall 2.6s ease-in forwards;
+  pointer-events: none;
+  z-index: 60;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-pop, .animate-float, .confetti-piece { animation: none; }
+}
