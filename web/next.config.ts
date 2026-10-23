@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   experimental: {
-    // Product files are capped at 4 MB; Vercel functions accept request bodies up to 4.5 MB.
+    // Product files are capped at 4 MB; this leaves room under common serverless body limits.
     serverActions: { bodySizeLimit: "4.5mb" },
   },
 };

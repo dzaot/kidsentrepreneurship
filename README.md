@@ -23,19 +23,23 @@ npm run typecheck
 npm run build
 ```
 
-Environment variables (set in Vercel):
+Environment variables (set in Netlify):
 
 | Name | Purpose |
 |---|---|
-| `DATABASE_URL` | Postgres connection string. Added automatically by the Neon integration on Vercel (`POSTGRES_URL` also works). Tables are created on first use. |
-| `SESSION_SECRET` | Signs parent login cookies. Required in production. |
-| `PILOT_CODE` | Optional invite code required to sign up. |
+| `DATABASE_URL` | Postgres connection string (for example a free Neon project). Tables are created on first use. Without it, data goes to `web/.data` (local dev only). |
+| `SESSION_SECRET` | Signs parent login cookies. Required in production. Already set on the Netlify project. |
+| `PILOT_CODE` | Optional invite code required to sign up. Already set on the Netlify project. |
 | `ANTHROPIC_API_KEY` | Enables Guroo, the AI coach (Claude). Without it the app works and Guroo shows as unavailable. |
 | `ANTHROPIC_MODEL` | Optional. Defaults to `claude-opus-5-5`. |
 
-## Deploy on Vercel
+## Deploy on Netlify
 
-1. In Vercel, **Add New > Project**, import `dzaot/kidsentrepreneurship`, and set **Root Directory** to `web` (framework: Next.js, detected automatically).
-2. In the project, open **Storage > Create Database > Neon (Postgres)** and connect it to the project. This adds `DATABASE_URL`.
-3. Add `SESSION_SECRET` (a long random string), `PILOT_CODE`, and `ANTHROPIC_API_KEY` under **Settings > Environment Variables**.
-4. Deploy. Pushes to the production branch redeploy automatically.
+The Netlify project `venturoo-pilot` already exists and `netlify.toml` points the build at `web/`.
+
+1. **Database:** create a free project at neon.tech (region close to your users, e.g. US East), copy the connection string, and add it in Netlify as `DATABASE_URL` (Site configuration > Environment variables).
+2. **Connect the repo:** in Netlify, open `venturoo-pilot` > Site configuration > Build & deploy > Link repository, choose GitHub `dzaot/kidsentrepreneurship`, and set the production branch (currently `claude/nice-hypatia-62qpuc`).
+3. **AI coach:** add `ANTHROPIC_API_KEY` (from console.anthropic.com).
+4. Trigger a deploy. The site will be at `https://venturoo-pilot.netlify.app`.
+
+The app is host-agnostic (plain Next.js + Postgres), so Vercel (Root Directory `web`) or Cloudflare (OpenNext adapter) also work if needed later.

@@ -38,21 +38,21 @@ Fecha: octubre 2026. Marca elegida: **Venturoo** (mascota: Guroo, la canguro sab
 Navegador (PWA: computador, iPad, Android)
         │
         ▼
-Next.js 15 (App Router, Server Actions) en Vercel
+Next.js 15 (App Router, Server Actions) en Netlify
   ├─ Páginas públicas: landing, privacidad, tienda /s/[slug], descarga
   ├─ Zona de padres: /family (sesión con cookie firmada HMAC)
   ├─ Zona de niños: /kid/[id] (dentro de la cuenta del padre)
   └─ Acciones de servidor: cuentas, lecciones, tienda, publicación, ventas
         │                                   └─ /api/coach: Guroo (streaming) ──► Claude API (Anthropic)
         ▼
-Postgres (Neon, conectado desde Vercel)
+Postgres (Neon)
   ├─ "data": un documento JSON por familia + índices (email → familia, slug → tienda) + chats con Guroo
   └─ "files": archivos del producto y portadas (sin metadatos EXIF/GPS)
 ```
 
 **Por qué así:**
 - **Una sola base de código** para web, tablet y celular.
-- **Postgres (Neon)**, conectado con un clic desde Vercel (plan gratuito suficiente para el piloto). Guarda un documento JSON por familia y los archivos subidos, y crea sus tablas solo la primera vez. Una base de datos real da respaldos, consultas para medir el piloto y espacio para crecer a un esquema más relacional cuando haga falta. Toda la capa de almacenamiento está aislada en un solo archivo (`web/src/lib/storage.ts`). Sin `DATABASE_URL`, en desarrollo local, usa la carpeta `web/.data`.
+- **Postgres (Neon)**, con plan gratuito suficiente para el piloto. Funciona igual en Netlify, Vercel o Cloudflare, así que no nos ata a un proveedor. Guarda un documento JSON por familia y los archivos subidos, y crea sus tablas solo la primera vez. Una base de datos real da respaldos, consultas para medir el piloto y espacio para crecer a un esquema más relacional cuando haga falta. Toda la capa de almacenamiento está aislada en un solo archivo (`web/src/lib/storage.ts`). Sin `DATABASE_URL`, en desarrollo local, usa la carpeta `web/.data`.
 - **El contenido es data:** las lecciones viven en `web/src/content/path.ts`. Se pueden editar sin tocar el código de la app.
 - **Seguridad:** contraseñas con scrypt, sesiones firmadas, archivos privados detrás de verificación, descarga con token secreto y comparación en tiempo constante, filtro de datos personales en todo texto que pueda ser público (emails, teléfonos, direcciones, links, redes sociales), eliminación de metadatos de imágenes y borrado total de la cuenta con un clic.
 
