@@ -26,6 +26,7 @@ import {
 } from "@/lib/model";
 import { safeText } from "@/lib/safety";
 import { deleteFile, putFile } from "@/lib/storage";
+import { stripMetadata } from "@/lib/strip-metadata";
 import { BUSINESS_TYPES } from "@/content/businesses";
 import { findLesson } from "@/content";
 import { shopChecklist } from "@/lib/shop";
@@ -243,7 +244,7 @@ export async function uploadShopFile(kidId: string, fd: FormData): Promise<Actio
 
   const product = kid.shop.product;
   const key = `${family.id}/${kid.id}/${kind}-${randomUUID()}`;
-  await putFile(key, await file.arrayBuffer(), { contentType: file.type, name: file.name.slice(0, 80) });
+  await putFile(key, stripMetadata(await file.arrayBuffer(), file.type), { contentType: file.type, name: file.name.slice(0, 80) });
   if (kind === "cover") {
     if (product.coverImageKey) await deleteFile(product.coverImageKey);
     product.coverImageKey = key;
