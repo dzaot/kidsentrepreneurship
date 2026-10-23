@@ -309,8 +309,8 @@ export default async function KidAdminPage({ params }: { params: Promise<{ kidId
                 <label htmlFor="sale-note" className="sr-only">
                   Note
                 </label>
-                <input id="sale-note" name="note" className="input min-w-0 flex-1" placeholder="Note, e.g. Aunt M." />
-                <Submit className="btn btn-leaf">+ Add sale</Submit>
+                <input id="sale-note" name="note" className="input min-w-[9rem] flex-1" placeholder="Note, e.g. Aunt M." />
+                <Submit className="btn btn-leaf w-full sm:w-auto">+ Add sale</Submit>
               </ActionForm>
               {shop.sales.length > 0 ? (
                 <ul className="mt-3 divide-y-2 divide-line">

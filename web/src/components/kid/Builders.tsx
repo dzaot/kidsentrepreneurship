@@ -292,7 +292,7 @@ export function SharePlan({ kidId, shop, onDone }: Props) {
   const price = shop.product.priceCents ? formatMoney(shop.product.priceCents, shop.product.currency) : "";
   const [text, setText] = useState(
     shop.sharePlan ??
-      `Hi! I started my very own business called ${shop.name ?? "my shop"} ${shop.mascot ?? "🦘"}.${shop.tagline ? ` ${shop.tagline}` : ""} My first product is ${shop.product.title ?? "ready"}${price ? ` for ${price}` : ""}. Want to take a look? Here's my shop:`,
+      `Hi! I started my very own business called ${shop.name ?? "my shop"} ${shop.mascot ?? "🦘"}.${shop.tagline ? ` ${/[.!?]$/.test(shop.tagline) ? shop.tagline : shop.tagline + "."}` : ""} My first product is ${shop.product.title ?? "ready"}${price ? ` for ${price}` : ""}. Want to take a look? Here's my shop:`,
   );
   return (
     <div className="space-y-3">

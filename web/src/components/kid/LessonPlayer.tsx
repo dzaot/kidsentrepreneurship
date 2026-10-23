@@ -12,6 +12,13 @@ import { BUILDERS, builderDone } from "./Builders";
 import { Confetti } from "./Confetti";
 import { GurooChat } from "./GurooChat";
 
+// Explanations often open with "Yes!" or "Exactly right"; the headline already says that,
+// and it reads wrong after a miss, so drop the opener.
+function tidyExplain(text: string) {
+  const t = text.replace(/^(yes|yep|exactly|correct|right|you got it|nailed it|that's right)( right)?[!.,]*\s*/i, "");
+  return t ? t[0].toUpperCase() + t.slice(1) : text;
+}
+
 function localDay() {
   const d = new Date();
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
@@ -222,7 +229,7 @@ export function LessonPlayer({
         feedback = (
           <>
             <p className="font-display text-xl font-bold">{right ? "🎉 Yes!" : "💡 Almost!"}</p>
-            <p className="mt-1 font-semibold">{step.explain}</p>
+            <p className="mt-1 font-semibold">{tidyExplain(step.explain)}</p>
           </>
         );
       }
