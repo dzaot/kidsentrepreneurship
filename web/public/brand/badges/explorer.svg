@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 280" role="img" aria-labelledby="explorer-t">
+<title id="explorer-t">Explorer badge</title>
+<defs><clipPath id="explorer-clip"><path d="M35 118A85 85 0 0 1 205 118V200H35Z"/></clipPath></defs>
+<path d="M14 118A106 106 0 0 1 226 118V242Q226 266 202 266H38Q14 266 14 242Z" fill="#FFD84D" stroke="#1B2340" stroke-width="7" stroke-linejoin="round"/>
+<path d="M23 118A97 97 0 0 1 217 118V241Q217 257 201 257H39Q23 257 23 241Z" fill="none" stroke="rgba(27,35,64,.35)" stroke-width="2.5" stroke-dasharray="6 5" stroke-linecap="round"/>
+<g clip-path="url(#explorer-clip)" stroke="#1B2340" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+<rect x="20" y="20" width="200" height="190" fill="#BFE6F7"/>
+<circle cx="170" cy="64" r="15" fill="#FFD84D" stroke-width="5"/>
+<path d="M44 92H90A11 11 0 0 0 82 77A14 14 0 0 0 58 74A12 12 0 0 0 44 92Z" fill="#FFFFFF" stroke-width="4"/><path d="M150 126H193.7A10.5 10.5 0 0 0 186.1 111.8A13.3 13.3 0 0 0 163.3 108.9A11.4 11.4 0 0 0 150 126Z" fill="#FFFFFF" stroke-width="4"/><path d="M62 150H94.2A7.7 7.7 0 0 0 88.6 139.5A9.8 9.8 0 0 0 71.8 137.4A8.4 8.4 0 0 0 62 150Z" fill="#FFFFFF" stroke-width="4"/>
+<path d="M35 180Q80 160 120 176T205 172V210H35Z" fill="#2FA58C" stroke-width="5"/>
+<g transform="translate(60 186) scale(0.6)"><path d="M0 0V7" stroke-width="5"/><path d="M0-26L9-13H5L13 0H-13L-5-13H-9Z" fill="#2FA58C" stroke-width="4"/></g><g transform="translate(180 184) scale(0.65)"><path d="M0 0V7" stroke-width="5"/><path d="M0-26L9-13H5L13 0H-13L-5-13H-9Z" fill="#2FA58C" stroke-width="4"/></g>
+<path d="M110 146L106 164M130 146L134 164" stroke-width="4"/>
+<path d="M120 46C150 46 162 70 162 92C162 116 138 132 131 146H109C102 132 78 116 78 92C78 70 90 46 120 46Z" fill="#E8574A"/>
+<path d="M120 46C112 60 104 76 104 92C104 114 112 132 114 146H126C128 132 136 114 136 92C136 76 128 60 120 46Z" fill="#FFFFFF" stroke-width="5"/>
+<path d="M88 74Q86 84 88 94" fill="none" stroke="#FFFFFF" stroke-width="5" opacity=".7"/>
+<rect x="106" y="160" width="28" height="22" rx="5" fill="#FF8A3D"/>
+<path d="M106 168H134" stroke-width="4"/>
+</g>
+<path d="M35 118A85 85 0 0 1 205 118V200H35Z" fill="none" stroke="#1B2340" stroke-width="6" stroke-linejoin="round"/>
+<text x="120" y="242.2" text-anchor="middle" font-family="'Baloo 2', 'Nunito', 'Arial Rounded MT Bold', sans-serif" font-weight="800" font-size="31" letter-spacing="1" textLength="153.8" lengthAdjust="spacingAndGlyphs" fill="#E8574A" stroke="#1B2340" stroke-width="5" stroke-linejoin="round" paint-order="stroke">EXPLORER</text>
+</svg>

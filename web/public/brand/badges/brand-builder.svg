@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 280" role="img" aria-labelledby="brand-builder-t">
+<title id="brand-builder-t">Brand builder badge</title>
+<defs><clipPath id="brand-builder-clip"><path d="M35 118A85 85 0 0 1 205 118V200H35Z"/></clipPath></defs>
+<path d="M14 118A106 106 0 0 1 226 118V242Q226 266 202 266H38Q14 266 14 242Z" fill="#FF5D73" stroke="#1B2340" stroke-width="7" stroke-linejoin="round"/>
+<path d="M23 118A97 97 0 0 1 217 118V241Q217 257 201 257H39Q23 257 23 241Z" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2.5" stroke-dasharray="6 5" stroke-linecap="round"/>
+<g clip-path="url(#brand-builder-clip)" stroke="#1B2340" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+<rect x="20" y="20" width="200" height="190" fill="#BFE6F7"/>
+<path d="M40 76H76.8A8.8 8.8 0 0 0 70.4 64A11.2 11.2 0 0 0 51.2 61.6A9.6 9.6 0 0 0 40 76Z" fill="#FFFFFF" stroke-width="4"/><path d="M160 64H192.2A7.7 7.7 0 0 0 186.6 53.5A9.8 9.8 0 0 0 169.8 51.4A8.4 8.4 0 0 0 160 64Z" fill="#FFFFFF" stroke-width="4"/>
+<path d="M20 178H220V210H20Z" fill="#2FA58C" stroke-width="5"/>
+<path d="M120 72V38" stroke-width="5"/>
+<path d="M121 38L148 46L121 55Z" fill="#FF5D73" stroke-width="5"/>
+<rect x="78" y="96" width="84" height="40" fill="#FFF1DE" stroke-width="5"/>
+<path d="M80 100V180M160 100V180" stroke-width="7"/>
+<path d="M68 72H172L184 98H56Z" fill="#FFFFFF"/>
+<path d="M68 72H85.3L77.3 98H56Z" fill="#2FA58C" stroke-width="4"/><path d="M102.7 72H120L120 98H98.7Z" fill="#2FA58C" stroke-width="4"/><path d="M137.3 72H154.6L162.6 98H141.3Z" fill="#2FA58C" stroke-width="4"/>
+<path d="M68 72H172L184 98H56Z" fill="none"/>
+<path d="M56 98a10.67 10.67 0 0 0 21.33 0Z" fill="#2FA58C" stroke-width="5"/><path d="M77.3 98a10.67 10.67 0 0 0 21.33 0Z" fill="#FFFFFF" stroke-width="5"/><path d="M98.7 98a10.67 10.67 0 0 0 21.33 0Z" fill="#2FA58C" stroke-width="5"/><path d="M120 98a10.67 10.67 0 0 0 21.33 0Z" fill="#FFFFFF" stroke-width="5"/><path d="M141.3 98a10.67 10.67 0 0 0 21.33 0Z" fill="#2FA58C" stroke-width="5"/><path d="M162.6 98a10.67 10.67 0 0 0 21.33 0Z" fill="#FFFFFF" stroke-width="5"/>
+<circle cx="98" cy="130" r="8" fill="#FF5D73" stroke-width="4"/>
+<rect x="112" y="120" width="16" height="16" rx="3" fill="#FFD84D" stroke-width="4"/>
+<path d="M136 136V126a6 6 0 0 1 12 0V136Z" fill="#5BC0EB" stroke-width="4"/>
+<rect x="70" y="136" width="100" height="48" rx="4" fill="#FF8A3D"/>
+<rect x="92" y="146" width="56" height="28" rx="6" fill="#FFF1DE" stroke-width="5"/>
+<path d="M120 150L122.6 156.4L129.5 156.9L124.3 161.4L125.9 168.1L120 164.5L114.1 168.1L115.7 161.4L110.5 156.9L117.4 156.4Z" fill="#FF5D73" stroke-width="3.5"/>
+</g>
+<path d="M35 118A85 85 0 0 1 205 118V200H35Z" fill="none" stroke="#1B2340" stroke-width="6" stroke-linejoin="round"/>
+<text x="120" y="239.7" text-anchor="middle" font-family="'Baloo 2', 'Nunito', 'Arial Rounded MT Bold', sans-serif" font-weight="800" font-size="24.2" letter-spacing="1" textLength="176" lengthAdjust="spacingAndGlyphs" fill="#FFF1DE" stroke="#1B2340" stroke-width="5" stroke-linejoin="round" paint-order="stroke">BRAND BUILDER</text>
+</svg>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 280" role="img" aria-labelledby="trailblazer-t">
+<title id="trailblazer-t">Trailblazer badge</title>
+<defs><clipPath id="trailblazer-clip"><path d="M35 118A85 85 0 0 1 205 118V200H35Z"/></clipPath></defs>
+<path d="M14 118A106 106 0 0 1 226 118V242Q226 266 202 266H38Q14 266 14 242Z" fill="#2FA58C" stroke="#1B2340" stroke-width="7" stroke-linejoin="round"/>
+<path d="M23 118A97 97 0 0 1 217 118V241Q217 257 201 257H39Q23 257 23 241Z" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="2.5" stroke-dasharray="6 5" stroke-linecap="round"/>
+<g clip-path="url(#trailblazer-clip)" stroke="#1B2340" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+<rect x="20" y="20" width="200" height="190" fill="#BFE6F7"/>
+<circle cx="64" cy="70" r="16" fill="#FFD84D" stroke-width="5"/>
+<path d="M146 70H185.1A9.4 9.4 0 0 0 178.3 57.3A11.9 11.9 0 0 0 157.9 54.7A10.2 10.2 0 0 0 146 70Z" fill="#FFFFFF" stroke-width="4"/>
+<path d="M20 168Q120 120 220 168V210H20Z" fill="#2FA58C" stroke-width="5"/>
+<path d="M150 200Q176 176 196 160" fill="none" stroke="#FFF1DE" stroke-width="5" stroke-dasharray="7 7"/>
+<g transform="translate(56 160) scale(0.95)"><path d="M0 0V26" stroke-width="4"/><path d="M0 15.6Q9 10.4 12 5.2Q3 6.5 0 15.6Z" fill="#2FA58C" stroke-width="3"/><circle cx="0" cy="-8" r="6.5" fill="#FF5D73" stroke-width="3.5"/><circle cx="7.6" cy="-2.5" r="6.5" fill="#FF5D73" stroke-width="3.5"/><circle cx="4.7" cy="6.5" r="6.5" fill="#FF5D73" stroke-width="3.5"/><circle cx="-4.7" cy="6.5" r="6.5" fill="#FF5D73" stroke-width="3.5"/><circle cx="-7.6" cy="-2.5" r="6.5" fill="#FF5D73" stroke-width="3.5"/><circle r="5" fill="#FFD84D" stroke-width="3.5"/></g><g transform="translate(76 174) scale(0.75)"><path d="M0 0V22" stroke-width="4"/><path d="M0 13.2Q9 8.8 12 4.4Q3 5.5 0 13.2Z" fill="#2FA58C" stroke-width="3"/><circle cx="0" cy="-8" r="6.5" fill="#FFD84D" stroke-width="3.5"/><circle cx="7.6" cy="-2.5" r="6.5" fill="#FFD84D" stroke-width="3.5"/><circle cx="4.7" cy="6.5" r="6.5" fill="#FFD84D" stroke-width="3.5"/><circle cx="-4.7" cy="6.5" r="6.5" fill="#FFD84D" stroke-width="3.5"/><circle cx="-7.6" cy="-2.5" r="6.5" fill="#FFD84D" stroke-width="3.5"/><circle r="5" fill="#FFD84D" stroke-width="3.5"/></g><g transform="translate(184 154) scale(0.9)"><path d="M0 0V26" stroke-width="4"/><path d="M0 15.6Q9 10.4 12 5.2Q3 6.5 0 15.6Z" fill="#2FA58C" stroke-width="3"/><circle cx="0" cy="-8" r="6.5" fill="#FFFFFF" stroke-width="3.5"/><circle cx="7.6" cy="-2.5" r="6.5" fill="#FFFFFF" stroke-width="3.5"/><circle cx="4.7" cy="6.5" r="6.5" fill="#FFFFFF" stroke-width="3.5"/><circle cx="-4.7" cy="6.5" r="6.5" fill="#FFFFFF" stroke-width="3.5"/><circle cx="-7.6" cy="-2.5" r="6.5" fill="#FFFFFF" stroke-width="3.5"/><circle r="5" fill="#FFD84D" stroke-width="3.5"/></g><g transform="translate(166 176) scale(0.75)"><path d="M0 0V20" stroke-width="4"/><path d="M0 12Q9 8 12 4Q3 5 0 12Z" fill="#2FA58C" stroke-width="3"/><circle cx="0" cy="-8" r="6.5" fill="#FF5D73" stroke-width="3.5"/><circle cx="7.6" cy="-2.5" r="6.5" fill="#FF5D73" stroke-width="3.5"/><circle cx="4.7" cy="6.5" r="6.5" fill="#FF5D73" stroke-width="3.5"/><circle cx="-4.7" cy="6.5" r="6.5" fill="#FF5D73" stroke-width="3.5"/><circle cx="-7.6" cy="-2.5" r="6.5" fill="#FF5D73" stroke-width="3.5"/><circle r="5" fill="#FFD84D" stroke-width="3.5"/></g>
+<path d="M106 74Q106 54 120 54Q134 54 134 74" fill="none" stroke-width="6"/>
+<rect x="86" y="70" width="68" height="116" rx="24" fill="#E8574A"/>
+<rect x="98" y="134" width="44" height="40" rx="10" fill="#FF5D73" stroke-width="5"/>
+<path d="M104 142h32" stroke-width="3.5"/>
+<path d="M86 108V94Q86 70 120 70Q154 70 154 94V108Q120 120 86 108Z" fill="#E8574A"/>
+<rect x="96" y="108" width="10" height="38" rx="3" fill="#FFD84D" stroke-width="4.5"/>
+<rect x="134" y="108" width="10" height="38" rx="3" fill="#FFD84D" stroke-width="4.5"/>
+<rect x="94" y="126" width="14" height="10" rx="2" fill="#FFF1DE" stroke-width="3.5"/>
+<rect x="132" y="126" width="14" height="10" rx="2" fill="#FFF1DE" stroke-width="3.5"/>
+</g>
+<path d="M35 118A85 85 0 0 1 205 118V200H35Z" fill="none" stroke="#1B2340" stroke-width="6" stroke-linejoin="round"/>
+<text x="120" y="241.3" text-anchor="middle" font-family="'Baloo 2', 'Nunito', 'Arial Rounded MT Bold', sans-serif" font-weight="800" font-size="28.6" letter-spacing="1" textLength="176" lengthAdjust="spacingAndGlyphs" fill="#FFF1DE" stroke="#1B2340" stroke-width="5" stroke-linejoin="round" paint-order="stroke">TRAILBLAZER</text>
+</svg>
