@@ -1,41 +1,53 @@
 import "server-only";
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import postgres from "postgres";
+import { neonConfig, Pool, type PoolClient } from "@neondatabase/serverless";
 
-// Tiny storage layer: Postgres (Neon on Vercel) when a database URL is set,
-// the local .data folder otherwise (development).
+// Tiny storage layer: Neon Postgres (serverless driver over WebSocket) when a database
+// URL is set, the local .data folder otherwise (development).
 
 type FileMeta = { contentType: string; name: string };
 
 const DB_URL = process.env.DATABASE_URL || process.env.POSTGRES_URL;
 const LOCAL_ROOT = path.join(process.cwd(), ".data");
 
-// One client per server instance; serverless functions reuse it across requests.
-const globalDb = globalThis as unknown as { __sql?: postgres.Sql; __schema?: Promise<void> };
-
-function db() {
-  if (!DB_URL) return null;
-  globalDb.__sql ??= postgres(DB_URL, { max: 5, idle_timeout: 20, prepare: false });
-  globalDb.__schema ??= ensureSchema(globalDb.__sql);
-  return { sql: globalDb.__sql, ready: globalDb.__schema };
+// Lets tests point the driver at a local Postgres through a plain WebSocket bridge.
+if (process.env.NEON_WS_PROXY) {
+  neonConfig.wsProxy = () => process.env.NEON_WS_PROXY!;
+  neonConfig.useSecureWebSocket = false;
+  neonConfig.pipelineConnect = false;
+  neonConfig.pipelineTLS = false;
 }
 
-async function ensureSchema(sql: postgres.Sql) {
-  await sql`
-    create table if not exists kv (
-      key text primary key,
-      value jsonb not null,
-      updated_at timestamptz not null default now()
-    )`;
-  await sql`
-    create table if not exists files (
-      key text primary key,
-      content_type text not null,
-      name text not null,
-      data bytea not null,
-      created_at timestamptz not null default now()
-    )`;
+let schemaReady = false;
+
+// Serverless functions can't keep a WebSocket between requests, so each call opens
+// and closes its own pool, as the Neon driver docs require.
+async function withDb<T>(fn: (db: PoolClient) => Promise<T>): Promise<T> {
+  const pool = new Pool({ connectionString: DB_URL });
+  const db = await pool.connect();
+  try {
+    if (!schemaReady) {
+      await db.query(`
+        create table if not exists kv (
+          key text primary key,
+          value jsonb not null,
+          updated_at timestamptz not null default now()
+        );
+        create table if not exists files (
+          key text primary key,
+          content_type text not null,
+          name text not null,
+          data bytea not null,
+          created_at timestamptz not null default now()
+        );`);
+      schemaReady = true;
+    }
+    return await fn(db);
+  } finally {
+    db.release();
+    await pool.end();
+  }
 }
 
 function localPath(store: string, key: string) {
@@ -43,10 +55,8 @@ function localPath(store: string, key: string) {
 }
 
 export async function getJSON<T>(key: string): Promise<T | null> {
-  const d = db();
-  if (d) {
-    await d.ready;
-    const rows = await d.sql<{ value: T }[]>`select value from kv where key = ${key}`;
+  if (DB_URL) {
+    const { rows } = await withDb((db) => db.query<{ value: T }>("select value from kv where key = $1", [key]));
     return rows[0]?.value ?? null;
   }
   try {
@@ -57,13 +67,14 @@ export async function getJSON<T>(key: string): Promise<T | null> {
 }
 
 export async function setJSON(key: string, value: unknown) {
-  const d = db();
-  if (d) {
-    await d.ready;
-    const json = d.sql.json(value as postgres.JSONValue);
-    await d.sql`
-      insert into kv (key, value) values (${key}, ${json})
-      on conflict (key) do update set value = excluded.value, updated_at = now()`;
+  if (DB_URL) {
+    await withDb((db) =>
+      db.query(
+        `insert into kv (key, value) values ($1, $2::jsonb)
+         on conflict (key) do update set value = excluded.value, updated_at = now()`,
+        [key, JSON.stringify(value)],
+      ),
+    );
     return;
   }
   const file = localPath("data", key);
@@ -72,23 +83,22 @@ export async function setJSON(key: string, value: unknown) {
 }
 
 export async function deleteKey(key: string) {
-  const d = db();
-  if (d) {
-    await d.ready;
-    await d.sql`delete from kv where key = ${key}`;
+  if (DB_URL) {
+    await withDb((db) => db.query("delete from kv where key = $1", [key]));
     return;
   }
   await fs.rm(localPath("data", key), { force: true });
 }
 
 export async function putFile(key: string, data: ArrayBuffer, meta: FileMeta) {
-  const d = db();
-  if (d) {
-    await d.ready;
-    await d.sql`
-      insert into files (key, content_type, name, data)
-      values (${key}, ${meta.contentType}, ${meta.name}, ${Buffer.from(data)})
-      on conflict (key) do update set content_type = excluded.content_type, name = excluded.name, data = excluded.data`;
+  if (DB_URL) {
+    await withDb((db) =>
+      db.query(
+        `insert into files (key, content_type, name, data) values ($1, $2, $3, $4)
+         on conflict (key) do update set content_type = excluded.content_type, name = excluded.name, data = excluded.data`,
+        [key, meta.contentType, meta.name, Buffer.from(data)],
+      ),
+    );
     return;
   }
   const file = localPath("files", key);
@@ -98,11 +108,13 @@ export async function putFile(key: string, data: ArrayBuffer, meta: FileMeta) {
 }
 
 export async function getFile(key: string): Promise<{ data: ArrayBuffer; meta: FileMeta } | null> {
-  const d = db();
-  if (d) {
-    await d.ready;
-    const rows = await d.sql<{ data: Buffer; content_type: string; name: string }[]>`
-      select data, content_type, name from files where key = ${key}`;
+  if (DB_URL) {
+    const { rows } = await withDb((db) =>
+      db.query<{ data: Buffer; content_type: string; name: string }>(
+        "select data, content_type, name from files where key = $1",
+        [key],
+      ),
+    );
     const row = rows[0];
     if (!row) return null;
     const buf = row.data;
@@ -122,10 +134,8 @@ export async function getFile(key: string): Promise<{ data: ArrayBuffer; meta: F
 }
 
 export async function deleteFile(key: string) {
-  const d = db();
-  if (d) {
-    await d.ready;
-    await d.sql`delete from files where key = ${key}`;
+  if (DB_URL) {
+    await withDb((db) => db.query("delete from files where key = $1", [key]));
     return;
   }
   const file = localPath("files", key);

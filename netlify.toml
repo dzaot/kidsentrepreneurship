@@ -2,3 +2,7 @@
   base = "web"
   command = "npm run build"
   publish = ".next"
+
+[build.environment]
+  # Node 22 has a built-in WebSocket, which the Neon serverless driver uses.
+  NODE_VERSION = "22"
