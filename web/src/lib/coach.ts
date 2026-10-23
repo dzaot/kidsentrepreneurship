@@ -23,7 +23,7 @@ export const BREAK_REMINDER =
 const CRISIS = [
   /\b(kill|hurt|cut|harm)\s*(my ?self|me)\b/i,
   /\b(suicid\w*|self[- ]?harm)\b/i,
-  /\b(want|wanna|going) to die\b/i,
+  /\b(want(ed)? to|wanna|going to|gonna) die\b/i,
   /\bend my life\b/i,
   /\b(someone|somebody|he|she|they|my \w+) (is )?(hurting|hurts|hit|hits|touch(es|ed)?) me\b/i,
   /\b(abuse[ds]?|abusing) me\b/i,
