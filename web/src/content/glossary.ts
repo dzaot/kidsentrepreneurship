@@ -146,7 +146,7 @@ export const GLOSSARY: GlossaryTerm[] = [
   {
     term: "AI (artificial intelligence)",
     meaning: "A computer helper that can suggest words, ideas, or pictures when you ask it. AI is your helper, but YOU are the boss who picks and changes things.",
-    example: "Roo, the coach in Venturoo, is an AI that can give you 10 shop name ideas to choose from.",
+    example: "Guroo, the coach in Venturoo, is an AI that can give you 10 shop name ideas to choose from.",
   },
   {
     term: "Prompt",
@@ -157,5 +157,45 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: "AI disclosure",
     meaning: "A short, honest note that tells customers AI helped make your product.",
     example: "Your sticker pack description says \"Designed by me with AI help.\"",
+  },
+  {
+    term: "Dropshipping",
+    meaning: "A way of selling where the seller never touches the product. A supplier ships it straight to the customer. Profits are often small and the seller is still responsible.",
+    example: "A dropshipper sells a phone case for $15, pays the supplier $8, and still has to pay for ads.",
+  },
+  {
+    term: "Print-on-demand",
+    meaning: "A company prints your design on a product only when someone orders it, then ships it. No inventory and no money upfront.",
+    example: "Your cactus mascot gets printed on a mug only after a customer buys it.",
+  },
+  {
+    term: "Mockup",
+    meaning: "A picture that shows your design on a product, so buyers can see what they will get without anyone showing their face.",
+    example: "A mockup shows your sticker on a laptop lid.",
+  },
+  {
+    term: "Margin",
+    meaning: "The part of the price you keep after paying what it costs to make. Base cost + profit = price.",
+    example: "A mug costs $9 to make and you sell it for $14, so your margin is $5 before small fees.",
+  },
+  {
+    term: "Channel",
+    meaning: "A place on YouTube where videos are posted under one name. For kids, the channel belongs to a grown-up's account and uses the shop brand name.",
+    example: "Your grown-up makes a channel called \"Sleepy Fox Studio\" for your drawing videos.",
+  },
+  {
+    term: "Thumbnail",
+    meaning: "The small picture people see before they click a video. A good one is bright, simple, and honest.",
+    example: "Your thumbnail shows your dragon coloring page with the words \"Dragon Coloring Fun.\"",
+  },
+  {
+    term: "Faceless content",
+    meaning: "Videos or posts that show your work, like your hands drawing or your screen, but never your face, voice, or name.",
+    example: "A timelapse of your hands coloring a page, with music and captions, is faceless content.",
+  },
+  {
+    term: "AI label",
+    meaning: "A note that tells viewers AI was used to make something look real. YouTube asks for one on realistic AI content. Venturoo kids also disclose AI help in their listings.",
+    example: "If AI made a realistic scene in a video, your grown-up turns on YouTube's \"altered or synthetic content\" label.",
   },
 ];

@@ -3,7 +3,7 @@ import type { Unit } from "./types";
 // The 30-day Venturoo Launch Path: 4 units x 5 lessons, about 5 minutes a day.
 // Goal: the kid's first online sale of a digital product, $0 invested,
 // with a parent learning alongside and owning every account.
-// AI stance: "AI is your helper, YOU are the boss." Roo (the in-app coach) is
+// AI stance: "AI is your helper, YOU are the boss." Guroo (the in-app coach) is
 // text only. AI image tools are used only on the grown-up's account, together.
 
 export const UNITS: Unit[] = [
@@ -26,9 +26,9 @@ export const UNITS: Unit[] = [
         steps: [
           {
             kind: "learn",
-            title: "Hi, I'm Roo!",
+            title: "Hi, I'm Guroo!",
             emoji: "🦘",
-            body: "Roo says: I'm a kangaroo with a little shop in my pouch. In about 30 days, you will open your own online shop and make your first sale. Five minutes a day. Zero dollars. Ready to hop in?",
+            body: "Guroo says: I'm a wise kangaroo with a little shop in my pouch (and lots of tips). In about 30 days, you will open your own online shop and make your first sale. Five minutes a day. Zero dollars. Ready to hop in?",
           },
           {
             kind: "learn",
@@ -49,7 +49,7 @@ export const UNITS: Unit[] = [
           },
           {
             kind: "learn",
-            title: "Roo's safety promise",
+            title: "Guroo's safety promise",
             emoji: "🛡️",
             body: "Real entrepreneurs protect their privacy. You never share your face, real name, school, or city, not even with me or any AI. Your shop gets a made-up name and a mascot. Your grown-up handles the money and sharing.",
           },
@@ -71,7 +71,7 @@ export const UNITS: Unit[] = [
           },
         ],
         parentCorner: {
-          tip: "A business is a repeatable way of creating value that someone pays for. Over the next 30 days your child runs a tiny real one, coached by Roo, a text-only AI helper inside the app. You own the accounts, approve publishing, and share the link.",
+          tip: "A business is a repeatable way of creating value that someone pays for. Over the next 30 days your child runs a tiny real one, coached by Guroo, a text-only AI helper inside the app. You own the accounts, approve publishing, and share the link.",
           talkAbout: "What is a local business we both like, and why do you think people keep coming back?",
         },
       },
@@ -155,9 +155,9 @@ export const UNITS: Unit[] = [
           },
           {
             kind: "learn",
-            title: "Roo's problem formula",
+            title: "Guroo's problem formula",
             emoji: "🦘",
-            body: "Roo says: Try this sentence. \"People who ___ get annoyed when ___. I could make ___.\" Example: \"People who go camping get bored when it rains. I could make a rainy day puzzle pack.\"",
+            body: "Guroo says: Try this sentence. \"People who ___ get annoyed when ___. I could make ___.\" Example: \"People who go camping get bored when it rains. I could make a rainy day puzzle pack.\"",
           },
           {
             kind: "learn",
@@ -167,19 +167,19 @@ export const UNITS: Unit[] = [
           },
           {
             kind: "quiz",
-            question: "Which message is safe to send to Roo?",
+            question: "Which message is safe to send to Guroo?",
             options: [
               "\"Hi, I'm Mia Lopez from Lincoln Elementary.\"",
               "\"I love dinosaurs and puzzles. What could I make?\"",
               "\"My street is Maple Road. What should I sell?\"",
             ],
             answer: 1,
-            explain: "That's it! Share what you like, never who or where you are. That rule is the same for Roo and every other AI.",
+            explain: "That's it! Share what you like, never who or where you are. That rule is the same for Guroo and every other AI.",
           },
           {
-            kind: "ask-roo",
-            title: "Brainstorm with Roo",
-            body: "Ask Roo for problem ideas. Change the starter to the things YOU love. Roo gives sparks, you choose. Circle the 1 or 2 ideas that feel most like you.",
+            kind: "ask-guroo",
+            title: "Brainstorm with Guroo",
+            body: "Ask Guroo for problem ideas. Change the starter to the things YOU love. Guroo gives sparks, you choose. Circle the 1 or 2 ideas that feel most like you.",
             starter: "I like drawing animals and doing puzzles. Can you give me 5 small problems kids or families have that a printable could fix?",
           },
           {
@@ -194,12 +194,12 @@ export const UNITS: Unit[] = [
           },
           {
             kind: "reflect",
-            prompt: "Fill in Roo's formula with your best idea: People who ___ get annoyed when ___. I could make ___.",
+            prompt: "Fill in Guroo's formula with your best idea: People who ___ get annoyed when ___. I could make ___.",
             placeholder: "People who take road trips get bored when... I could make...",
           },
         ],
         parentCorner: {
-          tip: "Startups often begin with 'pain points': a specific frustration for a specific group. Roo, the in-app AI coach, can suggest ideas, but your child stays the decision maker. Ask 'Which of Roo's ideas did you pick, and why?' so the thinking stays theirs.",
+          tip: "Startups often begin with 'pain points': a specific frustration for a specific group. Guroo, the in-app AI coach, can suggest ideas, but your child stays the decision maker. Ask 'Which of Guroo's ideas did you pick, and why?' so the thinking stays theirs.",
           talkAbout: "What is something in our family's week that is always a little annoying, and could a simple product help?",
         },
       },
@@ -235,9 +235,9 @@ export const UNITS: Unit[] = [
             explain: "That's it! Your safe circle is the perfect place to start. They want to cheer you on, and your grown-up stays in charge.",
           },
           {
-            kind: "ask-roo",
-            title: "Ask Roo about customers",
-            body: "Ask Roo what kinds of people might love your idea. Use types of people, never real names. Then check: which ones are in your safe circle?",
+            kind: "ask-guroo",
+            title: "Ask Guroo about customers",
+            body: "Ask Guroo what kinds of people might love your idea. Use types of people, never real names. Then check: which ones are in your safe circle?",
             starter: "I want to make a puzzle pack. What 5 kinds of people might love it, like \"parents on road trips\"?",
           },
           {
@@ -306,9 +306,9 @@ export const UNITS: Unit[] = [
           },
           {
             kind: "learn",
-            title: "Roo is proud",
+            title: "Guroo is proud",
             emoji: "🦘",
-            body: "Roo says: You just made your first big business decision. That is what entrepreneurs do. Next unit, we start making it. Hop to it!",
+            body: "Guroo says: You just made your first big business decision. That is what entrepreneurs do. Next unit, we start making it. Hop to it!",
           },
         ],
         parentCorner: {
@@ -360,9 +360,9 @@ export const UNITS: Unit[] = [
             body: "Great packs have one clear theme. \"Ocean animals\" beats \"random stuff.\" A theme helps customers know exactly what they are getting, and helps you decide what to make next.",
           },
           {
-            kind: "ask-roo",
-            title: "Get theme ideas from Roo",
-            body: "Ask Roo for themes. Change \"coloring pack\" to your product. Pick your favorite, or mix two together to make it yours, like \"ocean animals who run a bakery.\"",
+            kind: "ask-guroo",
+            title: "Get theme ideas from Guroo",
+            body: "Ask Guroo for themes. Change \"coloring pack\" to your product. Pick your favorite, or mix two together to make it yours, like \"ocean animals who run a bakery.\"",
             starter: "I want to make a coloring pack. Can you give me 10 fun themes kids my age would love?",
           },
           {
@@ -401,9 +401,9 @@ export const UNITS: Unit[] = [
           },
           {
             kind: "learn",
-            title: "Roo's quality checklist",
+            title: "Guroo's quality checklist",
             emoji: "📋",
-            body: "Roo says: Check 4 things. Clear: lines are dark and easy to see. Complete: no missing pieces. Correct: puzzles work, words are spelled right. Consistent: everything matches the theme.",
+            body: "Guroo says: Check 4 things. Clear: lines are dark and easy to see. Complete: no missing pieces. Correct: puzzles work, words are spelled right. Consistent: everything matches the theme.",
           },
           {
             kind: "learn",
@@ -413,7 +413,7 @@ export const UNITS: Unit[] = [
           },
           {
             kind: "quiz",
-            question: "Roo gave you 20 ocean words, but one is \"desert\" and one is spelled wrong. What do you do?",
+            question: "Guroo gave you 20 ocean words, but one is \"desert\" and one is spelled wrong. What do you do?",
             options: [
               "Use them all, AI is always right",
               "Fix the spelling and swap \"desert\" for a real ocean word",
@@ -432,7 +432,7 @@ export const UNITS: Unit[] = [
           {
             kind: "mission",
             title: "Check Your Samples",
-            body: "Go back to your prototype samples and run Roo's checks. Aim for about 8 to 12 great items in the final pack.",
+            body: "Go back to your prototype samples and run Guroo's checks. Aim for about 8 to 12 great items in the final pack.",
             checklist: [
               "Clear: lines and colors are easy to see",
               "Complete and correct: nothing missing or broken",
@@ -457,7 +457,7 @@ export const UNITS: Unit[] = [
             kind: "learn",
             title: "You are the boss",
             emoji: "🦘",
-            body: "Roo says: AI can help you make things faster. You have the idea, you write the prompt (the instructions), you choose the best result, and you edit it and add your own touch. Love drawing? Draw it all yourself. Both are great.",
+            body: "Guroo says: AI can help you make things faster. You have the idea, you write the prompt (the instructions), you choose the best result, and you edit it and add your own touch. Love drawing? Draw it all yourself. Both are great.",
           },
           {
             kind: "learn",
@@ -471,7 +471,7 @@ export const UNITS: Unit[] = [
             options: [
               "Sign up for an AI picture app by yourself",
               "Borrow a friend's account",
-              "Write the prompt with Roo, then your grown-up runs it on their account with you",
+              "Write the prompt with Guroo, then your grown-up runs it on their account with you",
             ],
             answer: 2,
             explain: "Exactly! You write the prompt, your grown-up runs it. Teamwork keeps it safe and follows the tools' age rules.",
@@ -501,9 +501,9 @@ export const UNITS: Unit[] = [
             body: "If AI helped make your pictures, say so in your description, like \"Designed by me with AI help.\" Never say \"hand-drawn\" if it isn't. Honest shops earn trust, and trust brings customers back.",
           },
           {
-            kind: "ask-roo",
-            title: "Write an image prompt with Roo",
-            body: "Ask Roo to help you write a clear prompt for your own original character. Change the details to make it yours. Then show the prompt to your grown-up to try together. Drawing it yourself? Ask for drawing ideas instead.",
+            kind: "ask-guroo",
+            title: "Write an image prompt with Guroo",
+            body: "Ask Guroo to help you write a clear prompt for your own original character. Change the details to make it yours. Then show the prompt to your grown-up to try together. Drawing it yourself? Ask for drawing ideas instead.",
             starter: "I invented a taco dragon. Can you help me write a prompt for a black and white coloring page with thick lines and no text?",
           },
           {
@@ -556,7 +556,7 @@ export const UNITS: Unit[] = [
           {
             kind: "mission",
             title: "Ask 3 Family Members",
-            body: "Show your samples to 3 people in your family circle, in person or through your grown-up. Ask Roo's questions.",
+            body: "Show your samples to 3 people in your family circle, in person or through your grown-up. Ask Guroo's questions.",
             checklist: [
               "Get feedback from family member 1",
               "Get feedback from family member 2",
@@ -586,12 +586,12 @@ export const UNITS: Unit[] = [
             kind: "learn",
             title: "The finish line",
             emoji: "🏁",
-            body: "Now make the full pack: about 8 to 12 items using your theme, your feedback, and Roo's checklist. This may take a few sessions. That is normal. Come back here when it is done.",
+            body: "Now make the full pack: about 8 to 12 items using your theme, your feedback, and Guroo's checklist. This may take a few sessions. That is normal. Come back here when it is done.",
           },
           {
-            kind: "ask-roo",
-            title: "Fill your pack with Roo",
-            body: "Stuck on content? Ask Roo. Change the starter to fit you: a word list, riddles, more page ideas, or a story outline. Then check every item, cut the weak ones, and add your own.",
+            kind: "ask-guroo",
+            title: "Fill your pack with Guroo",
+            body: "Stuck on content? Ask Guroo. Change the starter to fit you: a word list, riddles, more page ideas, or a story outline. Then check every item, cut the weak ones, and add your own.",
             starter: "I'm making a word search pack about the ocean. Can you give me 20 ocean words kids my age know?",
           },
           {
@@ -617,7 +617,7 @@ export const UNITS: Unit[] = [
             body: "Before uploading, check your file with your grown-up.",
             checklist: [
               "No real names, photos of faces, or personal info anywhere in the file",
-              "Everything passes Roo's quality checks, including AI-made parts",
+              "Everything passes Guroo's quality checks, including AI-made parts",
               "The file is a PDF or ZIP under 4 MB",
             ],
           },
@@ -631,7 +631,7 @@ export const UNITS: Unit[] = [
             kind: "learn",
             title: "You made a product!",
             emoji: "🦘",
-            body: "Roo says: Most people only dream about making something to sell. You actually did it. I'm hopping with joy! Next up: your brand and shop.",
+            body: "Guroo says: Most people only dream about making something to sell. You actually did it. I'm hopping with joy! Next up: your brand and shop.",
           },
         ],
         parentCorner: {
@@ -689,20 +689,20 @@ export const UNITS: Unit[] = [
             body: "Try these: rhymes (Doodle Noodle), alliteration (Silly Sticker Shop), or a mascot plus a word (Sleepy Fox Puzzles). Say it out loud. Easy to say and spell? Great sign.",
           },
           {
-            kind: "ask-roo",
-            title: "Name ideas from Roo",
-            body: "Ask Roo for name ideas. Change the starter to your product. Mix and match words from Roo's list, or tweak one until it sounds like you. Never give Roo your real name.",
+            kind: "ask-guroo",
+            title: "Name ideas from Guroo",
+            body: "Ask Guroo for name ideas. Change the starter to your product. Mix and match words from Guroo's list, or tweak one until it sounds like you. Never give Guroo your real name.",
             starter: "I make ocean animal coloring pages. Can you give me 10 fun shop name ideas using rhymes or a mascot, with no real names or places?",
           },
           {
             kind: "build",
             action: "brand-name",
             title: "Name your shop",
-            body: "Pick your favorite name from your own ideas and Roo's, and check it has no personal info. Your grown-up can help you choose.",
+            body: "Pick your favorite name from your own ideas and Guroo's, and check it has no personal info. Your grown-up can help you choose.",
           },
         ],
         parentCorner: {
-          tip: "A pseudonymous brand protects your child and is common practice; many authors and creators sell under pen names. Roo can suggest names, but double-check the final pick contains no identifiers such as surname, school, location, or birth year.",
+          tip: "A pseudonymous brand protects your child and is common practice; many authors and creators sell under pen names. Guroo can suggest names, but double-check the final pick contains no identifiers such as surname, school, location, or birth year.",
           talkAbout: "What brand names do you remember best, and why do they stick?",
         },
       },
@@ -749,9 +749,9 @@ export const UNITS: Unit[] = [
             explain: "Ha, yes! It names a real problem parents know, and it is short and funny. That is tagline gold.",
           },
           {
-            kind: "ask-roo",
-            title: "Tagline ideas from Roo",
-            body: "Ask Roo for short taglines. Change the starter to your shop. Pick one, then make it yours: swap a word, add a joke, or make it shorter.",
+            kind: "ask-guroo",
+            title: "Tagline ideas from Guroo",
+            body: "Ask Guroo for short taglines. Change the starter to your shop. Pick one, then make it yours: swap a word, add a joke, or make it shorter.",
             starter: "My shop sells road trip puzzle packs and my mascot is a sleepy fox. Can you give me 8 taglines under 8 words?",
           },
           {
@@ -762,7 +762,7 @@ export const UNITS: Unit[] = [
           },
         ],
         parentCorner: {
-          tip: "Brand identity (mascot, color, tagline) creates recognition and trust. A mascot also solves the 'faceless marketing' problem. When Roo offers taglines, ask your child to edit their favorite rather than copy it, so the final line is theirs.",
+          tip: "Brand identity (mascot, color, tagline) creates recognition and trust. A mascot also solves the 'faceless marketing' problem. When Guroo offers taglines, ask your child to edit their favorite rather than copy it, so the final line is theirs.",
           talkAbout: "If our family were a brand, what would our mascot and color be?",
         },
       },
@@ -826,9 +826,9 @@ export const UNITS: Unit[] = [
             explain: "Yes! Being honest about AI help builds trust. Saying \"hand-drawn\" when it isn't would trick your customers.",
           },
           {
-            kind: "ask-roo",
-            title: "Polish it with Roo",
-            body: "Ask Roo for a draft. Change the starter to match your product. Then rewrite it in your own words, check every fact is true, and add an AI disclosure if AI helped.",
+            kind: "ask-guroo",
+            title: "Polish it with Guroo",
+            body: "Ask Guroo for a draft. Change the starter to match your product. Then rewrite it in your own words, check every fact is true, and add an AI disclosure if AI helped.",
             starter: "I made 10 ocean animal coloring pages for kids ages 4 to 8. Can you help me write a short description that says what it is, who it's for, and why they'll love it?",
           },
           {
@@ -871,9 +871,9 @@ export const UNITS: Unit[] = [
           },
           {
             kind: "learn",
-            title: "Roo's price tips",
+            title: "Guroo's price tips",
             emoji: "🦘",
-            body: "Roo says: Most first packs sell well at $2 to $5. More items or more work can mean a higher price. A price ending in .99 or a round number both work. Ask your grown-up what feels fair.",
+            body: "Guroo says: Most first packs sell well at $2 to $5. More items or more work can mean a higher price. A price ending in .99 or a round number both work. Ask your grown-up what feels fair.",
           },
           {
             kind: "quiz",
@@ -949,7 +949,7 @@ export const UNITS: Unit[] = [
             kind: "learn",
             title: "Almost live!",
             emoji: "🦘",
-            body: "Roo says: Your shop is ready for the world, or at least your family circle. Next unit, we launch and go for that first sale. Let's hop!",
+            body: "Guroo says: Your shop is ready for the world, or at least your family circle. Next unit, we launch and go for that first sale. Let's hop!",
           },
         ],
         parentCorner: {
@@ -1106,9 +1106,9 @@ export const UNITS: Unit[] = [
             explain: "Right! Shop name, product, price, and link are all you need. Personal details always stay out.",
           },
           {
-            kind: "ask-roo",
-            title: "Message ideas from Roo",
-            body: "Ask Roo for a few short versions. Change the starter to your shop and product. Pick the one that sounds most like you, then tweak it. Shop name only, no real names.",
+            kind: "ask-guroo",
+            title: "Message ideas from Guroo",
+            body: "Ask Guroo for a few short versions. Change the starter to your shop and product. Pick the one that sounds most like you, then tweak it. Shop name only, no real names.",
             starter: "My shop is Pixel Pals Studio and I made 15 digital stickers for $3. Can you write 3 short, friendly messages for my family under 50 words?",
           },
           {
@@ -1139,7 +1139,7 @@ export const UNITS: Unit[] = [
             kind: "learn",
             title: "Ka-ching!",
             emoji: "🎉",
-            body: "Roo says: When your first sale comes in, celebrate! Someone paid for something YOU made. That is a huge deal. Most adults have never done it.",
+            body: "Guroo says: When your first sale comes in, celebrate! Someone paid for something YOU made. That is a huge deal. Most adults have never done it.",
           },
           {
             kind: "learn",
@@ -1148,9 +1148,9 @@ export const UNITS: Unit[] = [
             body: "Great businesses thank their customers. Make a thank-you note or drawing from your mascot. Your grown-up sends it. Happy customers come back and tell others.",
           },
           {
-            kind: "ask-roo",
-            title: "Thank-you ideas from Roo",
-            body: "Ask Roo for ideas, then write the note in your own words. A drawing from your mascot makes it extra special. Keep the customer's name out of the chat. Add it later, on paper.",
+            kind: "ask-guroo",
+            title: "Thank-you ideas from Guroo",
+            body: "Ask Guroo for ideas, then write the note in your own words. A drawing from your mascot makes it extra special. Keep the customer's name out of the chat. Add it later, on paper.",
             starter: "Someone bought my ocean coloring pack! Can you give me 5 short, fun thank-you note ideas from my mascot, a sleepy fox?",
           },
           {
@@ -1183,7 +1183,7 @@ export const UNITS: Unit[] = [
           },
         ],
         parentCorner: {
-          tip: "Bookkeeping starts with a simple sales log: date, item, gross price, fees, net. Show your child the real receipt and payout in your account so they connect the app to actual money. Customer names stay in your account, never in Roo.",
+          tip: "Bookkeeping starts with a simple sales log: date, item, gross price, fees, net. Show your child the real receipt and payout in your account so they connect the app to actual money. Customer names stay in your account, never in Guroo.",
           talkAbout: "Who should we thank first, and how can we make them smile?",
         },
       },
@@ -1220,7 +1220,7 @@ export const UNITS: Unit[] = [
             kind: "learn",
             title: "Product #2",
             emoji: "🔁",
-            body: "Your second product is easier. You already have a shop, a brand, and customers. Ideas: a new theme in the same style, a holiday version, or something a customer asked for. Roo can help you brainstorm.",
+            body: "Your second product is easier. You already have a shop, a brand, and customers. Ideas: a new theme in the same style, a holiday version, or something a customer asked for. Guroo can help you brainstorm.",
           },
           {
             kind: "quiz",
@@ -1231,7 +1231,7 @@ export const UNITS: Unit[] = [
               "Copying a famous character because it is popular",
             ],
             answer: 0,
-            explain: "Exactly! Listening to customers is the best idea generator there is. Roo is so proud of you. You're a real entrepreneur now!",
+            explain: "Exactly! Listening to customers is the best idea generator there is. Guroo is so proud of you. You're a real entrepreneur now!",
           },
           {
             kind: "mission",

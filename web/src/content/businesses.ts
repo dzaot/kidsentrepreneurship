@@ -2,7 +2,7 @@ import type { BusinessType } from "./types";
 
 // The 5 starter businesses. Every one is a digital product: make it once,
 // sell it many times, and it costs $0 to make with free, kid-safe tools.
-// No tool here asks a kid under 13 to create an account. Roo (the in-app AI
+// No tool here asks a kid under 13 to create an account. Guroo (the in-app AI
 // coach) helps with text. AI image tools run only on the grown-up's account,
 // with the grown-up, because those tools have age limits.
 
@@ -20,12 +20,12 @@ export const BUSINESS_TYPES: BusinessType[] = [
       "Kleki.com (free browser paint app, no account needed) to clean up lines",
       "Tux Paint (free drawing program for kids)",
       "Google Slides on your parent's account to put pages into one PDF",
-      "Roo, the AI coach in the app, for theme ideas and image prompts",
+      "Guroo, the AI coach in the app, for theme ideas and image prompts",
       "AI image tools (ChatGPT, Google Gemini, Canva AI, or Adobe Firefly) on your parent's account, used together",
     ],
     steps: [
-      "Pick one fun theme with Roo's help, like ocean animals, space robots, or cozy cafes.",
-      "Draw 8 to 10 pages by hand, or write prompts with Roo and make AI line art with your grown-up on their account.",
+      "Pick one fun theme with Guroo's help, like ocean animals, space robots, or cozy cafes.",
+      "Draw 8 to 10 pages by hand, or write prompts with Guroo and make AI line art with your grown-up on their account.",
       "Check every page: closed lines for coloring, no weird hands or messy letters. Fix or redo the odd ones.",
       "Scan hand-drawn pages with a parent's phone in good light, or save the AI pages your grown-up made.",
       "Add a cover page, write \"Designed by me with AI help\" if AI helped, and save it all as one PDF.",
@@ -52,11 +52,11 @@ export const BUSINESS_TYPES: BusinessType[] = [
       "Tux Paint (free drawing program for kids)",
       "Paper, markers, and your parent's phone to scan drawings",
       "Google Slides on your parent's account to make a preview sheet",
-      "Roo, the AI coach in the app, for sticker ideas and image prompts",
+      "Guroo, the AI coach in the app, for sticker ideas and image prompts",
       "AI image tools (ChatGPT, Google Gemini, Canva AI, or Adobe Firefly) on your parent's account, used together",
     ],
     steps: [
-      "Choose a theme with Roo's help, like happy fruits, study buddies, or weather faces.",
+      "Choose a theme with Guroo's help, like happy fruits, study buddies, or weather faces.",
       "Draw 12 to 20 small stickers with thick outlines, or make them with AI with your grown-up from prompts you wrote.",
       "Save each sticker as its own PNG with a see-through (transparent) background.",
       "Give each file a simple name, like sticker-01-happy-apple.png.",
@@ -84,11 +84,11 @@ export const BUSINESS_TYPES: BusinessType[] = [
       "Piskel (free pixel art editor, no account needed) for retro pixel styles",
       "Google Slides on your parent's account (set a custom page size)",
       "Paper and paint or markers, scanned with your parent's phone",
-      "Roo, the AI coach in the app, for style ideas and image prompts",
+      "Guroo, the AI coach in the app, for style ideas and image prompts",
       "AI image tools (ChatGPT, Google Gemini, Canva AI, or Adobe Firefly) on your parent's account, used together",
     ],
     steps: [
-      "Pick a style with Roo's help, like pastel clouds, neon space, or pixel forests.",
+      "Pick a style with Guroo's help, like pastel clouds, neon space, or pixel forests.",
       "Make 5 to 8 matching designs by hand, or with AI on your grown-up's account using your own prompts.",
       "Leave calm space near the top so app icons and the clock are easy to see.",
       "Save phone versions tall (like 1080 by 1920) and desktop versions wide (like 1920 by 1080).",
@@ -115,11 +115,11 @@ export const BUSINESS_TYPES: BusinessType[] = [
       "Free online puzzle makers that need no account (word search and crossword generators)",
       "Google Docs or Slides on your parent's account to lay out pages",
       "Your parent's phone to scan hand-drawn puzzles",
-      "Roo, the AI coach in the app, for themed word lists, riddles, and clues",
+      "Guroo, the AI coach in the app, for themed word lists, riddles, and clues",
     ],
     steps: [
       "Pick a theme, like road trip, dinosaurs, or camping.",
-      "Ask Roo for word lists, riddles, or crossword clues, then check every word and add your own.",
+      "Ask Guroo for word lists, riddles, or crossword clues, then check every word and add your own.",
       "Make 8 to 12 puzzles: mix word searches, mazes, crosswords, and dot-to-dots.",
       "Solve every puzzle yourself to make sure it really works.",
       "Make an answer key page for the back of the pack.",
@@ -146,11 +146,11 @@ export const BUSINESS_TYPES: BusinessType[] = [
       "Kleki.com (free browser paint app, no account needed) for coloring art",
       "Google Slides or Docs on your parent's account to put words and pictures together",
       "Your parent's phone to scan drawn pages",
-      "Roo, the AI coach in the app, to brainstorm and outline your story",
+      "Guroo, the AI coach in the app, to brainstorm and outline your story",
     ],
     steps: [
       "Invent your own hero. No famous characters, make someone brand new.",
-      "Plan 3 parts (beginning, problem, ending). Roo can suggest an outline, and you pick and change it.",
+      "Plan 3 parts (beginning, problem, ending). Guroo can suggest an outline, and you pick and change it.",
       "Sketch 8 to 12 pages or comic panels on paper.",
       "Write the words yourself, then read it out loud to check it makes sense.",
       "Scan or draw the final pages and put them into one PDF with a cover.",
