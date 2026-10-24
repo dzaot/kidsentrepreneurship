@@ -63,7 +63,9 @@ export default async function KidHome({ params }: { params: Promise<{ kidId: str
         <KidHeader kid={kid} onSky />
         <div className="animate-page mx-auto flex max-w-6xl items-end justify-between gap-2 px-4 pt-2 sm:pt-4">
           <div className="min-w-0 pb-6 sm:pb-10">
-            <p className="display-white font-display text-lg font-bold sm:text-xl">{sold ? "First sale! 🎉" : firstTime ? "Welcome!" : `Hi ${kid.nickname}!`}</p>
+            {(sold || firstTime || kid.shop.name) && (
+              <p className="display-white font-display text-lg font-bold sm:text-xl">{sold ? "First sale! 🎉" : firstTime ? "Welcome!" : `Hi ${kid.nickname}!`}</p>
+            )}
             <h1 className="display-white break-words font-display text-[34px] font-extrabold leading-[1.05] sm:text-5xl">G&apos;day, {hello}!</h1>
             <p className="mt-2 max-w-md rounded-2xl bg-white/90 px-4 py-2.5 text-[15px] font-bold leading-snug text-ink shadow-soft sm:text-base">{greeting(kid, next?.title)}</p>
           </div>
@@ -77,7 +79,7 @@ export default async function KidHome({ params }: { params: Promise<{ kidId: str
             {/* Level card with the slider-like bar and the next patch as the prize. */}
             <section className="card-soft animate-rise relative p-5 sm:p-6" aria-labelledby="level-title">
               {nextBadge && (
-                <Link href={`${base}/badges`} className="absolute -top-5 right-4 rounded-2xl sm:right-6" aria-label={`Next patch: ${nextBadge.title}`}>
+                <Link href={`${base}/badges`} className="absolute right-4 top-4 rounded-2xl sm:right-6" aria-label={`Next patch: ${nextBadge.title}`}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={badgeArt(nextBadge.id)} alt="" width={64} height={75} className="h-[75px] w-16 rotate-6 drop-shadow-[0_8px_8px_rgba(27,35,64,0.25)] transition-transform duration-300 ease-bounce hover:rotate-0 sm:h-[84px] sm:w-[72px]" />
                 </Link>

@@ -97,8 +97,11 @@ export function LessonPlayer({
   const continueRef = useRef<HTMLButtonElement>(null);
 
   // Badges this lesson unlocks: same rules as the badge board, before vs. after finishing.
+  // Snapshot of the kid's data when the lesson opened (the page refreshes its props after saving).
+  const [start0] = useState(() => ({ completed, shop }));
   const fresh = useMemo(() => {
     if (!finishedDay) return [];
+    const { completed, shop } = start0;
     const before = computeBadges({ completed, shop }, badgeRules);
     const namesShop = lesson.steps.some((st) => st.kind === "build" && st.action === "brand-name");
     const after = computeBadges(
@@ -106,8 +109,8 @@ export function LessonPlayer({
       badgeRules,
     );
     return newlyEarned(before, after);
-  }, [finishedDay, completed, shop, badgeRules, lesson]);
-  const practiceAfter = practiceDays(finishedDay ? { ...completed, [`${lesson.id}:now`]: finishedDay } : completed).length;
+  }, [finishedDay, start0, badgeRules, lesson]);
+  const practiceAfter = practiceDays(finishedDay ? { ...start0.completed, [`${lesson.id}:now`]: finishedDay } : start0.completed).length;
 
   const step: Step | undefined = lesson.steps[i];
   const total = lesson.steps.length;
@@ -180,7 +183,7 @@ export function LessonPlayer({
           <div className="card-soft animate-pop px-2 py-4 [animation-delay:500ms]" role="listitem">
             <p className="text-xs font-extrabold uppercase tracking-wide text-ink-soft">Practice days</p>
             <p className="font-display text-3xl font-bold text-leaf-dark">
-              <span aria-hidden>📅</span> {practiceAfter}
+              <span aria-hidden>🌱</span> {practiceAfter}
             </p>
           </div>
           <div className="card-soft animate-pop px-2 py-4 [animation-delay:600ms]" role="listitem">

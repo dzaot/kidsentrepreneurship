@@ -309,7 +309,6 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ d
                         alt={`${b.title} patch`}
                         width={104}
                         height={121}
-                        loading="lazy"
                         className={`h-auto w-full max-w-[104px] drop-shadow-[0_8px_10px_rgba(27,35,64,0.2)] ${i % 2 ? "rotate-3" : "-rotate-3"}`}
                       />
                       <span className="mt-1 text-xs font-bold text-ink-soft">{caption}</span>

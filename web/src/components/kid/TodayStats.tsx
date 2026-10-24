@@ -45,26 +45,26 @@ export function TodayStats({ days, streak, lastDay }: { days: string[]; streak: 
 
   return (
     <div className="grid grid-cols-2 gap-3">
-      <div className={`card-soft flex items-center gap-3 p-4 ${goalMet ? "bg-mint-100" : ""}`}>
+      <div className={`card-soft flex items-center gap-2.5 p-3.5 ${goalMet ? "bg-mint-100" : ""}`}>
         <span
-          className="relative grid h-14 w-14 shrink-0 place-items-center rounded-full text-2xl"
+          className="relative grid h-12 w-12 shrink-0 place-items-center rounded-full text-xl"
           style={{ background: `conic-gradient(var(--color-leaf) ${goalMet ? 360 : 0}deg, var(--color-surface-sunk) 0deg)` }}
           aria-hidden
         >
-          <span className="grid h-11 w-11 place-items-center rounded-full bg-white">{goalMet ? "✅" : "🎯"}</span>
+          <span className="grid h-9 w-9 place-items-center rounded-full bg-white">{goalMet ? "✅" : "🎯"}</span>
         </span>
         <div className="min-w-0">
-          <p className="text-xs font-extrabold uppercase tracking-wide text-ink-soft">Daily goal</p>
+          <p className="text-[11px] font-extrabold uppercase tracking-wide text-ink-soft">Daily goal</p>
           <p className="font-display text-lg font-bold leading-tight">{goalMet ? "Done today!" : "1 lesson"}</p>
           {doneToday > 1 && <p className="text-xs font-bold text-leaf-dark">{doneToday} lessons today. Wow!</p>}
         </div>
       </div>
-      <div className="card-soft flex items-center gap-3 p-4">
-        <span className="glossy h-14 w-14 shrink-0 bg-honey text-2xl" aria-hidden>
-          📅
+      <div className="card-soft flex items-center gap-2.5 p-3.5">
+        <span className="glossy h-12 w-12 shrink-0 bg-honey text-2xl" aria-hidden>
+          🌱
         </span>
         <div className="min-w-0">
-          <p className="text-xs font-extrabold uppercase tracking-wide text-ink-soft">Practice days</p>
+          <p className="text-[11px] font-extrabold uppercase tracking-wide text-ink-soft">Practice days</p>
           <p className="font-display text-lg font-bold leading-tight">
             {practice} day{practice === 1 ? "" : "s"}
           </p>

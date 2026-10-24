@@ -5,11 +5,11 @@ import { StreakChip } from "./TodayStats";
 
 // Small top bar for the kid world: avatar, practice stats and the grown-up door.
 // Navigation lives in the floating tab bar (KidTabBar). On sky screens it floats over the hero.
-export function KidHeader({ kid, onSky = false }: { kid: Kid; onSky?: boolean }) {
+export function KidHeader({ kid, onSky = false, surface = "bg-cream/90" }: { kid: Kid; onSky?: boolean; surface?: string }) {
   const days = practiceDays(kid.completed).length;
   const chip = `inline-flex h-9 items-center gap-1 rounded-full px-3 text-sm font-extrabold ${onSky ? "bg-white/90 shadow-soft" : "bg-white ring-2 ring-line"}`;
   return (
-    <header className={onSky ? "relative z-20" : "sticky top-0 z-20 bg-cream/90 backdrop-blur"}>
+    <header className={onSky ? "relative z-20" : `sticky top-0 z-20 backdrop-blur ${surface}`}>
       <a href="#main" className="skip-link">
         Skip to content
       </a>
@@ -23,7 +23,7 @@ export function KidHeader({ kid, onSky = false }: { kid: Kid; onSky?: boolean })
         <div className="flex items-center gap-1.5">
           <StreakChip streak={kid.streak.count} lastDay={kid.streak.lastDay} className={chip} />
           <span className={chip} title="Practice days">
-            <span aria-hidden>📅</span> {days}
+            <span aria-hidden>🌱</span> {days}
             <span className="sr-only"> practice days</span>
           </span>
           <span className={chip} title="XP">

@@ -45,8 +45,8 @@ export function SkyScene({
   return (
     <Tag className={`relative isolate overflow-hidden ${level2 ? "sky-level2" : "sky-hero"} ${className}`} aria-label={label}>
       <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden>
-        <Cloud className="cloud-drift absolute -left-6 top-[18%] w-28 opacity-70 sm:w-40" />
-        <Cloud className="cloud-drift-slow absolute right-[8%] top-[8%] w-24 opacity-60 sm:w-36" />
+        <Cloud className="cloud-drift absolute -left-12 top-1 w-28 opacity-60 sm:w-40" />
+        <Cloud className="cloud-drift-slow absolute right-[30%] top-[3%] w-20 opacity-50 sm:w-32" />
         {clouds === "full" && <Cloud className="cloud-drift absolute left-[42%] top-[4%] hidden w-28 opacity-50 md:block" />}
         <Cloud className="absolute -bottom-6 -left-10 w-56 drop-shadow-[0_8px_10px_rgba(27,35,64,0.12)] sm:w-80" />
         <Cloud className="absolute -bottom-10 -right-12 w-64 drop-shadow-[0_8px_10px_rgba(27,35,64,0.12)] sm:w-96" />

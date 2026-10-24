@@ -20,7 +20,7 @@ export function BadgeReveal({ ids, href, delay = 700 }: { ids: BadgeId[]; href: 
       aria-labelledby="new-patch"
       data-badge-reveal={first.id}
     >
-      <div className="sunrise absolute inset-x-0 top-0 -z-0 h-28 opacity-70" aria-hidden />
+      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-peach-100 to-transparent" aria-hidden />
       <p className="relative text-xs font-extrabold uppercase tracking-widest text-sun-ink">New patch unlocked</p>
       <div className="relative mx-auto mt-3 h-[175px] w-[150px]">
         <span className="patch-glow absolute -inset-4 rounded-full bg-honey/60 blur-2xl" aria-hidden />

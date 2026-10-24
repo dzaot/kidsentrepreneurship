@@ -18,7 +18,7 @@ export default async function BadgesPage({ params }: { params: Promise<{ kidId: 
   const nextId = nextLessonId(kid.completed);
   return (
     <div className="badge-board min-h-dvh">
-      <KidHeader kid={kid} />
+      <KidHeader kid={kid} surface="bg-mint-100/85" />
       <main id="main" className="animate-page mx-auto max-w-3xl px-4 pt-4" style={{ paddingBottom: "var(--kid-nav-space)" }}>
         <div className="flex items-center gap-4">
           <Mascot size={84} idle className="shrink-0" />

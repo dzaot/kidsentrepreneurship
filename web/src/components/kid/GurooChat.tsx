@@ -129,7 +129,7 @@ export function GurooChat({
                 send(input);
               }
             }}
-            rows={input.length > 60 ? 3 : 1}
+            rows={input.length > 60 ? 3 : 2}
             maxLength={600}
             placeholder="Ask Guroo anything about your business…"
             className="input resize-none !rounded-3xl"

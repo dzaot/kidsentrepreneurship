@@ -39,7 +39,7 @@ export function Guroo3D({
       height={px}
       alt={decorative ? "" : (alt ?? art.alt)}
       aria-hidden={decorative || undefined}
-      loading={eager ? "eager" : "lazy"}
+      loading={eager ? "eager" : undefined}
       decoding="async"
       draggable={false}
       className={`h-auto max-w-full select-none ${pose === "avatar" ? "rounded-full object-cover" : "object-contain drop-shadow-[0_14px_18px_rgba(27,35,64,0.22)]"} ${className}`}

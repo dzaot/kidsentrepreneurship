@@ -142,7 +142,7 @@ export default async function FamilyPage() {
                       <div className="min-w-0 flex-1">
                         <h2 className="truncate font-display text-2xl font-bold">{kid.nickname}</h2>
                         <p className="text-sm font-semibold text-ink-soft">
-                          📅 {practiceDays(kid.completed).length} practice days · ⭐ {kid.xp} XP · 🏅 {Object.keys(earnedBadges(kid)).length}/{BADGES.length} patches
+                          🌱 {practiceDays(kid.completed).length} practice day{practiceDays(kid.completed).length === 1 ? "" : "s"} · ⭐ {kid.xp} XP · 🏅 {Object.keys(earnedBadges(kid)).length}/{BADGES.length} patches
                         </p>
                       </div>
                     </div>

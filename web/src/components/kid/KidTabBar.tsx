@@ -80,7 +80,7 @@ export function KidTabBar({ kidId }: { kidId: string }) {
                 >
                   <Mascot size={50} idle />
                 </span>
-                <span className={`mt-0.5 text-[11px] font-extrabold leading-none ${t.active ? "text-sun" : "text-cream/80"}`}>{t.label}</span>
+                <span className={`mt-1 text-[11px] font-extrabold leading-none ${t.active ? "text-sun" : "text-cream/80"}`}>{t.label}</span>
               </Link>
             ) : (
               <Link
