@@ -48,6 +48,7 @@ export type ReviewItem = {
 export const anonId = (familyId: string) => "F-" + createHash("sha256").update(familyId).digest("hex").slice(0, 6).toUpperCase();
 
 const DAY = 864e5;
+export const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? "" : "s"}`;
 const dayDiff = (a: string, b: string) => Math.round((Date.parse(b.slice(0, 10)) - Date.parse(a.slice(0, 10))) / DAY);
 const KID_ACTIVITY = new Set<PilotEvent["type"]>(["kid_mode_entered", "lesson_completed", "guroo_message", "badge_earned"]);
 const SHOP_RANK: Record<ShopStatus | "none", number> = { none: 0, draft: 1, pending: 2, published: 3 };
@@ -109,7 +110,7 @@ export async function pilotMetrics() {
   const d7Eligible = count((r) => r.d7 === "yes" || r.d7 === "no");
 
   const funnel: Metric[] = [
-    { label: "Families signed up", value: n, of: n, note: `${events.filter((e) => e.type === "signup").length} signups recorded, ${events.filter((e) => e.type === "account_deleted").length} accounts deleted` },
+    { label: "Families signed up", value: n, of: n, note: `${plural(events.filter((e) => e.type === "signup").length, "signup")} recorded, ${plural(events.filter((e) => e.type === "account_deleted").length, "account")} deleted` },
     { label: "Activated", value: count((r) => r.activated), of: n, target: 70, note: "A kid finished a first lesson within 3 days of signup" },
     { label: "D7 retention", value: count((r) => r.d7 === "yes"), of: d7Eligible, target: 60, note: d7Eligible ? "Activated families with kid activity on day 6, 7 or 8" : "Too early: no activated family is 8 days old yet" },
     { label: "Payment link set", value: count((r) => r.paymentSet), of: n, target: 60, note: "Parent pasted a payment link" },

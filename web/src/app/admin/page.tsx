@@ -7,7 +7,7 @@ import { ActionForm, Submit } from "@/components/forms";
 import { Logo } from "@/components/Mascot";
 import { adminEnabled, isAdmin } from "@/lib/auth";
 import { formatMoney, type Currency } from "@/lib/brand";
-import { pilotMetrics, type Metric } from "@/lib/metrics";
+import { pilotMetrics, plural, type Metric } from "@/lib/metrics";
 import { findShop, getFamily } from "@/lib/model";
 import { listReports, REPORT_REASONS, type Report } from "@/lib/moderation";
 
@@ -124,8 +124,8 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
           <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             <SmallStat label="Kids" value={m.totals.kids} />
             <SmallStat label="Lessons completed" value={m.totals.lessons} note="Distinct lessons, all kids" />
-            <SmallStat label="Sales per kid" value={m.totals.salesPerKid.toFixed(1)} note={`${m.totals.sales} sales in total · target 3`} />
-            <SmallStat label="Guroo" value={`${m.totals.gurooFamilies} on`} note={`${m.totals.gurooMessages} messages sent (count only)`} />
+            <SmallStat label="Sales per kid" value={m.totals.salesPerKid.toFixed(1)} note={`${plural(m.totals.sales, "sale")} in total · target 3`} />
+            <SmallStat label="Guroo" value={`${m.totals.gurooFamilies} on`} note={`${plural(m.totals.gurooMessages, "message")} sent (count only)`} />
           </div>
         </Section>
 
