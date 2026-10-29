@@ -13,6 +13,7 @@ import {
   streamCoach,
 } from "@/lib/coach";
 import { saveFamily } from "@/lib/model";
+import { track } from "@/lib/events";
 import { findPersonalInfo } from "@/lib/safety";
 
 const say = (text: string, status = 200) =>
@@ -54,6 +55,7 @@ export async function POST(req: Request, { params }: { params: Promise<{ kidId: 
   kid.ai = { enabled: true, day: today, count: used + 1 };
   family.aiMonth = { month, count: familyUsed + 1 };
   await saveFamily(family);
+  await track("guroo_message", { familyId: family.id, kidId: kid.id, props: { count: 1 } }); // a count only, never the text
 
   const lessonId = typeof body?.lessonId === "string" ? body.lessonId : undefined;
   const stream = streamCoach(kid, turns, lessonId);

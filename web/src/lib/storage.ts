@@ -142,3 +142,57 @@ export async function deleteFile(key: string) {
   await fs.rm(file, { force: true });
   await fs.rm(file + ".meta.json", { force: true });
 }
+
+// Every document whose key starts with `prefix`, for founder-side reports (pilot scale only).
+export async function listJSON<T>(prefix: string): Promise<{ key: string; value: T }[]> {
+  if (DB_URL) {
+    const { rows } = await withDb((db) =>
+      db.query<{ key: string; value: T }>("select key, value from kv where key like $1 escape '\\' order by key", [
+        likePrefix(prefix),
+      ]),
+    );
+    return rows;
+  }
+  const parts = prefix.split("/");
+  const dir = path.join(LOCAL_ROOT, "data", ...parts.slice(0, -1).map(encodeURIComponent));
+  const out: { key: string; value: T }[] = [];
+  async function walk(folder: string, keyParts: string[]) {
+    let entries;
+    try {
+      entries = await fs.readdir(folder, { withFileTypes: true });
+    } catch {
+      return;
+    }
+    for (const e of entries) {
+      const parts2 = [...keyParts, decodeURIComponent(e.name)];
+      const full = path.join(folder, e.name);
+      if (e.isDirectory()) await walk(full, parts2);
+      else {
+        const key = parts2.join("/");
+        if (!key.startsWith(prefix)) continue;
+        try {
+          out.push({ key, value: JSON.parse(await fs.readFile(full, "utf8")) as T });
+        } catch {
+          // A file being written right now; skip it.
+        }
+      }
+    }
+  }
+  await walk(dir, parts.slice(0, -1));
+  return out.sort((a, b) => (a.key < b.key ? -1 : 1));
+}
+
+// Removes every document under a folder-like prefix such as "events/f/<familyId>/".
+export async function deletePrefix(prefix: string) {
+  if (!prefix.endsWith("/")) throw new Error("deletePrefix needs a prefix ending in /");
+  if (DB_URL) {
+    await withDb((db) => db.query("delete from kv where key like $1 escape '\\'", [likePrefix(prefix)]));
+    return;
+  }
+  await fs.rm(path.join(LOCAL_ROOT, "data", ...prefix.slice(0, -1).split("/").map(encodeURIComponent)), {
+    recursive: true,
+    force: true,
+  });
+}
+
+const likePrefix = (prefix: string) => prefix.replace(/[\\%_]/g, (c) => "\\" + c) + "%";

@@ -1,7 +1,7 @@
 import "server-only";
-import { createHmac, randomBytes, scryptSync, timingSafeEqual } from "node:crypto";
+import { createHash, createHmac, randomBytes, scryptSync, timingSafeEqual } from "node:crypto";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { getFamily, type Family } from "./model";
 
 const SESSION_COOKIE = "bz_session";
@@ -81,4 +81,55 @@ export async function setKidMode(kidId: string | null) {
 
 export async function kidMode() {
   return (await cookies()).get(KID_COOKIE)?.value ?? null;
+}
+
+// ---------- Founder dashboard (/admin) ----------
+// One shared password from ADMIN_PASSWORD. Without it the dashboard does not exist (404).
+
+const ADMIN_COOKIE = "bz_admin";
+const ADMIN_HOURS = 12;
+
+export const adminEnabled = () => Boolean(process.env.ADMIN_PASSWORD);
+
+const sha = (text: string) => createHash("sha256").update(text).digest();
+
+// The cookie carries a tag of the current password, so changing ADMIN_PASSWORD signs the founder out everywhere.
+const adminTag = () => sha(`admin:${process.env.ADMIN_PASSWORD ?? ""}`).toString("hex").slice(0, 16);
+
+export function checkAdminPassword(password: string) {
+  const expected = process.env.ADMIN_PASSWORD;
+  return Boolean(expected) && timingSafeEqual(sha(password), sha(expected!));
+}
+
+export async function startAdminSession() {
+  const exp = Date.now() + ADMIN_HOURS * 36e5;
+  const value = `${adminTag()}.${exp}`;
+  (await cookies()).set(ADMIN_COOKIE, `${value}.${sign(value)}`, {
+    httpOnly: true,
+    sameSite: "strict",
+    secure: process.env.NODE_ENV === "production",
+    path: "/admin",
+    maxAge: ADMIN_HOURS * 3600,
+  });
+}
+
+export async function endAdminSession() {
+  (await cookies()).delete({ name: ADMIN_COOKIE, path: "/admin" });
+}
+
+export async function isAdmin() {
+  if (!adminEnabled()) return false;
+  const raw = (await cookies()).get(ADMIN_COOKIE)?.value;
+  if (!raw) return false;
+  const [tag, exp, sig] = raw.split(".");
+  if (!tag || !exp || !sig) return false;
+  const expected = sign(`${tag}.${exp}`);
+  if (sig.length !== expected.length || !timingSafeEqual(Buffer.from(sig), Buffer.from(expected))) return false;
+  return tag === adminTag() && Number(exp) > Date.now();
+}
+
+/** For admin pages and actions: 404 when the dashboard is off, back to the password form when signed out. */
+export async function requireAdmin() {
+  if (!adminEnabled()) notFound();
+  if (!(await isAdmin())) redirect("/admin");
 }

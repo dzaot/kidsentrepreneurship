@@ -18,12 +18,20 @@ import {
   createFamily,
   deleteFamily,
   deleteKidData,
+  getFamily,
   getUser,
   newKid,
   newToken,
   releaseSlug,
   saveFamily,
+  setPassword,
+  type Kid,
 } from "@/lib/model";
+import { track } from "@/lib/events";
+import { clearHits, isLimited, recordHit } from "@/lib/ratelimit";
+import { consumeResetToken, readResetToken } from "@/lib/reset";
+import { newlyEarned, type EarnedBadges } from "@/lib/badges";
+import { earnedBadges } from "@/lib/badge-rules";
 import { safeText } from "@/lib/safety";
 import { deleteFile, putFile } from "@/lib/storage";
 import { stripMetadata } from "@/lib/strip-metadata";
@@ -53,16 +61,42 @@ export async function signup(_: unknown, fd: FormData): Promise<ActionResult> {
     ? (str(fd, "currency") as Currency)
     : "USD";
   const family = await createFamily(email, hashPassword(password), currency);
+  await track("signup", { familyId: family.id });
   await startSession(family.id);
   redirect("/family");
 }
 
+// Failed logins are limited per email (whether or not an account exists, so the message reveals nothing).
+const LOGIN_FAILS = 5;
+const LOGIN_WINDOW = 15 * 60 * 1000;
+
 export async function login(_: unknown, fd: FormData): Promise<ActionResult> {
-  const user = await getUser(str(fd, "email"));
-  if (!user || !checkPassword(str(fd, "password"), user.salt, user.hash))
+  const email = str(fd, "email").toLowerCase();
+  if (await isLimited("login", email, LOGIN_FAILS, LOGIN_WINDOW))
+    return { ok: false, error: "Too many tries for this account. For safety, please wait 15 minutes and try again." };
+  const user = await getUser(email);
+  if (!user || !checkPassword(str(fd, "password"), user.salt, user.hash)) {
+    await recordHit("login", email, LOGIN_WINDOW);
     return { ok: false, error: "Email or password is not right." };
+  }
+  await clearHits("login", email);
   await startSession(user.familyId);
   redirect("/family");
+}
+
+// Reset links are made by the founder in /admin during the pilot (no email provider yet).
+export async function resetPassword(token: string, _: unknown, fd: FormData): Promise<ActionResult> {
+  const familyId = await readResetToken(token);
+  const family = familyId ? await getFamily(familyId) : null;
+  if (!family) return { ok: false, error: "This reset link has expired or was already used. Ask for a new one." };
+  const password = str(fd, "password");
+  if (password.length < 8) return { ok: false, error: "Use at least 8 characters for your password." };
+  if (password !== str(fd, "confirm")) return { ok: false, error: "The two passwords don't match." };
+  if (!(await setPassword(family.email, hashPassword(password))))
+    return { ok: false, error: "We couldn't find that account. Ask the person who invited you." };
+  await consumeResetToken(token);
+  await clearHits("login", family.email);
+  redirect("/login?reset=1");
 }
 
 export async function logout() {
@@ -73,7 +107,9 @@ export async function logout() {
 export async function deleteAccount(fd: FormData) {
   const family = await requireFamily();
   if (str(fd, "confirm").toUpperCase() !== "DELETE") redirect("/family/settings?error=confirm");
+  const kids = family.kids.length;
   await deleteFamily(family);
+  await track("account_deleted", { props: { kids } }); // anonymous: no family id survives deletion
   await endSession();
   redirect("/?deleted=1");
 }
@@ -88,8 +124,10 @@ export async function addKid(_: unknown, fd: FormData): Promise<ActionResult> {
   if (family.kids.length >= 4) return { ok: false, error: "The pilot supports up to 4 kids per family." };
   const avatar = AVATARS.includes(str(fd, "avatar")) ? str(fd, "avatar") : AVATARS[0];
   const ageBand = str(fd, "ageBand") === "11-14" ? "11-14" : "8-10";
-  family.kids.push(newKid(clean, avatar, ageBand, family.currency));
+  const kid = newKid(clean, avatar, ageBand, family.currency);
+  family.kids.push(kid);
   await saveFamily(family);
+  await track("kid_added", { familyId: family.id, kidId: kid.id, props: { ageBand } });
   revalidatePath("/family");
   return { ok: true };
 }
@@ -105,8 +143,9 @@ export async function removeKid(kidId: string) {
 }
 
 export async function enterKidMode(kidId: string) {
-  await requireKid(kidId);
+  const { family } = await requireKid(kidId);
   await setKidMode(kidId);
+  await track("kid_mode_entered", { familyId: family.id, kidId });
   redirect(`/kid/${kidId}`);
 }
 
@@ -116,6 +155,12 @@ export async function exitKidMode() {
 }
 
 // ---------- Lessons ----------
+
+// Pilot metrics: one badge_earned event for each patch a change unlocks.
+async function trackBadges(familyId: string, kid: Kid, before: EarnedBadges) {
+  for (const badgeId of newlyEarned(before, earnedBadges(kid)))
+    await track("badge_earned", { familyId, kidId: kid.id, props: { badgeId } });
+}
 
 function dayDiff(a: string, b: string) {
   return Math.round((Date.parse(b) - Date.parse(a)) / 864e5);
@@ -132,6 +177,8 @@ export async function completeLesson(
   if (!lesson) throw new Error("Unknown lesson");
   const day = /^\d{4}-\d{2}-\d{2}$/.test(localDay) ? localDay : new Date().toISOString().slice(0, 10);
   const firstTime = !kid.completed[lessonId];
+  const before = earnedBadges(kid);
+  const xpBefore = kid.xp;
   if (firstTime) {
     kid.completed[lessonId] = day;
     kid.xp += lesson.xp;
@@ -144,6 +191,8 @@ export async function completeLesson(
   else if (dayDiff(last, day) > 1) kid.streak = { count: 1, lastDay: day };
   if (journal) kid.journal[lessonId] = journal.slice(0, 600);
   await saveFamily(family);
+  await track("lesson_completed", { familyId: family.id, kidId, props: { lessonId, xp: kid.xp - xpBefore, firstTime } });
+  await trackBadges(family.id, kid, before);
   revalidatePath(`/kid/${kidId}`);
   return { xp: kid.xp, streak: kid.streak.count };
 }
@@ -173,6 +222,7 @@ export async function updateShop(kidId: string, patch: ShopPatch): Promise<Actio
   const { family, kid } = await requireKid(kidId);
   const shop = kid.shop;
   const product = shop.product;
+  const before = earnedBadges(kid);
   if (shop.status === "published" && (patch.name !== undefined))
     return { ok: false, error: "Your shop is live! Ask a grown-up to unpublish it before changing the name." };
 
@@ -224,6 +274,7 @@ export async function updateShop(kidId: string, patch: ShopPatch): Promise<Actio
     shop.sharePlan = r.clean;
   }
   await saveFamily(family);
+  await trackBadges(family.id, kid, before);
   revalidatePath(`/kid/${kidId}`);
   return { ok: true };
 }
@@ -280,6 +331,7 @@ export async function requestPublish(kidId: string): Promise<ActionResult> {
   if (kid.shop.status !== "published") kid.shop.status = "pending";
   kid.shop.parentNote = undefined;
   await saveFamily(family);
+  await track("shop_submitted", { familyId: family.id, kidId });
   revalidatePath(`/kid/${kidId}`);
   revalidatePath("/family");
   return { ok: true };
@@ -300,6 +352,7 @@ export async function setPaymentLink(kidId: string, _: unknown, fd: FormData): P
   }
   kid.shop.product.paymentLink = url || undefined;
   await saveFamily(family);
+  if (url) await track("payment_link_set", { familyId: family.id, kidId });
   revalidatePath("/family");
   return { ok: true };
 }
@@ -309,10 +362,13 @@ export async function approveShop(kidId: string): Promise<ActionResult> {
   if (!kid.shop.name) return { ok: false, error: "The shop needs a name first." };
   if (!kid.shop.product.paymentLink) return { ok: false, error: "Add your payment link before publishing." };
   if (!kid.shop.slug) kid.shop.slug = await claimSlug(kid.shop.name, family.id, kid.id);
+  const before = earnedBadges(kid);
   kid.shop.status = "published";
   kid.shop.publishedAt ??= new Date().toISOString();
   kid.shop.parentNote = undefined;
   await saveFamily(family);
+  await track("shop_published", { familyId: family.id, kidId });
+  await trackBadges(family.id, kid, before);
   revalidatePath("/family");
   revalidatePath(`/s/${kid.shop.slug}`);
   return { ok: true };
@@ -349,8 +405,11 @@ export async function logSale(kidId: string, _: unknown, fd: FormData): Promise<
   const amount = Math.round(Number(str(fd, "amount")) * 100);
   if (!(amount > 0 && amount <= 100000)) return { ok: false, error: "Enter the amount you received." };
   const note = safeText(str(fd, "note"), 80).clean;
+  const before = earnedBadges(kid);
   kid.shop.sales.push({ id: randomUUID().slice(0, 8), at: new Date().toISOString(), amountCents: amount, note });
   await saveFamily(family);
+  await track("sale_logged", { familyId: family.id, kidId, props: { amountCents: amount } });
+  await trackBadges(family.id, kid, before);
   revalidatePath("/family");
   revalidatePath(`/kid/${kidId}`);
   return { ok: true };

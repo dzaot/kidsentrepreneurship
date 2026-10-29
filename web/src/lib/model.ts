@@ -1,7 +1,8 @@
 import "server-only";
 import { randomBytes, randomUUID, createHash } from "node:crypto";
 import type { Currency } from "./brand";
-import { getJSON, setJSON, deleteKey, deleteFile } from "./storage";
+import { getJSON, setJSON, deleteKey, deleteFile, deletePrefix } from "./storage";
+import { deleteFamilyEvents } from "./events";
 
 // Data model. One JSON document per family keeps the pilot simple:
 // a family is only ever edited by its own parent and kids.
@@ -88,6 +89,13 @@ export async function createFamily(email: string, user: Omit<UserRecord, "family
   return family;
 }
 
+export async function setPassword(email: string, user: Omit<UserRecord, "familyId">) {
+  const current = await getUser(email);
+  if (!current) return false;
+  await setJSON(emailKey(email), { ...current, ...user });
+  return true;
+}
+
 export async function getFamily(id: string) {
   return getJSON<Family>(`families/${id}`);
 }
@@ -100,6 +108,8 @@ export async function deleteFamily(family: Family) {
   for (const kid of family.kids) await deleteKidData(family.id, kid);
   await deleteKey(emailKey(family.email));
   await deleteKey(`families/${family.id}`);
+  await deleteFamilyEvents(family.id);
+  await deletePrefix(`reviews/${family.id}/`);
 }
 
 export async function deleteKidData(familyId: string, kid: Kid) {

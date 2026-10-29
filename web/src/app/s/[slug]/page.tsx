@@ -49,6 +49,9 @@ export default async function PublicShop({ params }: { params: Promise<{ slug: s
         <p className="mt-6 text-center text-xs text-ink-soft">
           <Link href="/" className="underline">Made with {BRAND.name}</Link>
         </p>
+        <p className="mt-2 text-center text-xs text-ink-soft">
+          <Link href={`/s/${slug}/report`} className="underline">Report this shop</Link>
+        </p>
       </div>
     </main>
   );
