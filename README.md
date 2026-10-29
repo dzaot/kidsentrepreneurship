@@ -32,7 +32,7 @@ Environment variables (set in Netlify):
 | `PILOT_CODE` | Optional invite code required to sign up. Already set on the Netlify project. |
 | `ANTHROPIC_API_KEY` | Enables Guroo, the AI coach (Claude). Without it the app works and Guroo shows as unavailable. |
 | `ANTHROPIC_MODEL` | Optional. Defaults to `claude-opus-5-5`. |
-| `ADMIN_PASSWORD` | Turns on the founder dashboard at `/admin` (pilot funnel, families, waitlist CSV, reports and review queue, password reset links). Without it `/admin` returns 404. Use a long random value. |
+| `ADMIN_PASSWORD` | Turns on the founder dashboard at `/admin` (pilot funnel, families, waitlist CSV, reports and review queue, password reset links). Without it `/admin` returns 404. Use a long random value. On Netlify set it as a secret for the production context (secrets cannot use the dev context). |
 
 ## Deploy on Netlify
 
